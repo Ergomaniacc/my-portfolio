@@ -1,0 +1,216 @@
+.img-logo{
+    width: 200px;
+}
+ .dropdown-content .hov:hover { 
+    color: #FFFFFF;
+    background-color:rgb(29, 50, 145);
+} 
+.dropdown-content .hove:hover{
+  color: #FFFFFF;
+  background-color: red;
+}
+
+.sidepanel {
+    height:600px; /* Specify a height */
+    width:0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0;
+    left: 0;
+    background-color:white; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition:width 0.5s ease; /* 0.5 second transition effect to slide in the sidepanel */
+  }
+  
+  /* The sidepanel links */
+  .sidepanel a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color:black;
+    display: block;
+    transition: 0.3s;
+  }
+.sidepanel a:hover {
+    color: royalblue;
+  }
+  
+  /* Position and style the close button (top right corner) */
+  .sidepanel .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+  
+  /* Style the button that is used to open the sidepanel */
+  .openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color:rgb(21, 30, 116);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+  }
+  
+  .openbtn:hover {
+    background-color: #444;
+  }
+  .sign-btn{
+    top: 1px;
+    width: 300px;
+    height: 70px;
+    background-color: orange;
+    font-size: 50px;
+  }
+   .sign-bn{
+    border: none;
+    background-color: transparent;
+  }
+
+.bg{
+    background: red;
+}
+.sl{
+    text-decoration: none;
+}
+ .yo{
+  color:red;
+}
+
+
+body {
+    background-color: rgb(90, 131, 245);
+    /* height: 100px; */
+    /* padding: 1px; */
+    overflow-x: hidden;
+  }
+  
+  .early-item {
+      /* Remove fixed height for flexibility */
+  }
+  
+  #nav-bar {
+      background-color: rgb(0, 76, 153);
+      /* Remove fixed height to adapt to content */
+  }
+  
+  /* .img-logo {
+      max-width: 100%;
+      height: auto;
+  } */
+  
+  .search-input {
+      width: 350px; /* Default width */
+  }
+  
+  .div-cat {
+      display: flex;
+      width: 100%;
+      background-color: rgb(0, 76, 153);
+  }
+  
+  .div-home {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      /* width: 100%; */
+  }
+  
+  .home-btn {
+      border: none;
+      background-color: transparent;
+  }
+  
+  .home-link {
+      text-decoration: none;
+      color: white;
+      font-size: 20px;
+  }
+  
+  .rf6788 {
+      width: 70%;
+      margin: 0 auto;
+      border: 5px solid black;
+      height: 250px;
+  }
+  
+  .j4fff7h {
+      width: 100%;
+      /* height: auto; */
+      height: 100%;
+  }
+  
+  .ffdjcj {
+      text-align: center;
+  }
+  
+  .card-container {
+      background-color: white;
+      padding: 10px;
+  }
+  
+  .cards {
+      padding: 10px;
+  }
+  
+  .img-div {
+      text-align: center;
+  }
+  
+  .p-name {
+      color: black;
+      font-family: monospace;
+      font-weight: 500;
+      font-size: 20px;
+  }
+  
+  .icon {
+      color: #444;
+      margin-right: 20px;
+  }
+  
+  .checked {
+      color: orange;
+      margin-top: 5px;
+  }
+  
+  .more {
+      display: flex;
+      justify-content: end;
+      text-decoration: none;
+  }
+  
+  .header {
+      font-family: monospace;
+      margin-left: 15px;
+  }
+  
+  .marquee {
+      color: white;
+      font-family: monospace;
+      height: 50px;
+      background-color: brown;
+  }
+  
+  .fr {
+      color: black;
+      cursor: pointer;
+  }
+  
+  .fr.liked {
+      color: red;
+  }
+@media only screen and (max-width:450px){
+  
+}
+.fr {
+  color: black; /* Default color */
+  cursor: pointer;
+} 
+
+.fr.liked {
+  color: red;/* when liked */
+}

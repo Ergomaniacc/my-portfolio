@@ -1,0 +1,234 @@
+body{
+    background-color: rgb(90, 131, 245);
+}
+.early-item{
+     height: 2300px;
+}
+.search-input{
+    width: 350px;
+}
+#nav-bar{
+    background-color: rgb(0, 76, 153);
+    height: 100px;
+}
+.img-logo{
+    width: 200px;
+}
+.dropdown {
+    display: inline-block;
+    position: relative;
+  }
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    width: 100%;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+.dropdown-content a {
+    display: block;
+    color: #000000;
+    padding: 5px 5px 5px 50px;
+    text-decoration: none;
+}
+ .dropdown-content .hov:hover { 
+    color: #FFFFFF;
+    background-color:rgb(29, 50, 145);
+} 
+.dropdown-content .hove:hover{
+  color: #FFFFFF;
+  background-color: red;
+}
+.acc-btn{
+    width: 100px;
+}
+/* The sidepanel menu */
+.sidepanel {
+    height:600px; /* Specify a height */
+    width:0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0;
+    left: 0;
+    background-color:white; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition:width 0.5s ease; /* 0.5 second transition effect to slide in the sidepanel */
+  }
+  
+  /* The sidepanel links */
+  .sidepanel a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color:black;
+    display: block;
+    transition: 0.3s;
+  }
+  .div-cat{
+    display: flex;
+    width: 100%;
+    background-color:rgb(0,76, 153);
+  }
+  /* When you mouse over the navigation links, change their color */
+.sidepanel a:hover {
+    color: royalblue;
+  }
+  
+  /* Position and style the close button (top right corner) */
+  .sidepanel .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+  
+  /* Style the button that is used to open the sidepanel */
+  .openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color:rgb(21, 30, 116);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+  }
+  
+  .openbtn:hover {
+    background-color: #444;
+  }
+  .sign-btn{
+    top: 1px;
+    width: 300px;
+    height: 70px;
+    background-color: orange;
+    font-size: 50px;
+  }
+  .sign-bn{
+    border: none;
+    background-color: transparent;
+  }
+  .home-btn{
+    border: none;
+    background-color: transparent;
+  }
+  .home-link{
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+  }
+  .div-home{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .form{
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #meta{
+    width: 200px;
+  }
+  .sec11{
+    margin-right: 50px;
+    justify-content: space-around;
+  }
+  .rune{
+    margin-left: 50px;
+    border: none;
+    background-color: transparent;
+    font-size: 18px;
+  }
+  .signn{
+    margin-bottom: 2x;
+  }
+  .divv{
+    display: flex;
+    flex-direction:column;
+    align-items: middle;
+  }
+  .me{
+    color: orange;
+  }
+  .nope{
+    text-decoration: none;
+    color: #000000;
+}
+/* the end of the css for the navbars */
+.card-container{
+    width: 97% ;
+    height:2000px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:start;
+    gap: 10px;
+    padding:30px;
+    margin-left: 20px;
+    background-color: rgb(241,227,227);
+}
+.cards{
+    width: 300px;
+    height: 25%;
+    /* background-color: white; */
+}
+ .img-div{ 
+    /* width:250px; */
+     margin-left: 70px; 
+    /* height: 200px; */
+ } 
+.p-name{
+    color: black;
+    font-family: monospace;
+    font-weight: 500;
+    font-size: 20px;
+}
+.icon{
+    /* display: flex; */
+    /* justify-content: end; */
+    margin-left: 290px;
+    color: #444;
+}
+.checked{
+    color: orange;
+    margin-top: 5px;
+}
+
+.header{
+    font-family: monospace;
+    margin-left: 15px;
+}
+/* beginning of the footer css */
+.bg{
+    background: red;
+}
+.sl{
+    text-decoration: none;
+}
+.yo{
+  color:gray;
+}
+.sig{
+    display: flex;
+    justify-content: center;
+}
+.marquee{
+    transition: 1s;
+    color: white;
+    font-family: monospace;
+    height: 50px;
+    background-color: brown;
+}
+/* the end of the footer css */
+.fr {
+    color: black; /* Default color */
+    cursor: pointer;
+  }
+  
+  .fr.liked {
+    color: red; /* Color when liked */
+  }

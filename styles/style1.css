@@ -1,0 +1,24 @@
+body {
+    background-color: #0d1117;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+  }
+  h1 {
+    font-size: 2.5rem;
+    color: #00f7ff;
+  }
+  p {
+    color: #ccc;
+  }
+  a {
+    color: yellow;
+    text-decoration: none;
+  }
+  a:hover {
+    color: #00e6e6;
+  }

@@ -1,0 +1,110 @@
+/* Base Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
+}
+
+/* Side Panel */
+.sidepanel {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1050;
+    top: 0;
+    left: 0;
+    background-color: white;
+    overflow-x: hidden;
+    transition: 0.5s;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+}
+
+.sidepanel a {
+    padding: 8px 16px;
+    text-decoration: none;
+    color: #333;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidepanel a:hover {
+    background-color: #f8f9fa;
+}
+
+.sidepanel .closebtn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+}
+
+/* Navigation */
+.navbar-brand img {
+    max-height: 40px;
+}
+
+.search-input {
+    min-width: 150px;
+}
+
+/* Cards */
+.card {
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: none;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.card-img-top {
+    height: 180px;
+    object-fit: contain;
+}
+
+/* Marquee */
+.marquee {
+    white-space: nowrap;
+    overflow: hidden;
+    animation: marquee 15s linear infinite;
+}
+
+@keyframes marquee {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .navbar-collapse {
+        padding-top: 15px;
+    }
+    
+    .search-input {
+        margin-bottom: 10px;
+    }
+    
+    .card-img-top {
+        height: 120px;
+    }
+    
+    .sidepanel {
+        width: 0;
+        padding-top: 60px;
+    }
+    
+    .sidepanel.open {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .marquee h4 {
+        font-size: 1.2rem;
+    }
+    
+    .footer .col-6 {
+        margin-bottom: 20px;
+    }
+}

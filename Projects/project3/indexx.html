@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ergo planet</title>
+    <!-- Optimized CDN imports -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/indexx.css">
+</head>
+<body>
+    <div class="early-item">
+        <!-- Responsive Navbar -->
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="images1/ergo-removebg-preview.png" alt="Ergo Planet Logo" class="img-logo">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <div class="d-flex w-100">
+                        <form class="d-flex me-2 w-100">
+                            <input class="form-control me-2 search-input" type="search" placeholder="Search products, brands and categories">
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form>
+                        <ul class="navbar-nav mb-2 mb-lg-0">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                    Account info
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="index1.html">Sign in</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><h6 class="dropdown-header">Your account</h6></li>
+                                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                                    <li><a class="dropdown-item" href="order.html">Order</a></li>
+                                    <li><a class="dropdown-item" href="recommend.html">Recommendation</a></li>
+                                    <li><a class="dropdown-item" href="browse-data.html">Browsing data</a></li>
+                                    <li><a class="dropdown-item" href="watchlist.html">Watchlist</a></li>
+                                    <li><a class="dropdown-item" href="saved-items.html"><i class="fas fa-heart me-1"></i>Saved items</a></li>
+                                    <li><a class="dropdown-item" href="#">Membership</a></li>
+                                    <li><a class="dropdown-item" href="#">Logout</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="order.html">Orders</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Location</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                    Help
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="customerservice.html">Help center</a></li>
+                                    <li><a class="dropdown-item" href="#">Payment option</a></li>
+                                    <li><a class="dropdown-item" href="#">Track an order</a></li>
+                                    <li><a class="dropdown-item" href="#">Place an order</a></li>
+                                    <li><a class="dropdown-item" href="#">Terms and condition</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#"><i class="fas fa-comments me-1"></i>Live chat</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="cart.html"><i class="fas fa-shopping-cart"></i> Cart</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Categories Section -->
+        <div class="container-fluid mt-3">
+            <div class="row">
+                <div class="col-md-3 col-lg-2">
+                    <button class="btn btn-primary w-100 openbtn" onclick="openNav()">
+                        <i class="fas fa-bars me-2"></i>All categories
+                    </button>
+                </div>
+                <div class="col-md-9 col-lg-10">
+                    <div class="d-flex flex-wrap">
+                        <a href="index.html" class="btn btn-outline-secondary m-1">Home</a>
+                        <a href="index2.html" class="btn btn-outline-secondary m-1">Today's deal</a>
+                        <a href="index3.html" class="btn btn-outline-secondary m-1">Special Edition</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Side Panel -->
+        <div id="mySidepanel" class="sidepanel">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <div class="p-3">
+                <a href="index1.html" class="btn btn-primary w-100 mb-3">
+                    <i class="fas fa-user me-2"></i>Sign in
+                </a>
+                <h5 class="mb-3">Fashion</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="d-block py-2">Clothes</a></li>
+                    <li><a href="#" class="d-block py-2">Jewelries</a></li>
+                    <li><a href="#" class="d-block py-2">Watches</a></li>
+                    <li><a href="#" class="d-block py-2">Shoes</a></li>
+                    <li><a href="#" class="d-block py-2">Accessories</a></li>
+                    <li><a href="#" class="d-block py-2">Handbag</a></li>
+                    <li><a href="#" class="d-block py-2">Limited editions</a></li>
+                </ul>
+                <hr>
+                <h5 class="mb-3">Electronics</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="d-block py-2">Computer & Accessories</a></li>
+                    <li><a href="#" class="d-block py-2">Phones & accessories</a></li>
+                    <li><a href="#" class="d-block py-2">Cars & Accessories</a></li>
+                    <li><a href="#" class="d-block py-2">Wearable technology</a></li>
+                    <li><a href="#" class="d-block py-2">Television and video product</a></li>
+                    <li><a href="#" class="d-block py-2">Video game console and accessories</a></li>
+                    <li><a href="#" class="d-block py-2">Office equipments</a></li>
+                    <li><a href="#" class="d-block py-2">Headphones & Home audio</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Hero Banner -->
+        <div class="container-fluid mt-3">
+            <div class="row">
+                <div class="col-12">
+                    <a href="index3.html">
+                        <img src="images1/limi.jpg" alt="Limited Edition Products" class="img-fluid rounded">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trending Products -->
+        <div class="container mt-5">
+            <h2 class="mb-4">Trending</h2>
+            <div class="row">
+                <div class="col-6 col-md-4 col-lg-3 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <div class="text-end">
+                                <i class="far fa-heart fa-lg fr" style="cursor: pointer;"></i>
+                            </div>
+                            <img src="images1/diamond2.jpg" class="img-fluid mb-3" alt="Ergo Dreamer">
+                            <h5 class="card-title">Ergo Dreamer</h5>
+                            <p class="card-text text-success">$150,000</p>
+                            <div class="mb-2">
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="far fa-star text-warning"></i>
+                            </div>
+                            <button class="btn btn-secondary w-100">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Repeat for other 3 trending products -->
+            </div>
+        </div>
+
+        <!-- Limited Edition Products -->
+        <div class="container mt-5">
+            <h2 class="mb-4">Limited Edition</h2>
+            <div class="row">
+                <div class="col-6 col-md-4 col-lg-3 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <div class="text-end">
+                                <i class="far fa-heart fa-lg fr" style="cursor: pointer;"></i>
+                            </div>
+                            <img src="images1/shoe.jpg" class="img-fluid mb-3" alt="Slider">
+                            <h5 class="card-title">Slider</h5>
+                            <p class="card-text text-success">$500,000</p>
+                            <div class="mb-2">
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                            </div>
+                            <button class="btn btn-secondary w-100">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Repeat for other 3 limited edition products -->
+            </div>
+        </div>
+
+        <!-- Marquee -->
+        <div class="container-fluid bg-light py-3 mt-5">
+            <div class="marquee">
+                <h4 class="mb-0">A PLANET FOR EVERYONE <span class="ms-2">😊</span></h4>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="bg-body-tertiary mt-5">
+            <!-- Your existing footer content, but with responsive grid classes -->
+            <div class="container p-4">
+                <div class="row">
+                    <div class="col-6 col-md-3 mb-4">
+                        <h5>About Ergo planet</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="#" class="text-decoration-none">About us</a></li>
+                            <!-- Other links -->
+                        </ul>
+                    </div>
+                    <!-- Other footer columns -->
+                </div>
+            </div>
+            <div class="text-center p-3 bg-light">
+                © 2024 Copyright: <a class="text-reset fw-bold" href="#">Ergoplanet.com</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts at the bottom -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        function openNav() {
+            document.getElementById("mySidepanel").style.width = "100%";
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidepanel").style.width = "0";
+            document.body.style.overflow = "auto";
+        }
+
+        $(document).ready(function() {
+            $(".fr").click(function() {
+                $(this).toggleClass("fas far");
+            });
+        });
+    </script>
+</body>
+</html>

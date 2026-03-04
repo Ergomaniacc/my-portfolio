@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href=" https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>  
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> 
+    <link rel="stylesheet" href="css/index4.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="early-item">
+        <nav class="navbar bg-body-tertiary">
+            <div class="container-fluid" id="nav-bar">
+              <a class="navbar-brand" href="#"><img src="images1/ergo-removebg-preview.png" alt="" class="img-logo"></a>
+              <div>
+                <section class="sec11">
+                  <div class="run">
+                    <input type="search" name="" id="" placeholder="search products,brands and categories" class="search-input" name="search" ><label for="search"><button type="submit" >search</button></label><!--<button type="submit"> <i>class="fa fa-search"></i><!-->
+                    <!-- <button type="submit"><i class="fa fa-search"></i></button> -->
+                    <div class="dropdown">
+                        <button class="rune">Account info</button>
+                        <div class="dropdown-content" id="meta">
+                            <form action="" class="form-control">
+                          <div class="signn">
+                            <a href="index1.html"><button class="btn btn-primary">sign in</button></a>
+                           </div><hr>
+                           <div class="divv">
+                           <h4>Your account</h4>
+                           <a rel="noopener" target="_self" href="" class="hov">Profile</a>
+                           <a rel="noopener" target="_self" href="order.html" class="hov">Order</a>
+                           <a rel="noopener" target="_self" href="recommend.html" class="hov">Recommendation</a>
+                           <a rel="noopener" target="_self" href="browse-data.html" class="hov">Browsing data</a>
+                           <a rel="noopener" target="_self" href="watchlist.html" class="hov">watchlist</a>
+                           <a rel="noopener" target="_self" href="saved-items.html" class="hov"><i class="fa fa-heart yo"></i> Saved items</a>
+                            <a rel="noopener" target="_self" href="" class="hov">Membership</a>
+                            <a rel="noopener" target="_self" href="" class="hove">Logout</a>
+                           </div>  
+                            </form>
+                        </div>
+                    </div>
+                    <button class="rune"><a href="order.html" class="nope">orders</a></button>
+                    <button class="rune"><a href="" class="nope">location</a></button>
+                    <div class="dropdown">
+                      <button class="rune">Help</button>
+                      <div class="dropdown-content" id="meta">
+                          <form action="" class="form-control">
+                         <div class="divv">
+                         <a rel="noopener" target="_self" href="customerservice.html" class="hov">Help center</a>
+                         <a rel="noopener" target="_self" href="" class="hov">Payment option</a>
+                         <a rel="noopener" target="_self" href="" class="hov">Track an order</a>
+                         <a rel="noopener" target="_self" href="" class="hov">Place an order</a>
+                          <a rel="noopener" target="_self" href="" class="hov">Terms and condition</a>
+                         </div><hr>
+                         <div class="sig">
+                         <button class="btn btn-info"><a href=""><i class='fa fa-comments'></i>Live chat</a></button>
+                         </div>
+                          </form>
+                      </div>
+                  </div>
+                    <button class="rune"><a href="cart.html" class="nope"> <i class="fa fa-shopping-cart"></i>carts</a></button>
+                    </div>
+                </section>
+              </div>
+            </div>
+        </nav>
+        <div class="div-cat">
+            <div class="div-cate">              
+              <div id="mySidepanel" class="sidepanel">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <nav class="sign-btn"><a href="index1.html"><button class="sign-bn"><i class="fa fa-fw fa-user"></i>Sign in</button></a></nav>
+                <a href="#"><h1>Fashion</h1></a>
+                <a href="#">clothes</a>
+                <a href="#">jewelries</a>
+                <a href="#">watches</a>
+                <a href="">shoes</a>
+                <a href="">accessories</a>
+                <a href="">handbag</a>
+                <a href="">Limited editions</a><hr>
+                <a href=""><h1>Electronics</h1></a>
+                <a href="">Computer & Accessories</a>
+                <a href="">phones & accessories</a>
+                <a href="">Cars & Accessories</a>
+                <a href="">wearable technology</a>
+                <a href="">Television and video product</a>
+                <a href="">Video game console and accessories</a>
+                <a href="">Office equipments</a>
+                <a href="">Headphones & Home audio</a>
+              </div>
+              
+              <button class="openbtn" onclick="openNav()">&#9776; All categories</button>
+            </div>
+         <div class="div-home">
+            <button class="home-btn"><a href="index.html" class="home-link">home</a></button>
+            <button class="home-btn"><a href="index2.html" class="home-link">Today's deal</a></button>
+            <button class="home btn"><a href="index3.html" class="home-link">Special Editon</a></button>
+          </div>  
+        </div><br><br>
+   <div class="Ergo">     
+    <h3>Special Edition</h3>
+    <h6>Edition made to match your lifestyle,Explore the world of Ergo</h6><br><br>
+   </div> 
+    <div>
+        <div class="sp-div">
+            <div class="sp-edition">
+                <div class="icon">
+                    <i class="fa fa-heart fr"></i>
+                </div><br>
+                <div><img src="images1/car3.jpg" alt=""><br></div>
+                <span>Ergo car</span><br>
+                <span>$3,400,000</span><br>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span><br>
+                <button class="btn btn-secondary p-btn">Add to cart</button>   
+            </div>
+            <div class="sp-edition">
+                <div class="icon">
+                    <i class="fa fa-heart fr"></i>
+                </div><br>
+                <div><img src="images1/td,watch1.jpg" alt=""><br></div>
+                <span>Ergo car</span><br>
+                <span>$3,400,000</span><br>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span><br>
+                <button class="btn btn-secondary p-btn">Add to cart</button>   
+            </div>
+            <div class="sp-edition">
+                <div class="icon">
+                    <i class="fa fa-heart fr"></i>
+                </div><br>
+                <div><img src="images1/bag5.jpg" alt=""><br></div>
+                <span>Ergo car</span><br>
+                <span>$3,400,000</span><br>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span><br>
+                <button class="btn btn-secondary p-btn">Add to cart</button>   
+            </div>
+            <div class="sp-edition">
+                <div class="icon">
+                    <i class="fa fa-heart fr"></i>
+                </div><br>
+                <div><img src="shoe9.jpg" alt=""><br></div>
+                <span>Ergo car</span><br>
+                <span>$3,400,000</span><br>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span><br>
+                <button class="btn btn-secondary p-btn">Add to cart</button>   
+            </div>
+            <div class="sp-edition">
+                <div class="icon">
+                    <i class="fa fa-heart fr"></i>
+                </div><br>
+                <div><img src="images1/images(4).jpg" alt=""><br></div>
+                <span>Ergo car</span><br>
+                <span>$3,400,000</span><br>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span><br>
+                <button class="btn btn-secondary p-btn">Add to cart</button>   
+            </div>
+            <div class="sp-edition">
+                <div class="icon">
+                    <i class="fa fa-heart fr"></i>
+                </div><br>
+                <div><img src="images1/ergo tech6.jpg""><br></div>
+                <span>Ergo car</span><br>
+                <span>$3,400,000</span><br>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span><br>
+                <button class="btn btn-secondary p-btn">Add to cart</button>   
+            </div>
+            <div class="sp-edition">
+                <div class="icon">
+                    <i class="fa fa-heart fr"></i>
+                </div><br>
+                <div><img src="images1/lap1.jpg" alt=""><br></div>
+                <span>Ergo car</span><br>
+                <span>$3,400,000</span><br>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span><br>
+                <button class="btn btn-secondary p-btn">Add to cart</button>   
+            </div>
+            <div class="sp-edition">
+                <div class="icon">
+                    <i class="fa fa-heart fr"></i>
+                </div><br>
+                <div><img src="images1/hd5.jpg" alt=""><br></div>
+                <span>Ergo car</span><br>
+                <span>$3,400,000</span><br>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span><br>
+                <button class="btn btn-secondary p-btn">Add to cart</button>   
+            </div>
+            <div class="sp-edition">
+                <div class="icon">
+                    <i class="fa fa-heart fr"></i>
+                </div><br>
+                <div><img src="images1/watch4.jpg" alt=""><br></div>
+                <span>Ergo car</span><br>
+                <span>$3,400,000</span><br>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span><br>
+                <button class="btn btn-secondary p-btn">Add to cart</button>   
+            </div><br>
+            <div class="sp-edition">
+                <div class="icon">
+                    <i class="fa fa-heart fr"></i>
+                </div><br>
+                <div><img src="images1/schoe2.jpg" alt=""><br></div>
+                <span>Ergo car</span><br>
+                <span>$3,400,000</span><br>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span><br>
+                <button class="btn btn-secondary p-btn">Add to cart</button>   
+            </div>
+            <div class="sp-edition">
+                <div class="icon">
+                    <i class="fa fa-heart fr"></i>
+                </div><br>
+                <div><img src="images1/car1.jpg" alt=""><br></div>
+                <span>Ergo car</span><br>
+                <span>$3,400,000</span><br>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span><br>
+                <button class="btn btn-secondary p-btn">Add to cart</button>   
+            </div>
+            <div class="sp-edition">
+                <div class="icon">
+                    <i class="fa fa-heart fr"></i>
+                </div><br>
+                <div><img src="images1/td5.jpg" alt=""><br></div>
+                <span>Ergo car</span><br>
+                <span>$3,400,000</span><br>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span><br>
+                <button class="btn btn-secondary p-btn">Add to cart</button>   
+            </div>
+            <div class="sp-edition">
+                <div class="icon">
+                    <i class="fa fa-heart fr"></i>
+                </div><br>
+                <div><img src="images1/bag.jpg" alt=""><br></div>
+                <span>Ergo car</span><br>
+                <span>$3,400,000</span><br>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span><br>
+                <button class="btn btn-secondary p-btn">Add to cart</button>   
+            </div>
+            <div class="sp-edition">
+                <div class="icon">
+                    <i class="fa fa-heart fr"></i>
+                </div><br>
+                <div><img src="images1/ergo tech1.jpg" alt=""><br></div>
+                <span>Ergo car</span><br>
+                <span>$3,400,000</span><br>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span><br>
+                <button class="btn btn-secondary p-btn">Add to cart</button>   
+            </div>
+            <div class="sp-edition">
+                <div class="icon">
+                    <i class="fa fa-heart fr"></i>
+                 </div><br>
+                <div><img src="images1/hd.jpg" alt=""><br></div>
+                <span>Ergo car</span><br>
+                <span>$3,400,000</span><br>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span><br>
+                <button class="btn btn-secondary p-btn">Add to cart</button>   
+            </div>
+         </div>
+    </div><br><br><br><br>
+    <div class="faq">
+        <div id="faq">
+       <h5>More on special edition</h5><br>
+        <p>The special edition signifies the years through which ideas of ergo planet has been born,it signifies the effort the planet evolved with.
+        <p>the special edition is a piece of the planet imagination of what humans wear,this edition is different and special as the name implies,the nature of the planet determines the edition every year.</p>
+        <p>This year marks the fifth annual anniversary of the world most luxuriest company : ERGO PLANET,five years of effort,ideas,loss,profit,this years has shaped us to who we are today</p>
+        <p>Today,we are the largest luxurious company today and we ought to celebrate this with a section called special edition.Every year Ergo planet had recommend unique product with sophisticated technology for it citizens,this recommendation is what the team has evolutionized today, a unique product with various consumer satisfaction.</p>
+        <h6>FAQ</h6>
+        <h5>What is the Special Edition all about?</h5>
+        <p>The special editon is a unique Recommendation from the Planet to help shape its ecosystem</p>
+        <h5>What is the difference between limited special Edition</h5>
+        <p>Limited edition is a recommendation from the team and its users but Special edition is a recommendation from the planet itself</p>
+        <h5>Is Ergo planet a person or what?</h5>
+        <p>Ergo planet is a sophisticated AI(Artificial intelligence) mainly for upkeeping the ecosystem</p>
+        <h5>Is there any benefit attached to the special Edition</h5>
+        <p>yeah,there are a lot of benefit,you can check our <a href="">Terms and policy</a></p>
+        <h6>any questions,you can contact <a href="">Live support team</a>or chat with <a href="">Ergo</a> itself</h6>
+       </div><br><br>
+    </div><br><br><br><br>
+    <marquee behavior="" direction="" class="marquee"><h1>A PLANET FOR EVERYONE<span style='font-size:40px;'>&#128522;</span> </h1></marquee>
+    <footer class="bg-body-tertiary text-center">
+        <!-- Grid container -->
+        <div class="container p-4">
+          <!-- Section: Social media -->
+          <section class="mb-4">
+            <!-- Facebook -->
+            <a data-mdb-ripple-init class="btn btn-outline btn-floating m-1" href="#!" role="button"
+              ><i class="fa fa-facebook-f"></i
+            ></a>
+      
+            <!-- Twitter -->
+            <a data-mdb-ripple-init class="btn btn-outline btn-floating m-1" href="#!" role="button"
+              ><i class="fa fa-twitter"></i
+            ></a>
+      
+            <!-- Google -->
+            <a data-mdb-ripple-init class="btn btn-outline btn-floating m-1" href="#!" role="button"
+              ><i class="fa fa-google"></i
+            ></a>
+      
+            <!-- Instagram -->
+            <a data-mdb-ripple-init class="btn btn-outline btn-floating m-1" href="#!" role="button"
+              ><i class="fa fa-instagram"></i
+            ></a>
+      
+            <!-- Linkedin -->
+            <a data-mdb-ripple-init class="btn btn-outline btn-floating m-1" href="#!" role="button"
+              ><i class="fa fa-linkedin"></i
+            ></a>
+      
+            <!-- Github -->
+            <a data-mdb-ripple-init class="btn btn-outline btn-floating m-1" href="#!" role="button"
+              ><i class="fa fa-github"></i
+            ></a>
+          </section>
+          <!-- Section: Social media -->
+      
+          <!-- Section: Form -->
+          <section class="">
+            <form action="">
+              <!--Grid row-->
+              <div class="row d-flex justify-content-center">
+                <!--Grid column-->
+                <div class="col-auto">
+                  <p class="pt-2">
+                    <strong>Sign up for our newsletter</strong>
+                  </p>
+                </div>
+                <!--Grid column-->
+      
+                <!--Grid column-->
+                <div class="col-md-5 col-12">
+                  <!-- Email input -->
+                  <div data-mdb-input-init class="form-outline mb-4">
+                    <input type="email" id="form5Example24" class="form-control" />
+                    <label class="form-label" for="form5Example24">Email address</label>
+                  </div>
+                </div>
+                <!--Grid column-->
+      
+                <!--Grid column-->
+                <div class="col-auto">
+                  <!-- Submit button -->
+                  <button data-mdb-ripple-init type="submit" class="btn btn-outline mb-4 bg">
+                    Subscribe
+                  </button>
+                </div>
+                <!--Grid column-->
+              </div>
+              <!--Grid row-->
+            </form>
+          </section>
+          <!-- Section: Form -->
+      
+          <!-- Section: Text -->
+          <section class="mb-4">
+            <p>
+              You can unsuscribe at anytime,also available in app store and Google playstore
+            </p>
+          </section><hr>
+          <!-- Section: Text -->
+      
+          <!-- Section: Links -->
+          <section class="">
+            <!--Grid row-->
+            <div class="row">
+              <!--Grid column-->
+              <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase">About Ergo planet</h5>
+      
+                <ul class="list-unstyled mb-0">
+                  <li>
+                    <a class="text-body sl" href="">About us</a>
+                  </li>
+                  <li>
+                    <a class="text-body sl" href="#!">career</a>
+                  </li>
+                  <li>
+                    <a class="text-body sl" href=""> our blog</a>
+                  </li>
+                  <li>
+                    <a class="text-body sl" href="#!">terms and condition</a>
+                  </li>
+                  <li>
+                    <a class="text-body sl" href="#!">Privacy notice</a>
+                  </li>
+                  <li>
+                    <a class="text-body sl" href="">return policy</a>
+                  </li>
+                  <li>
+                    <a class="text-body sl" href="limited.html">Limited edition</a>
+                  </li>
+                </ul>
+              </div>
+              <!--Grid column-->
+      
+              <!--Grid column-->
+              <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase">More info</h5>
+      
+                <ul class="list-unstyled mb-0">
+                  <li>
+                    <a class="text-body sl" href="#!">Buyer safety centre</a>
+                  </li>
+                  <li>
+                    <a class="text-body sl" href="#!">Delivery</a>
+                  </li>
+                  <li>
+                    <a class="text-body sl" href="#!">FAC</a>
+                  </li>
+                  <li>
+                    <a class="text-body sl" href="#!">Track my order</a>
+                  </li>
+                  <li>
+                    <a class="text-body sl" href="">Become an Ergo planet Affiliate</a>
+                  </li>
+                  <li>
+                    <a class="text-body sl" href="">bulk purchase</a>
+                  </li>
+                </ul>
+              </div>
+              <!--Grid column-->
+      
+              <!--Grid column-->
+              <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Payments</h5>
+      
+                <ul class="list-unstyled mb-0">
+                  <li>
+                    <a class="text-body sl" href="">Ergo currency converter</a>
+                  </li>
+                  <li>
+                    <a class="text-body sl" href="#!">Ergo Exchange</a>
+                  </li>
+                  <li>
+                    <a class="text-body sl" href="#!">Wallet</a>
+                  </li>
+                  <li>
+                    <a class="text-body sl" href="#!">Mastercard</a>
+                  </li>
+                  <li>
+                    <a class="text-body sl" href="#!">Visa</a>
+                  </li>
+                  <li>
+                    <a class="text-body sl" href="">Verve</a>
+                  </li>
+                  <li>
+                    <a class="text-body sl" href="">Shop with points</a>
+                  </li>
+                </ul>
+              </div>
+              <!--Grid column-->
+      
+              <!--Grid column-->
+              <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Need help?</h5>
+      
+                <ul class="list-unstyled mb-0">
+                  <li>
+                    <a class="text-body sl" href="#!">Chat with us</a>
+                  </li>
+                  <li>
+                    <a class="text-body sl" href="#!">Contact us</a>
+                  </li>
+                  <li>
+                    <a class="text-body sl" href="customerservice.html">Help center</a>
+                  </li>
+                  <li>
+                    <a class="text-body sl" href="#!">Shipping rates and policy</a>
+                  </li>
+                </ul>
+              </div>
+              <!--Grid column-->
+            </div>
+            <!--Grid row-->
+          </section>
+          <!-- Section: Links -->
+        </div>
+        <!-- Grid container -->
+      
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+          © 2024 Copyright:
+          <a class="text-reset fw-bold" href="https://mdbootstrap.com/">Ergoplanet.com,inc or its affiliate</a>
+        </div>
+        <!-- Copyright -->
+      </footer>
+</body>
+</html>
+<script>
+    
+  /* Set the width of the sidebar to 250px (show it) */
+  function openNav() {
+    const sidepanel = document.getElementById("mySidepanel");
+    sidepanel.style.width = "250px";
+
+    // Add an event listener to detect clicks outside the sidebar
+    document.addEventListener("click", closeOnOutsideClick);
+  }
+
+  /* Set the width of the sidebar to 0 (hide it) */
+  function closeNav() {
+    const sidepanel = document.getElementById("mySidepanel");
+    sidepanel.style.width = "0";
+
+    // Remove the event listener when the sidebar is closed
+    document.removeEventListener("click", closeOnOutsideClick);
+  }
+
+  /* Close the sidebar if a click is detected outside of it */
+  function closeOnOutsideClick(event) {
+    const sidepanel = document.getElementById("mySidepanel");
+    const openButton = document.querySelector(".openbtn");
+
+    // Check if the clicked element is outside the sidebar and not the open button
+    if (!sidepanel.contains(event.target) && !openButton.contains(event.target)) {
+      closeNav();
+    }
+  }
+  $(document).ready(function () { 
+  $(".fr").click(function () {
+    $(this).toggleClass("liked");
+  });       
+});
+
+
+
+</script>

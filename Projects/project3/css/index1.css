@@ -1,0 +1,41 @@
+.font-size{
+    color: black;
+    font-weight: bolder;
+}
+.mover{
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+    justify-content: center;
+}
+.img-logo{
+    width: 400px;
+}
+.email-input{
+    width: 400px;
+}
+.bt{
+    width: 400px ;
+   border: none;
+   color: white;
+   background-color: aquamarine;
+   padding: 9px 10px;
+   font-weight: bold;
+   font-size: 20px;
+   margin: 8px 0px;
+}
+.bu{
+    width: 400px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    background-color: cadetblue;
+    padding: 9px 10px;
+}
+.p{
+    margin-left: 120px;
+}
+.alt{
+    width: 200px;
+    margin-left: 95px;
+}

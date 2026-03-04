@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Portfolio of Shofolahan Adebola, a 16-year-old full-stack developer specializing in Web3 and modern web apps.">
+    <meta name="keywords" content="Web3, blockchain, full-stack developer, portfolio, Shofolahan Adebola">
+    <meta property="og:title" content="Shofolahan Adebola | Web3 Developer Portfolio">
+    <meta property="og:description" content="Explore my Web3 and full-stack projects.">
+    <meta property="og:image" content="images/og-image.jpg">
+    <title>Shofolahan Adebola | Web3 Developer Portfolio</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles/style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+  </head>
+  <script>
+    const words = [
+      "Web3 Innovator",
+      "Full-stack Developer",
+      "Smart Contract Builder",
+      "Teen Crypto Enthusiast",
+    ];
+    let i = 0,
+      j = 0,
+      current = "",
+      isDeleting = false;
+
+    function type() {
+      const typewriter = document.getElementById("typewriter");
+      if (!typewriter) return;
+
+      if (!isDeleting && j <= words[i].length) {
+        current = words[i].substring(0, j++);
+        typewriter.innerHTML = current;
+        setTimeout(type, 100);
+      } else if (isDeleting && j >= 0) {
+        current = words[i].substring(0, j--);
+        typewriter.innerHTML = current;
+        setTimeout(type, 60);
+      } else {
+        isDeleting = !isDeleting;
+        if (!isDeleting) i = (i + 1) % words.length;
+        setTimeout(type, 800);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", type);
+
+    const canvas = document.getElementById("bg-canvas");
+    const ctx = canvas.getContext("2d");
+
+    let particles = [];
+    const numParticles = 100;
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+
+    for (let i = 0; i < numParticles; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 2 + 1,
+        dx: Math.random() * 0.5 - 0.25,
+        dy: Math.random() * 0.5 - 0.25,
+      });
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "#00e6e6";
+
+      particles.forEach((p) => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+
+        p.x += p.dx;
+        p.y += p.dy;
+
+        if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+      });
+
+      requestAnimationFrame(animateParticles);
+    }
+
+    animateParticles();
+
+    window.addEventListener("scroll", function () {
+      const navbar = document.querySelector(".navbar");
+      if (window.scrollY > 20) {
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
+    });
+  </script>
+
+  <body style="background-color: #0d1117">
+    <nav
+      class="navbar navbar-expand-lg sticky-top shadow-sm"
+      style="
+        background-color: #111827;
+        transition: all 0.3s ease-in-out;
+        z-index: 1030;
+      "
+    >
+      <div class="container-fluid">
+        <a class="navbar-brand text-white fw-bold" href="#">My Portfolio</a>
+        <button
+          class="navbar-toggler bg-light"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link text-white repl" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="#projects">Projects</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="#contact">Contacts</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="index1.html">Blog</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section
+      class="position-relative text-center d-flex align-items-center justify-content-center"
+      style="
+        background-image: url(images/ChatGPT\ Image\ May\ 1\,\ 2025\,\ 04_35_18\ PM.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+        overflow: hidden;
+      "
+    >
+      <!-- Floating dots background -->
+      <canvas
+        id="bg-canvas"
+        style="
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 0;
+        "
+      ></canvas>
+
+      <!-- Hero content -->
+      <div style="z-index: 1">
+        <h1 style="font-size: 2.5rem; color: white">
+          Hi, I'm <span class="text-info">Shofolahan Adebola</span> 👋
+        </h1>
+        <h4 id="typewriter" class="mt-3" style="color: #00e6e6"></h4>
+        <p class="mt-3 text-light">
+          A 16-year-old full-stack dev building the Web3 future. Clean UI, smart
+          contracts, real utility.
+        </p>
+        <a href="#projects" class="btn btn-outline-info mt-4">See My Work</a>
+      </div>
+    </section>
+
+    <div class="container py-5">
+      <div class="row align-items-center">
+        <!-- Left Content -->
+        <div class="col-md-6 mb-4 mb-md-0">
+          <h6 class="text-warning">Full Stack Developer</h6>
+          <h3 class="text-white">Hello, my name is Shofolahan Adebola</h3>
+          <h6 class="text-white">
+            Building the future, one line of code at a time.
+          </h6>
+          <p class="text-white">
+            Crypto-native. Blockchain-builder. Teen innovator shaping the Web3
+            world.
+          </p>
+          <button class="btn btn-warning">Projects</button>
+        </div>
+
+        <!-- Right Image -->
+        <div class="col-md-6 d-flex justify-content-center">
+          <div
+            class="rounded"
+            style="
+              width: 100%;
+              max-width: 400px;
+              height: 500px;
+              background-color: #000;
+              box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+              background-image: url(images/WhatsApp\ Image\ 2025-04-30\ at\ 13.12.14_1037982c.jpg);
+              background-repeat: no-repeat;
+              background-size: cover;
+              background-position: center;
+            "
+          ></div>
+        </div>
+      </div>
+    </div>
+
+    <section
+      id="about"
+      class="py-5"
+      style="background-color: #161b22; color: #ffffff"
+    >
+      <div class="container">
+        <h2 class="text-center mb-4" style="padding-left: 12px">About</h2>
+        <div class="row justify-content-center">
+          <div class="col-lg-10">
+            <p class="lead" style="line-height: 1.8">
+              Hey, I'm Adebola — a 16-year-old full-stack developer with a deep
+              focus on Web3, crypto, and real-world utility. I don’t just study
+              the blockchain space; I build in it. From developing a launchpad
+              for the Ronin blockchain to exploring Telegram meta utilities on
+              Ethereum, my projects are all about real impact.
+            </p>
+            <p class="lead" style="line-height: 1.8">
+              I love crafting clean UIs, smart contract-backed tools, and
+              platforms that connect users with the decentralized world. I work
+              with stacks like HTML, CSS, JavaScript, React, PHP, and MySQL, and
+              I’m always diving deeper—from DeFi mechanics to tokenomics and
+              on-chain utility.
+            </p>
+            <p class="lead" style="line-height: 1.8">
+              Whether solo or in a crew, I balance tech with teamwork and real
+              respect. I believe in smart work, big dreams, and making tech
+              accessible for anyone ready to enter the Web3 future. Let’s build
+              something that matters.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="projects"
+      class="py-5"
+      style="background-color: #0d1117; color: #fff"
+    >
+      <div class="container">
+        <h2 class="text-center mb-5" data-aos="fade-up" style="color: #00f7ff">
+          My Projects
+        </h2>
+        <div class="row g-4">
+          <!-- Project Card 1: Ronin Launchpad -->
+          <div class="col-md-4" data-aos="zoom-in">
+            <div
+              class="card h-100 bg-dark text-white border border-info shadow-lg project-card"
+              style="cursor: pointer"
+            >
+              <img
+                src="images/Screenshot 2025-05-05 002142.png"
+                class="card-img-top"
+                alt="Twitter clone"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Twitter Clone</h5>
+                <p class="card-text">
+                  A social media clone built with Bootstrap, PHP, and MySQL that lets users register, post, like, and comment.
+                </p>
+                <button
+                  class="btn btn-outline-info mt-2"
+                  data-bs-toggle="modal"
+                  data-bs-target="#projectModal1"
+                >
+                  View More
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project Card 2: Ethereum Telegram Bot -->
+          <div class="col-md-4" data-aos="zoom-in">
+            <div
+              class="card h-100 bg-dark text-white border border-info shadow-lg project-card"
+              style="cursor: pointer"
+            >
+              <img src="images/Screenshot 2025-05-01 163934.png" class="card-img-top" alt="Business Websites" />
+              <div class="card-body">
+                <h5 class="card-title">Business website</h5>
+                <p class="card-text">
+                  A business websites which is integrated using html, css, bootstrap to view and search information on the site
+                </p>
+                <button
+                  class="btn btn-outline-info mt-2"
+                  data-bs-toggle="modal"
+                  data-bs-target="#projectModal2"
+                >
+                  View More
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project Card 3: Web3 Payment Gateway -->
+          <div class="col-md-4" data-aos="zoom-in">
+            <div
+              class="card h-100 bg-dark text-white border border-info shadow-lg project-card"
+              style="cursor: pointer"
+            >
+              <img
+                src="images/Screenshot 2025-05-01 152545.png"
+                class="card-img-top"
+                alt="Ergo planet"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Ergo Planet</h5>
+                <p class="card-text">
+                  A futuristic e-commerce UI inspired by crypto culture, featuring product ratings, account systems
+              categories, and real-world design elements
+                </p>
+                <button
+                  class="btn btn-outline-info mt-2"
+                  data-bs-toggle="modal"
+                  data-bs-target="#projectModal3"
+                >
+                  View More
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+   
+    <section
+      id="testimonials"
+      class="py-5"
+      style="background-color: #0d1117; color: white"
+    >
+      <div class="container text-center">
+        <h2 class="mb-5" style="padding-left: 12px; display: inline-block">
+          What People Say
+        </h2>
+        <div class="row justify-content-center">
+          <div class="col-md-4 mb-4">
+            <div class="card bg-dark text-light border-info h-100 shadow-sm">
+              <div class="card-body">
+                <p class="card-text">
+                  "Adebola is a genius! His Web3 knowledge and ability to build
+                  fast, functional dApps is impressive. Excited to work with him
+                  again."
+                </p>
+                <h6 class="card-subtitle mt-3 text-info">
+                  — Subomi Web3 Founder
+                </h6>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card bg-dark text-light border-info h-100 shadow-sm">
+              <div class="card-body">
+                <p class="card-text">
+                  "I gave him an idea on Telegram and he turned it into a
+                  working tool within days. Efficient, smart, and super chill to
+                  work with."
+                </p>
+                <h6 class="card-subtitle mt-3 text-info">
+                  — mr steve, GFCL Community Manager
+                </h6>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card bg-dark text-light border-info h-100 shadow-sm">
+              <div class="card-body">
+                <p class="card-text">
+                  "One of the sharpest young devs I’ve met. Clean UI work and
+                  solid backend too. Keep watching this guy."
+                </p>
+                <h6 class="card-subtitle mt-3 text-info">
+                  — Tunde, Smart Contract Auditor
+                </h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-5" style="background-color: #0d1117">
+      <h3 class="text-center text-info mb-4">⚙️ Tech Stack</h3>
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
+              height="60"
+            />
+          </div>
+          <div class="swiper-slide">
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
+              height="60"
+            />
+          </div>
+          <div class="swiper-slide">
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+              height="60"
+            />
+          </div>
+          <div class="swiper-slide">
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+              height="60"
+            />
+          </div>
+          <div class="swiper-slide">
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg"
+              height="60"
+            />
+          </div>
+          <div class="swiper-slide">
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
+              height="60"
+            />
+          </div>
+          <div class="swiper-slide">
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
+              height="60"
+            />
+          </div>
+          <div class="swiper-slide">
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/solidity/solidity-original.svg"
+              height="60"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="skills"
+      class="py-5"
+      style="background-color: #0d1117; color: #fff"
+    >
+      <div class="container text-center">
+        <h2 class="mb-4" style="color: #00f7ff">My Skills</h2>
+        <div class="row g-4">
+          <div class="col-md-3">
+            <div class="p-3 bg-dark rounded-4 shadow text-light">
+              <i class="bi bi-code-slash display-5 text-info"></i>
+              <h5 class="mt-3">Front-End</h5>
+              <p>HTML, CSS, JavaScript, React, Bootstrap</p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="p-3 bg-dark rounded-4 shadow text-light">
+              <i class="bi bi-hdd-network-fill display-5 text-warning"></i>
+              <h5 class="mt-3">Back-End</h5>
+              <p>PHP, MySQL, Node (learning), APIs</p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="p-3 bg-dark rounded-4 shadow text-light">
+              <i class="bi bi-currency-bitcoin display-5 text-success"></i>
+              <h5 class="mt-3">Blockchain</h5>
+              <p>Smart Contracts, Web3.js, Ronin, Ethereum</p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="p-3 bg-dark rounded-4 shadow text-light">
+              <i class="bi bi-lightning-fill display-5 text-danger"></i>
+              <h5 class="mt-3">Soft Skills</h5>
+              <p>Teamwork, Respect, Fast Learner, Innovation</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="contact"
+      class="py-5"
+      style="background-color: #161b22; color: #ffffff"
+    >
+      <div class="container text-center">
+        <h2 class="mb-4" style="padding-left: 12px; display: inline-block">
+          Let's Connect
+        </h2>
+        <p class="lead mb-5">
+          Got an idea, collab, or just want to vibe? Hit me up 👇
+        </p>
+
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <ul class="list-unstyled fs-5 text-start">
+              <li class="mb-3 d-flex align-items-center">
+                <i class="bi bi-envelope-fill me-3 text-info"></i>
+                <a
+                  href="mailto:Shofolahanadebola5@gmail.com"
+                  class="text-light text-decoration-none"
+                  >Shofolahanadebola5@gmail.com</a
+                >
+              </li>
+              <li class="mb-3 d-flex align-items-center">
+                <i class="bi bi-telegram me-3 text-primary"></i>
+                <a
+                  href="https://t.me/Adebolz"
+                  class="text-light text-decoration-none"
+                  target="_blank"
+                  >@Adebolz</a
+                >
+              </li>
+              <li class="mb-3 d-flex align-items-center">
+                <i class="bi bi-github me-3 text-white"></i>
+                <a
+                  href="https://github.com/Ergomaniacc"
+                  class="text-light text-decoration-none"
+                  target="_blank"
+                  >github.com/Ergomaniacc</a
+                >
+              </li>
+              <li class="d-flex align-items-center">
+                <i class="bi bi-twitter me-2" style="color: lightblue"></i>
+                <a
+                  href="https://x.com/Ergomaniac1212"
+                  class="text-light text-decoration-none"
+                  target="_blank"
+                  >@Ergomaniac1212</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  
+    <!-- Modal for Ronin Launchpad -->
+    <div
+      class="modal fade"
+      id="projectModal1"
+      tabindex="-1"
+      aria-labelledby="projectModal1Label"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-dark text-white border border-info">
+          <div class="modal-header">
+            <h5 class="modal-title" id="projectModal1Label">Twitter clone</h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <img
+              src="images/Screenshot 2025-05-05 111717.png"
+              class="img-fluid mb-3"
+              alt="Twitter clone"
+            />
+            <p>
+              To learn how real-time posting and interaction work on social media platforms like Twitter.
+            </p>
+            <p><strong>Stack:</strong> HTML, CSS, JS, PHP, MySQL</p>
+            <a
+              href="https://github.com/Ergomaniacc/my-portfolio.git"
+              target="_blank"
+              class="btn btn-outline-light"
+              >View on GitHub</a
+            >
+            <a href="Projects/project/" class="btn btn-outline-success">Live Demo</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for Ethereum Telegram Bot -->
+    <div
+      class="modal fade"
+      id="projectModal2"
+      tabindex="-1"
+      aria-labelledby="projectModal2Label"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-dark text-white border border-info">
+          <div class="modal-header">
+            <h5 class="modal-title" id="projectModal2Label">
+              business website
+            </h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <img
+              src="images/Screenshot 2025-05-01 163912.png"
+              class="img-fluid mb-3"
+              alt="Business website"
+            />
+            <p>
+              take a look at a demo business website
+            </p>
+            <p><strong>Stack:</strong> HTML, CSS, Jquery, Bootstrap</p>
+            <a
+              href="https://github.com/Ergomaniacc/my-portfolio.git"
+              target="_blank"
+              class="btn btn-outline-light"
+              >View on GitHub</a
+            >
+            <a href="Projects/project2/" class="btn btn-outline-success">Live Demo</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for Web3 Payment Gateway -->
+    <div
+      class="modal fade"
+      id="projectModal3"
+      tabindex="-1"
+      aria-labelledby="projectModal3Label"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-dark text-white border border-info">
+          <div class="modal-header">
+            <h5 class="modal-title" id="projectModal3Label">
+              Ergo Planet
+            </h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <img
+              src="images/Screenshot 2025-05-01 152545.png"
+              class="img-fluid mb-3"
+              alt="Ergo Planet"
+            />
+            <p>
+              Ergo is a planet for everyone, integrating itself into different ecosystem, which has style, class, elegant, and futuristic.
+            </p>
+            <p><strong>Stack:</strong> HTML, CSS, Jquery, Bootstrap</p>
+            <a
+              href="https://github.com/Ergomaniacc/my-portfolio.git"
+              target="_blank"
+              class="btn btn-outline-light"
+              >View on GitHub</a
+            >
+            <a href="Projects/project3/" class="btn btn-outline-success">Live Demo</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button id="back-to-top" class="btn btn-info" style="display: none; position: fixed; bottom: 20px; right: 20px;">
+      <i class="bi bi-arrow-up"></i>
+    </button>
+    <script>
+      const backToTop = document.getElementById("back-to-top");
+      window.addEventListener("scroll", () => {
+        backToTop.style.display = window.scrollY > 200 ? "block" : "none";
+      });
+      backToTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+    </script>
+    <!-- All your custom scripts above this -->
+    <!-- Then finally: -->
+    <footer
+      class="py-4 text-center"
+      style="background-color: #000; color: #ccc"
+    >
+      <div class="container">
+        <p class="mb-0">
+          &copy; <span id="year"></span> Shofolahan Adebola. Built with 💻, ☕ &
+          Web3.
+        </p>
+      </div>
+    </footer>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+      <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      const swiper = new Swiper(".mySwiper", {
+        slidesPerView: 3,
+        spaceBetween: 5,
+        loop: true,
+        autoplay: {
+          delay: 700,
+          disableOnInteraction: false,
+        },
+        breakpoints: {
+          768: { slidesPerView: 4 },
+          576: { slidesPerView: 3 },
+          0: { slidesPerView: 2 },
+        },
+      });
+    </script>
+    <script>
+      AOS.init();
+    </script>
+    <script>
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener("click", (e) => {
+    e.preventDefault();
+    document.querySelector(anchor.getAttribute("href")).scrollIntoView({ behavior: "smooth" });
+  });
+});
+    </script>
+  </body>
+</html>
