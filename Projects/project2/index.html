@@ -1,609 +1,886 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="css2/project2.css" />
-    <link rel="stylesheet" href="css2/responsive.css">
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
-    <!-- <link rel="stylesheet" href=" https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"> -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>   -->
-    <script
-      src="https://kit.fontawesome.com/a076d05399.js"
-      crossorigin="anonymous"
-    ></script>
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">  -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-  </head>
-  <body>
-    <nav>
-      <div class="rim">
-        <img
-          src="images2/envato_market-dd390ae860330996644c1c109912d2bf63885fc075b87215ace9b5b4bdc71cc8.svg"
-          alt="envato market"
-          class="img"
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ErgoJAMB — Past Questions Practice</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+<style>
+  :root {
+    --bg: #050d1a;
+    --surface: #0a1628;
+    --card: #0f1f38;
+    --border: #1a3056;
+    --accent: #00d4ff;
+    --accent2: #ff6b35;
+    --green: #00e676;
+    --red: #ff4444;
+    --text: #e8f4fd;
+    --muted: #6b8cae;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(ellipse at 20% 20%, rgba(0,212,255,0.04) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(255,107,53,0.04) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  #root { position: relative; z-index: 1; }
+
+  .app { max-width: 800px; margin: 0 auto; padding: 20px; min-height: 100vh; }
+
+  /* SCREEN ANIMATIONS */
+  .screen { animation: fadeUp 0.4s ease; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* HEADER */
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    padding: 20px 0 30px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .logo span { color: var(--accent); }
+  .logo-dot { width: 8px; height: 8px; background: var(--accent2); border-radius: 50%; display: inline-block; }
+
+  /* HOME SCREEN */
+  .home-hero {
+    text-align: center;
+    padding: 40px 0 50px;
+  }
+  .home-hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 8vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  .home-hero h1 span { color: var(--accent); }
+  .home-hero p {
+    color: var(--muted);
+    font-size: 1.1rem;
+    max-width: 400px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+  }
+
+  .mode-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  @media(max-width: 500px) { .mode-cards { grid-template-columns: 1fr; } }
+
+  .mode-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 24px;
+    cursor: pointer;
+    transition: all 0.25s;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+  }
+  .mode-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transition: transform 0.25s;
+  }
+  .mode-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .mode-card:hover::before { transform: scaleX(1); }
+  .mode-card.exam::before { background: var(--accent2); }
+  .mode-card.exam:hover { border-color: var(--accent2); }
+
+  .mode-icon { font-size: 2rem; margin-bottom: 14px; }
+  .mode-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .mode-desc { color: var(--muted); font-size: 0.88rem; line-height: 1.5; }
+
+  /* SUBJECT SELECT */
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .section-sub { color: var(--muted); margin-bottom: 28px; font-size: 0.95rem; }
+
+  .subject-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  @media(max-width: 400px) { .subject-grid { grid-template-columns: 1fr; } }
+
+  .subject-btn {
+    background: var(--card);
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
+  .subject-btn:hover { border-color: var(--accent); }
+  .subject-btn.selected { border-color: var(--accent); background: rgba(0,212,255,0.08); }
+  .subject-icon { font-size: 1.4rem; }
+
+  .year-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+  .year-btn {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 16px;
+    cursor: pointer;
+    color: var(--muted);
+    font-size: 0.88rem;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .year-btn:hover { border-color: var(--accent); color: var(--text); }
+  .year-btn.selected { border-color: var(--accent); color: var(--accent); background: rgba(0,212,255,0.08); }
+
+  /* BUTTONS */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+  }
+  .btn-primary { background: var(--accent); color: #000; }
+  .btn-primary:hover { background: #00b8e0; transform: translateY(-2px); }
+  .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+  .btn-secondary { background: transparent; border: 1.5px solid var(--border); color: var(--muted); }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--text); }
+  .btn-danger { background: var(--accent2); color: #fff; }
+  .btn-danger:hover { background: #e55a2b; }
+  .btn-full { width: 100%; }
+
+  /* QUIZ SCREEN */
+  .quiz-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .quiz-meta { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .badge {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 0.82rem;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  .badge.accent { border-color: var(--accent); color: var(--accent); }
+  .badge.warning { border-color: #ffaa00; color: #ffaa00; }
+  .badge.danger { border-color: var(--red); color: var(--red); }
+
+  .timer-display {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--card);
+    border: 1px solid var(--accent);
+    border-radius: 10px;
+    padding: 8px 16px;
+    min-width: 80px;
+    text-align: center;
+  }
+  .timer-display.warning { color: #ffaa00; border-color: #ffaa00; }
+  .timer-display.danger { color: var(--red); border-color: var(--red); animation: pulse 1s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.6; } }
+
+  .progress-bar {
+    background: var(--card);
+    border-radius: 4px;
+    height: 4px;
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), #0099cc);
+    border-radius: 4px;
+    transition: width 0.4s ease;
+  }
+
+  .question-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 20px;
+  }
+  .question-num {
+    font-size: 0.82rem;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 14px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .question-text {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--text);
+    font-weight: 400;
+  }
+
+  .options-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+
+  .option-btn {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    transition: all 0.2s;
+    text-align: left;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  .option-btn:hover:not(:disabled) { border-color: var(--accent); background: rgba(0,212,255,0.05); }
+  .option-btn:disabled { cursor: default; }
+  .option-btn.selected { border-color: var(--accent); background: rgba(0,212,255,0.1); }
+  .option-btn.correct { border-color: var(--green); background: rgba(0,230,118,0.1); }
+  .option-btn.wrong { border-color: var(--red); background: rgba(255,68,68,0.1); }
+
+  .option-letter {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: var(--surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
+    flex-shrink: 0;
+    color: var(--muted);
+  }
+  .option-btn.selected .option-letter { background: var(--accent); color: #000; }
+  .option-btn.correct .option-letter { background: var(--green); color: #000; }
+  .option-btn.wrong .option-letter { background: var(--red); color: #fff; }
+
+  .explanation {
+    background: rgba(0,212,255,0.06);
+    border: 1px solid rgba(0,212,255,0.2);
+    border-radius: 10px;
+    padding: 14px 18px;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+  .explanation strong { color: var(--accent); }
+
+  .nav-btns { display: flex; gap: 12px; justify-content: space-between; align-items: center; }
+
+  /* RESULTS */
+  .result-hero { text-align: center; padding: 40px 0 30px; }
+  .score-ring {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    margin: 0 auto 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 4px solid var(--accent);
+    background: radial-gradient(circle, rgba(0,212,255,0.1), transparent);
+    position: relative;
+  }
+  .score-ring.bad { border-color: var(--red); background: radial-gradient(circle, rgba(255,68,68,0.1), transparent); }
+  .score-ring.ok { border-color: #ffaa00; background: radial-gradient(circle, rgba(255,170,0,0.1), transparent); }
+  .score-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1;
+  }
+  .score-label { font-size: 0.8rem; color: var(--muted); }
+
+  .result-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+  }
+  .result-sub { color: var(--muted); margin-bottom: 32px; }
+
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+  .stat-num.green { color: var(--green); }
+  .stat-num.red { color: var(--red); }
+  .stat-label { font-size: 0.8rem; color: var(--muted); }
+
+  .review-list { margin-bottom: 32px; }
+  .review-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 16px;
+    color: var(--muted);
+    text-transform: uppercase;
+    font-size: 0.82rem;
+    letter-spacing: 1px;
+  }
+  .review-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 10px;
+    border-left: 3px solid var(--red);
+  }
+  .review-item.correct { border-left-color: var(--green); }
+  .review-q { font-size: 0.92rem; line-height: 1.6; margin-bottom: 10px; }
+  .review-answers { display: flex; flex-direction: column; gap: 4px; font-size: 0.85rem; }
+  .review-your { color: var(--red); }
+  .review-your.correct { color: var(--green); }
+  .review-correct-ans { color: var(--green); }
+
+  .result-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  /* EXAM SCREEN */
+  .exam-subjects {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .exam-subject-tab {
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1.5px solid var(--border);
+    background: var(--card);
+    color: var(--muted);
+    transition: all 0.2s;
+    font-family: 'Syne', sans-serif;
+  }
+  .exam-subject-tab.active { border-color: var(--accent); color: var(--accent); }
+  .exam-subject-tab.done { border-color: var(--green); color: var(--green); }
+
+  .divider { height: 1px; background: var(--border); margin: 24px 0; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const { useState, useEffect, useCallback } = React;
+
+// ─── QUESTION BANK ───────────────────────────────────────────────
+const QUESTIONS = {
+  english: [
+    { id:'e1', year:2023, q:"Choose the word that is nearest in meaning to ELOQUENT.", options:["Fluent","Silent","Awkward","Confused"], answer:0, exp:"Eloquent means fluent and persuasive in speaking or writing." },
+    { id:'e2', year:2023, q:"Select the option that best completes: 'Neither the students nor the teacher ___ present.'", options:["were","was","are","have been"], answer:1, exp:"When 'neither...nor' joins singular nouns, the verb agrees with the noun closest to it — 'teacher' is singular, so 'was' is correct." },
+    { id:'e3', year:2022, q:"Choose the option opposite in meaning to PERNICIOUS.", options:["Harmful","Beneficial","Dangerous","Deadly"], answer:1, exp:"Pernicious means having a harmful effect, so its antonym is beneficial." },
+    { id:'e4', year:2022, q:"Identify the figure of speech in: 'The wind whispered through the trees.'", options:["Simile","Metaphor","Personification","Hyperbole"], answer:2, exp:"Personification attributes human qualities (whispering) to a non-human thing (the wind)." },
+    { id:'e5', year:2021, q:"Select the option that correctly fills the gap: 'He was accused ___ stealing.'", options:["for","of","with","on"], answer:1, exp:"The correct preposition after 'accused' is 'of'. E.g. accused of stealing." },
+    { id:'e6', year:2021, q:"Choose the word that is nearest in meaning to AMBIGUOUS.", options:["Clear","Vague","Certain","Precise"], answer:1, exp:"Ambiguous means unclear or having more than one possible meaning — vague is the closest synonym." },
+    { id:'e7', year:2020, q:"Identify the type of clause underlined: 'The man WHO CAME YESTERDAY is my uncle.'", options:["Noun clause","Adverbial clause","Relative clause","Conditional clause"], answer:2, exp:"A relative clause modifies a noun (the man) and is introduced by a relative pronoun (who)." },
+    { id:'e8', year:2020, q:"Choose the grammatically correct sentence.", options:["She don't know the answer","She doesn't knows the answer","She doesn't know the answer","She do not knows the answer"], answer:2, exp:"With third-person singular (she), we use 'doesn't' + base verb: 'doesn't know'." },
+    { id:'e9', year:2019, q:"Select the option nearest in meaning to OSTENTATIOUS.", options:["Modest","Showy","Humble","Reserved"], answer:1, exp:"Ostentatious means making a showy display — intended to attract notice or admiration." },
+    { id:'e10', year:2019, q:"What is the plural of 'criterion'?", options:["Criterions","Criterias","Criteria","Criterions"], answer:2, exp:"Criterion is from Greek. Its plural is criteria — a common irregular plural." },
+    { id:'e11', year:2018, q:"Choose the option that has the same vowel sound as in 'BEAT'.", options:["Bit","Bat","Beet","But"], answer:2, exp:"'Beet' shares the long /iː/ vowel sound with 'beat'." },
+    { id:'e12', year:2018, q:"Select the correct form: '___ of the two girls is your sister?'", options:["Who","Whom","Which","What"], answer:2, exp:"When choosing between two specific people or things, 'which' is used." },
+    { id:'e13', year:2017, q:"Identify the option nearest in meaning to VERBOSE.", options:["Brief","Wordy","Silent","Concise"], answer:1, exp:"Verbose means using more words than necessary — wordy is the correct synonym." },
+    { id:'e14', year:2017, q:"The sentence 'Seun and Tunde are brothers' is a ___.", options:["Simple sentence","Compound sentence","Complex sentence","Compound-complex sentence"], answer:0, exp:"A simple sentence has one independent clause with one subject and predicate." },
+    { id:'e15', year:2016, q:"Choose the option opposite to BENEVOLENT.", options:["Kind","Generous","Malevolent","Charitable"], answer:2, exp:"Benevolent means well-meaning and kind. Its antonym is malevolent — wishing harm to others." },
+  ],
+  maths: [
+    { id:'m1', year:2023, q:"Simplify: (2³ × 2⁴) ÷ 2⁵", options:["4","8","2","16"], answer:0, exp:"2³ × 2⁴ = 2⁷. 2⁷ ÷ 2⁵ = 2² = 4." },
+    { id:'m2', year:2023, q:"Find the value of x if 3x + 7 = 22.", options:["3","4","5","6"], answer:2, exp:"3x = 22 - 7 = 15. x = 15/3 = 5." },
+    { id:'m3', year:2022, q:"A trader bought goods for ₦5,000 and sold for ₦6,500. What is the percentage profit?", options:["25%","30%","20%","35%"], answer:1, exp:"Profit = 1500. % profit = (1500/5000) × 100 = 30%." },
+    { id:'m4', year:2022, q:"Find the gradient of the line joining (2, 3) and (4, 7).", options:["1","2","3","4"], answer:1, exp:"Gradient = (7-3)/(4-2) = 4/2 = 2." },
+    { id:'m5', year:2021, q:"Evaluate: log₁₀(1000)", options:["2","3","4","10"], answer:1, exp:"log₁₀(1000) = log₁₀(10³) = 3." },
+    { id:'m6', year:2021, q:"The sum of interior angles of a hexagon is:", options:["540°","620°","720°","800°"], answer:2, exp:"Sum = (n-2) × 180° = (6-2) × 180° = 720°." },
+    { id:'m7', year:2020, q:"Factorize: x² - 5x + 6", options:["(x-2)(x-3)","(x+2)(x+3)","(x-1)(x-6)","(x-6)(x+1)"], answer:0, exp:"Find two numbers that multiply to 6 and add to -5: -2 and -3. So (x-2)(x-3)." },
+    { id:'m8', year:2020, q:"Convert 0.375 to a fraction in its lowest terms.", options:["3/8","3/4","1/4","5/8"], answer:0, exp:"0.375 = 375/1000 = 3/8 after dividing by GCF 125." },
+    { id:'m9', year:2019, q:"If sin θ = 3/5, find cos θ.", options:["4/5","3/4","5/3","5/4"], answer:0, exp:"Using Pythagoras: adjacent = √(5²-3²) = 4. cos θ = 4/5." },
+    { id:'m10', year:2019, q:"Simplify: √(75) - √(48)", options:["√3","2√3","3√3","√27"], answer:0, exp:"√75 = 5√3, √48 = 4√3. 5√3 - 4√3 = √3." },
+    { id:'m11', year:2018, q:"Find the quadratic equation whose roots are 2 and -3.", options:["x²+x-6=0","x²-x-6=0","x²+x+6=0","x²-x+6=0"], answer:0, exp:"Sum of roots = -1, product = -6. Equation: x² - (sum)x + product = x²+x-6 = 0." },
+    { id:'m12', year:2018, q:"If 2^(x+1) = 32, find x.", options:["3","4","5","6"], answer:1, exp:"32 = 2⁵. So x+1 = 5, x = 4." },
+    { id:'m13', year:2017, q:"The area of a circle with diameter 14cm is: (π = 22/7)", options:["44cm²","88cm²","154cm²","176cm²"], answer:2, exp:"Radius = 7. Area = πr² = 22/7 × 49 = 154cm²." },
+    { id:'m14', year:2017, q:"Solve: 2x - 3 > 7", options:["x > 2","x > 5","x > 3","x > 4"], answer:1, exp:"2x > 10, so x > 5." },
+    { id:'m15', year:2016, q:"What is the 10th term of the AP: 3, 7, 11, 15...?", options:["39","41","43","37"], answer:0, exp:"First term a=3, common difference d=4. T₁₀ = 3 + (10-1)×4 = 3+36 = 39." },
+  ],
+  physics: [
+    { id:'p1', year:2023, q:"Which of the following is a vector quantity?", options:["Mass","Temperature","Velocity","Speed"], answer:2, exp:"Vector quantities have both magnitude and direction. Velocity has direction; speed does not." },
+    { id:'p2', year:2023, q:"A body moving with uniform velocity has:", options:["Zero acceleration","Constant acceleration","Increasing acceleration","Decreasing acceleration"], answer:0, exp:"Uniform velocity means constant speed in a constant direction, so acceleration = 0." },
+    { id:'p3', year:2022, q:"The unit of electric resistance is:", options:["Ampere","Volt","Ohm","Watt"], answer:2, exp:"Electric resistance is measured in Ohms (Ω), named after Georg Simon Ohm." },
+    { id:'p4', year:2022, q:"Which type of wave requires a medium for transmission?", options:["Radio waves","Light waves","Sound waves","X-rays"], answer:2, exp:"Sound waves are mechanical waves and need a medium (solid, liquid, or gas) to travel." },
+    { id:'p5', year:2021, q:"The phenomenon of light bending when it passes from one medium to another is called:", options:["Reflection","Refraction","Diffraction","Dispersion"], answer:1, exp:"Refraction is the bending of light as it passes from one optical medium to another of different density." },
+    { id:'p6', year:2021, q:"Which of the following is NOT a renewable energy source?", options:["Solar","Wind","Coal","Hydropower"], answer:2, exp:"Coal is a fossil fuel — non-renewable. Solar, wind and hydropower are all renewable sources." },
+    { id:'p7', year:2020, q:"The speed of light in vacuum is approximately:", options:["3×10⁶ m/s","3×10⁸ m/s","3×10¹⁰ m/s","3×10⁴ m/s"], answer:1, exp:"The speed of light in a vacuum is approximately 3×10⁸ m/s (300 million metres per second)." },
+    { id:'p8', year:2020, q:"Ohm's Law states that current is proportional to:", options:["Resistance","Power","Voltage","Capacitance"], answer:2, exp:"Ohm's Law: V = IR. Current (I) is directly proportional to voltage (V) at constant resistance." },
+    { id:'p9', year:2019, q:"A semiconductor has resistance that:", options:["Increases with temperature","Decreases with temperature","Remains constant","Is always zero"], answer:1, exp:"Unlike conductors, semiconductors have more free electrons at higher temperatures, so resistance decreases." },
+    { id:'p10', year:2019, q:"The image formed by a plane mirror is:", options:["Real and inverted","Virtual and upright","Real and upright","Virtual and inverted"], answer:1, exp:"A plane mirror always forms a virtual (cannot be projected), upright image the same size as the object." },
+    { id:'p11', year:2018, q:"Which of the following best describes a conductor?", options:["Has full energy bands","Has overlapping valence and conduction bands","Has a large energy gap","Has no free electrons"], answer:1, exp:"In conductors, the valence and conduction bands overlap, allowing electrons to move freely." },
+    { id:'p12', year:2018, q:"The SI unit of force is:", options:["Joule","Pascal","Newton","Watt"], answer:2, exp:"Force is measured in Newtons (N). Named after Isaac Newton: 1N = 1 kg·m/s²." },
+    { id:'p13', year:2017, q:"Radioactive decay that emits helium nuclei is:", options:["Beta decay","Alpha decay","Gamma decay","X-ray emission"], answer:1, exp:"Alpha decay emits alpha particles, which are helium-4 nuclei (2 protons + 2 neutrons)." },
+    { id:'p14', year:2017, q:"The principle of conservation of energy states that energy:", options:["Can be created","Can be destroyed","Cannot be created or destroyed","Always increases"], answer:2, exp:"Energy cannot be created or destroyed — it can only be converted from one form to another." },
+    { id:'p15', year:2016, q:"What happens to the refractive index of glass as the wavelength of light increases?", options:["Increases","Decreases","Stays the same","Becomes zero"], answer:1, exp:"Refractive index decreases as wavelength increases — shorter wavelengths (violet) bend more than longer ones (red)." },
+  ],
+  chemistry: [
+    { id:'c1', year:2023, q:"The atomic number of an element is defined as the number of:", options:["Neutrons","Protons","Electrons and neutrons","Protons and neutrons"], answer:1, exp:"Atomic number = number of protons in the nucleus. It defines the element." },
+    { id:'c2', year:2023, q:"Which of the following is an example of a physical change?", options:["Burning wood","Rusting iron","Melting ice","Cooking an egg"], answer:2, exp:"Melting ice is physical — the water changes state but remains H₂O. The others are chemical changes." },
+    { id:'c3', year:2022, q:"According to Le Chatelier's Principle, increasing pressure on an equilibrium system will:", options:["Shift equilibrium to the side with more moles of gas","Shift equilibrium to the side with fewer moles of gas","Have no effect","Increase temperature"], answer:1, exp:"Increasing pressure favours the side with fewer moles of gas to reduce that pressure." },
+    { id:'c4', year:2022, q:"The process by which electrons are lost is called:", options:["Reduction","Oxidation","Neutralization","Hydrolysis"], answer:1, exp:"Oxidation = loss of electrons (OIL — Oxidation Is Loss). Reduction = gain of electrons (RIG)." },
+    { id:'c5', year:2021, q:"What is the pH of a neutral solution?", options:["0","7","14","10"], answer:1, exp:"A neutral solution (like pure water at 25°C) has pH = 7. Below 7 is acidic, above 7 is basic." },
+    { id:'c6', year:2021, q:"Which gas is produced when dilute HCl reacts with zinc?", options:["Oxygen","Carbon dioxide","Hydrogen","Chlorine"], answer:2, exp:"Zn + 2HCl → ZnCl₂ + H₂↑. Hydrogen gas is produced and can be tested with a lit splint (squeaky pop)." },
+    { id:'c7', year:2020, q:"The mole is the SI unit for:", options:["Mass","Amount of substance","Volume","Pressure"], answer:1, exp:"The mole measures the amount of substance. 1 mole = 6.022 × 10²³ particles (Avogadro's number)." },
+    { id:'c8', year:2020, q:"Isotopes are atoms of the same element with:", options:["Same mass number","Different atomic number","Different number of neutrons","Different number of protons"], answer:2, exp:"Isotopes have the same atomic number (protons) but different numbers of neutrons, giving different mass numbers." },
+    { id:'c9', year:2019, q:"Which of the following is a characteristic of ionic compounds?", options:["Low melting point","Does not conduct electricity","Soluble in organic solvents","High melting point"], answer:3, exp:"Ionic compounds have strong electrostatic forces between ions, giving them high melting and boiling points." },
+    { id:'c10', year:2019, q:"The half-life of a radioactive element is the time taken for:", options:["All atoms to decay","Half the atoms to decay","A quarter of atoms to decay","The element to stabilize"], answer:1, exp:"Half-life is the time for half the radioactive atoms in a sample to decay to a more stable form." },
+    { id:'c11', year:2018, q:"Which functional group is present in alcohols?", options:["-COOH","-OH","-CHO","-NH₂"], answer:1, exp:"Alcohols contain the hydroxyl (-OH) functional group. E.g. ethanol (C₂H₅OH)." },
+    { id:'c12', year:2018, q:"What type of bond is formed between Na and Cl in NaCl?", options:["Covalent bond","Metallic bond","Ionic bond","Hydrogen bond"], answer:2, exp:"Na loses one electron to Cl, forming Na⁺ and Cl⁻ ions — an ionic (electrovalent) bond." },
+    { id:'c13', year:2017, q:"The IUPAC name for CH₃CH₂OH is:", options:["Methanol","Propanol","Ethanol","Butanol"], answer:2, exp:"CH₃CH₂OH has 2 carbon atoms. The IUPAC name is ethanol (eth = 2 carbons, -ol = alcohol)." },
+    { id:'c14', year:2017, q:"Which of the following is NOT a noble gas?", options:["Neon","Argon","Nitrogen","Xenon"], answer:2, exp:"Nitrogen (N₂) is a diatomic gas in Group 15 — not a noble gas. Noble gases are in Group 18." },
+    { id:'c15', year:2016, q:"Electrolysis of brine produces chlorine gas at the:", options:["Anode","Cathode","Both electrodes","Neither electrode"], answer:0, exp:"At the anode (positive electrode): 2Cl⁻ → Cl₂ + 2e⁻. Chlorine gas is produced at the anode." },
+  ]
+};
+
+const SUBJECTS = [
+  { key:'english', label:'English', icon:'📝' },
+  { key:'maths', label:'Mathematics', icon:'📐' },
+  { key:'physics', label:'Physics', icon:'⚡' },
+  { key:'chemistry', label:'Chemistry', icon:'🧪' },
+];
+
+const YEARS = [2016,2017,2018,2019,2020,2021,2022,2023];
+
+function shuffle(arr) {
+  return [...arr].sort(() => Math.random() - 0.5);
+}
+
+function getQuestions(subject, year, count=10) {
+  let pool = QUESTIONS[subject];
+  if (year !== 'all') pool = pool.filter(q => q.year === year);
+  return shuffle(pool).slice(0, Math.min(count, pool.length));
+}
+
+// ─── TIMER HOOK ──────────────────────────────────────────────────
+function useTimer(seconds, onExpire) {
+  const [timeLeft, setTimeLeft] = useState(seconds);
+  useEffect(() => {
+    if (timeLeft <= 0) { onExpire(); return; }
+    const id = setInterval(() => setTimeLeft(t => t - 1), 1000);
+    return () => clearInterval(id);
+  }, [timeLeft]);
+  const fmt = s => `${String(Math.floor(s/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`;
+  return { timeLeft, fmt: fmt(timeLeft) };
+}
+
+// ─── QUIZ ENGINE ─────────────────────────────────────────────────
+function QuizScreen({ questions, subject, onFinish, onBack, totalTime }) {
+  const [idx, setIdx] = useState(0);
+  const [answers, setAnswers] = useState({});
+  const [revealed, setRevealed] = useState(false);
+
+  const handleExpire = useCallback(() => onFinish(answers), [answers]);
+  const { timeLeft, fmt } = useTimer(totalTime || questions.length * 60, handleExpire);
+
+  const q = questions[idx];
+  const chosen = answers[q.id];
+  const timerClass = timeLeft < 60 ? 'danger' : timeLeft < 180 ? 'warning' : '';
+
+  function select(i) {
+    if (chosen !== undefined) return;
+    setAnswers(a => ({ ...a, [q.id]: i }));
+    setRevealed(true);
+  }
+
+  function next() {
+    setRevealed(false);
+    if (idx < questions.length - 1) setIdx(i => i + 1);
+    else onFinish(answers);
+  }
+
+  function optClass(i) {
+    if (chosen === undefined) return '';
+    if (i === q.answer) return 'correct';
+    if (i === chosen && chosen !== q.answer) return 'wrong';
+    return '';
+  }
+
+  const subLabel = SUBJECTS.find(s=>s.key===subject)?.label || subject;
+
+  return (
+    <div className="screen">
+      <div className="quiz-header">
+        <div className="quiz-meta">
+          <span className="badge accent">{subLabel}</span>
+          <span className="badge">{idx+1} / {questions.length}</span>
+        </div>
+        <div className={`timer-display ${timerClass}`}>{fmt}</div>
+      </div>
+
+      <div className="progress-bar">
+        <div className="progress-fill" style={{width:`${((idx+1)/questions.length)*100}%`}}/>
+      </div>
+
+      <div className="question-card">
+        <div className="question-num">Question {idx+1}</div>
+        <div className="question-text">{q.q}</div>
+      </div>
+
+      <div className="options-list">
+        {q.options.map((opt, i) => (
+          <button key={i} className={`option-btn ${chosen===i?'selected':''} ${optClass(i)}`}
+            onClick={() => select(i)} disabled={chosen !== undefined}>
+            <span className="option-letter">{String.fromCharCode(65+i)}</span>
+            {opt}
+          </button>
+        ))}
+      </div>
+
+      {revealed && chosen !== undefined && (
+        <div className="explanation">
+          <strong>{chosen === q.answer ? '✓ Correct! ' : '✗ Wrong. '}</strong>
+          {q.exp}
+        </div>
+      )}
+
+      <div className="nav-btns">
+        <button className="btn btn-secondary" onClick={onBack}>Quit</button>
+        <button className="btn btn-primary" onClick={next} disabled={chosen === undefined}>
+          {idx < questions.length - 1 ? 'Next →' : 'Finish'}
+        </button>
+      </div>
+    </div>
+  );
+}
+
+// ─── RESULTS ────────────────────────────────────────────────────
+function ResultScreen({ questions, answers, subject, onRetry, onHome }) {
+  const correct = questions.filter(q => answers[q.id] === q.answer).length;
+  const total = questions.length;
+  const pct = Math.round((correct/total)*100);
+  const ringClass = pct >= 60 ? '' : pct >= 40 ? 'ok' : 'bad';
+
+  const msg = pct >= 70 ? '🔥 Excellent!' : pct >= 50 ? '👍 Good effort' : '📚 Keep studying';
+
+  return (
+    <div className="screen">
+      <div className="result-hero">
+        <div className={`score-ring ${ringClass}`}>
+          <div className="score-num">{pct}%</div>
+          <div className="score-label">{correct}/{total}</div>
+        </div>
+        <div className="result-title">{msg}</div>
+        <div className="result-sub">{correct} correct out of {total} questions</div>
+      </div>
+
+      <div className="stats-row">
+        <div className="stat-card">
+          <div className="stat-num green">{correct}</div>
+          <div className="stat-label">Correct</div>
+        </div>
+        <div className="stat-card">
+          <div className="stat-num red">{total - correct}</div>
+          <div className="stat-label">Wrong</div>
+        </div>
+        <div className="stat-card">
+          <div className="stat-num">{total - Object.keys(answers).length}</div>
+          <div className="stat-label">Skipped</div>
+        </div>
+      </div>
+
+      <div className="review-list">
+        <div className="review-title">Question Review</div>
+        {questions.map((q, i) => {
+          const isCorrect = answers[q.id] === q.answer;
+          return (
+            <div key={q.id} className={`review-item ${isCorrect?'correct':''}`}>
+              <div className="review-q">{i+1}. {q.q}</div>
+              <div className="review-answers">
+                {!isCorrect && <div className="review-your">Your answer: {q.options[answers[q.id]] || 'Not answered'}</div>}
+                <div className="review-correct-ans">✓ Correct: {q.options[q.answer]}</div>
+                <div style={{color:'var(--muted)',marginTop:'4px',fontSize:'0.82rem'}}>{q.exp}</div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="result-btns">
+        <button className="btn btn-primary" onClick={onRetry}>Try Again</button>
+        <button className="btn btn-secondary" onClick={onHome}>Home</button>
+      </div>
+    </div>
+  );
+}
+
+// ─── EXAM MODE ──────────────────────────────────────────────────
+function ExamMode({ onHome }) {
+  const [phase, setPhase] = useState('intro'); // intro | exam | result
+  const [currentSubject, setCurrentSubject] = useState('english');
+  const [allAnswers, setAllAnswers] = useState({});
+  const [allQuestions, setAllQuestions] = useState({});
+
+  useEffect(() => {
+    const qs = {};
+    SUBJECTS.forEach(s => { qs[s.key] = shuffle(QUESTIONS[s.key]).slice(0,10); });
+    setAllQuestions(qs);
+  }, []);
+
+  function handleSubjectFinish(answers) {
+    const merged = { ...allAnswers, ...answers };
+    setAllAnswers(merged);
+    const subjectIdx = SUBJECTS.findIndex(s => s.key === currentSubject);
+    if (subjectIdx < SUBJECTS.length - 1) {
+      setCurrentSubject(SUBJECTS[subjectIdx+1].key);
+    } else {
+      setPhase('result');
+    }
+  }
+
+  if (phase === 'intro') return (
+    <div className="screen">
+      <div className="section-title">Full JAMB Mock Exam</div>
+      <div className="section-sub">40 questions across all 4 subjects. 2 hours total. Stay sharp.</div>
+
+      <div style={{background:'var(--card)',border:'1px solid var(--border)',borderRadius:'16px',padding:'24px',marginBottom:'28px'}}>
+        {SUBJECTS.map(s => (
+          <div key={s.key} style={{display:'flex',alignItems:'center',gap:'12px',padding:'12px 0',borderBottom:'1px solid var(--border)'}}>
+            <span style={{fontSize:'1.4rem'}}>{s.icon}</span>
+            <div>
+              <div style={{fontWeight:600,fontFamily:'Syne, sans-serif'}}>{s.label}</div>
+              <div style={{fontSize:'0.82rem',color:'var(--muted)'}}>10 questions</div>
+            </div>
+            <div style={{marginLeft:'auto',fontSize:'0.82rem',color:'var(--accent)'}}>15 min</div>
+          </div>
+        ))}
+      </div>
+
+      <div className="result-btns">
+        <button className="btn btn-primary btn-full" onClick={() => setPhase('exam')}>Start Exam 🚀</button>
+        <button className="btn btn-secondary btn-full" onClick={onHome}>Back</button>
+      </div>
+    </div>
+  );
+
+  if (phase === 'exam' && allQuestions[currentSubject]) {
+    const doneSubjects = SUBJECTS.slice(0, SUBJECTS.findIndex(s=>s.key===currentSubject));
+    return (
+      <div className="screen">
+        <div className="exam-subjects">
+          {SUBJECTS.map(s => {
+            const isDone = doneSubjects.some(d=>d.key===s.key);
+            const isActive = s.key === currentSubject;
+            return <div key={s.key} className={`exam-subject-tab ${isActive?'active':''} ${isDone?'done':''}`}>{s.icon} {s.label}</div>;
+          })}
+        </div>
+        <QuizScreen
+          questions={allQuestions[currentSubject]}
+          subject={currentSubject}
+          onFinish={handleSubjectFinish}
+          onBack={onHome}
+          totalTime={900}
         />
-        <p class="p">
-          Limited time offer, Buy XTRA wordpress theme only <strong>$23</strong>
-        </p>
-        <button class="no">Download XTRA Theme</button>
       </div>
-      <br /><br /><br />
-      <div class="nav">
-        <img src="images2/logo-2n.png" alt="" class="logo" />
-        <div id="mySidepanel" class="sidepanel">
-          <div class="side">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
-              >&times;</a
-            >
-          </div>
-          <a href="#">Home</a>
-          <hr />
-          <a href="#">About</a>
-          <hr />
-          <a href="#">Services</a>
-          <hr />
-          <a href="#">Blog</a>
-          <hr />
-          <a href="">Shop</a>
-          <hr />
-          <a href="">FAQ</a>
-          <hr />
-          <a href="">Contact</a>
-          <hr />
-          <div class="flexo">
-            <div class="face">
-              <i class="fa fa-facebook fa-2x bb"></i>
-            </div>
-            <div class="fate">
-              <i class="fa fa-twitter fa-2x bb"></i>
-            </div>
-            <div class="fare">
-              <i class="fa fa-instagram fa-2x bb"></i>
-            </div>
-          </div>
-          <div
-            style="
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              color: lightgrey;
-              margin-top: 10px;
-            "
-          >
-            <p>© copyright 2024</p>
-          </div>
-        </div>
-        <button class="openbtn" onclick="openNav()">&#9776;</button>
-        <ul>
-          <li class="list">
-            <p>Home</p>
-            <p>About</p>
-            <p>Service</p>
-            <p>Blog</p>
-            <p>Shop</p>
-            <p>FAQ</p>
-            <p>Contact</p>
-          </li>
-        </ul>
-        <div class="btn">
-          <div class="face">
-            <i class="fa fa-facebook bb"></i>
-          </div>
-          <div class="fate">
-            <i class="fa fa-twitter bb"></i>
-          </div>
-          <div class="fare">
-            <i class="fa fa-instagram bb"></i>
-          </div>
-          <button class="nav-btn">+1 (451) 906 72 33</button>
-        </div>
+    );
+  }
+
+  if (phase === 'result') {
+    const allQs = SUBJECTS.flatMap(s => allQuestions[s.key] || []);
+    return <ResultScreen questions={allQs} answers={allAnswers} subject="exam" onRetry={() => { setPhase('intro'); setAllAnswers({}); }} onHome={onHome} />;
+  }
+
+  return null;
+}
+
+// ─── PRACTICE MODE ──────────────────────────────────────────────
+function PracticeMode({ onHome }) {
+  const [phase, setPhase] = useState('select'); // select | quiz | result
+  const [subject, setSubject] = useState('');
+  const [year, setYear] = useState('all');
+  const [questions, setQuestions] = useState([]);
+  const [answers, setAnswers] = useState({});
+
+  function start() {
+    const qs = getQuestions(subject, year === 'all' ? 'all' : parseInt(year));
+    setQuestions(qs);
+    setAnswers({});
+    setPhase('quiz');
+  }
+
+  if (phase === 'select') return (
+    <div className="screen">
+      <div className="section-title">Practice Mode</div>
+      <div className="section-sub">Pick a subject and year to drill.</div>
+
+      <div style={{marginBottom:'8px',fontSize:'0.82rem',color:'var(--muted)',letterSpacing:'1px',textTransform:'uppercase',fontWeight:600}}>Subject</div>
+      <div className="subject-grid" style={{marginBottom:'24px'}}>
+        {SUBJECTS.map(s => (
+          <button key={s.key} className={`subject-btn ${subject===s.key?'selected':''}`} onClick={() => setSubject(s.key)}>
+            <span className="subject-icon">{s.icon}</span>{s.label}
+          </button>
+        ))}
       </div>
-    </nav>
-    <div class="body">
-      <div><p class="txt">BUSINESS SOLUTIONS</p></div>
-      <button class="but">
-        <h5>It Impacts positive feeling about the Brand</h5>
-      </button>
+
+      <div style={{marginBottom:'8px',fontSize:'0.82rem',color:'var(--muted)',letterSpacing:'1px',textTransform:'uppercase',fontWeight:600}}>Year</div>
+      <div className="year-grid">
+        <button className={`year-btn ${year==='all'?'selected':''}`} onClick={() => setYear('all')}>All Years</button>
+        {YEARS.map(y => (
+          <button key={y} className={`year-btn ${year===y?'selected':''}`} onClick={() => setYear(y)}>{y}</button>
+        ))}
+      </div>
+
+      <div className="result-btns" style={{marginTop:'8px'}}>
+        <button className="btn btn-primary" onClick={start} disabled={!subject}>Start Practice →</button>
+        <button className="btn btn-secondary" onClick={onHome}>Back</button>
+      </div>
     </div>
-    <br />
-    <div class="div-box">
-      <div class="divv-box">
-        <div class="box">
-          <div class="icon"><i class="fa fa-check fa-3x emoji"></i></div>
-          <div class="txts">
-            <h3 style="font-size: 20px; font-weight: 900">
-              SMART <em>SOLUTIONS</em>
-            </h3>
-            <br />
-            <p style="color: grey">Providing excellent candidates</p>
-          </div>
-        </div>
-        <div class="box">
-          <div class="icon"><i class="fa fa-bullhorn fa-3x emoji"></i></div>
-          <div class="txts">
-            <h3 style="font-weight: 900; font-size: 20px">
-              BEST <em>OFFERS</em>
-            </h3>
-            <br />
-            <p style="color: grey">Starting small business</p>
-          </div>
-        </div>
-        <div class="box">
-          <div class="icon"><i class="fa fa-user-plus fa-3x emoji"></i></div>
-          <div class="txts">
-            <h3 style="font-weight: 900; font-size: 20px">
-              FRIENDLY <em>SUPPORT</em>
-            </h3>
-            <br />
-            <p style="color: grey">Experienced consultants</p>
-          </div>
-        </div>
+  );
+
+  if (phase === 'quiz') return (
+    <QuizScreen questions={questions} subject={subject} onFinish={a => { setAnswers(a); setPhase('result'); }} onBack={() => setPhase('select')} />
+  );
+
+  if (phase === 'result') return (
+    <ResultScreen questions={questions} answers={answers} subject={subject}
+      onRetry={() => { start(); }}
+      onHome={() => { setPhase('select'); }} />
+  );
+}
+
+// ─── HOME ────────────────────────────────────────────────────────
+function HomeScreen({ onSelect }) {
+  return (
+    <div className="screen">
+      <div className="home-hero">
+        <h1>JAMB <span>Past Questions</span><br/>Practice</h1>
+        <p>Sharpen your skills with real past questions. Practice by subject or simulate the full exam.</p>
       </div>
-      <div class="seen">
-        <h1 style="color: royalblue">Our <em>Mission</em></h1>
-        <br /><br />
-        <p class="mis-stat">Build the best</p>
-        <br />
-        <p class="mis-stat">product,cause no</p>
-        <br />
-        <p class="mis-stat">
-          <span style="text-decoration: underline">unnecessary</span> harm,
-        </p>
-        <br />
-        <p class="mis-stat">use business to inspire</p>
-        <br />
-        <p class="mis-stat">and implement solutionns to</p>
-        <br />
-        <p class="mis-stat">the environmental crisis.</p>
-        <br /><br />
-        <p style="color: grey; font-size: 25px">To create a better everyday</p>
-        <p style="color: grey; font-size: 25px">life for many people</p>
-      </div>
-      <div class="see">
-        <h1 style="color: royalblue">Our <em>Mission</em></h1>
-        <br /><br /><br /><br />
-        <p class="mis-stat">
-          Build the best product,cause no
-          <span style="text-decoration: underline">unnecessary</span> harm,use
-          business to inspire
-        </p>
-        <br />
-        <p class="mis-stat">
-          and implement solutionns to the environmental crisis.
-        </p>
-        <br /><br /><br /><br />
-        <p style="color: grey; font-size: 25px">
-          To create a better everyday life for many people
-        </p>
-      </div>
-      <br /><br />
-      <div class="col-cont">
-        <div class="one">
-          <div class="col-bar">
-            <p class="htag">Very <em>Useful Elemnts</em></p>
-            <p class="htag" id="htag">For Perfect Flow</p>
-            <br /><br />
-            <a href=""
-              ><button class="div-btn">
-                <p style="color: white; font-size: 15px; font-weight: 600">
-                  > More details
-                </p>
-              </button></a
-            >
-          </div>
+
+      <div className="mode-cards">
+        <div className="mode-card" onClick={() => onSelect('practice')}>
+          <div className="mode-icon">📚</div>
+          <div className="mode-title">Practice Mode</div>
+          <div className="mode-desc">Pick a subject and year. Drill specific topics at your own pace with instant feedback.</div>
         </div>
-        <div class="two">
-          <div class="col-bar">
-            <p class="htag">Live <em>Customizer</em> For</p>
-            <p class="htag" id="htag">Theme Options</p>
-            <br /><br />
-            <a href=""
-              ><button class="div-btn">
-                <p style="color: white; font-size: 15px; font-weight: 600">
-                  > More details
-                </p>
-              </button></a
-            >
-          </div>
-        </div>
-        <div class="three">
-          <div class="col-bar">
-            <p class="htag">Tons Of <em>Presets</em> For</p>
-            <p class="htag" id="htag">Pagebuilders</p>
-            <br /><br />
-            <a href=""
-              ><button class="div-btn">
-                <p style="color: white; font-size: 15px; font-weight: 600">
-                  > More details
-                </p>
-              </button></a
-            >
-          </div>
-        </div>
-        <div class="four">
-          <div class="col-bar">
-            <p class="htag">Friendly <em>Support</em> Up</p>
-            <p class="htag" id="htag">
-              To <span style="text-decoration: underline">6</span> Month
-            </p>
-            <br /><br />
-            <a href=""
-              ><button class="div-btn">
-                <p style="color: white; font-size: 15px; font-weight: 600">
-                  > More details
-                </p>
-              </button></a
-            >
-          </div>
+        <div className="mode-card exam" onClick={() => onSelect('exam')}>
+          <div className="mode-icon">🎯</div>
+          <div className="mode-title">Full Mock Exam</div>
+          <div className="mode-desc">All 4 subjects, 40 questions, timed. Simulates the real JAMB experience.</div>
         </div>
       </div>
 
-      <div class="supp">
-        <br />
-        <div class="header">
-          <h1 style="color: white; font-size: 50px; font-weight: 900">
-            Our <em>Services</em>
-          </h1>
-        </div>
-        <div class="contt">
-          <div class="cont">
-            <div class="con">
-              <i class="fa fa-wordpress ic"></i>
-            </div>
-            <div>
-              <h2 style="color: white; font-weight: 900; font-size: 30px">
-                Wordpress Installation
-              </h2>
-              <p style="color: lightgrey; font-size: 18px">
-                Installing wordpress and plugins
-              </p>
-            </div>
-          </div>
-          <div class="cont">
-            <div class="con"><i class="fa fa-check ic"></i></div>
-            <div>
-              <h2 style="color: white; font-weight: 900; font-size: 25px">
-                Website <em>Optimization</em>
-              </h2>
-              <p style="color: lightgrey; font-size: 18px">
-                Optimizing your site load speed
-              </p>
-            </div>
-          </div>
-          <div class="cont">
-            <div class="con"><i class="fa fa-leaf ic"></i></div>
-            <div>
-              <h2 style="color: white; font-weight: 900; font-size: 25px">
-                Website <em>Design</em>
-              </h2>
-              <p style="color: lightgrey; font-size: 18px">
-                Photoshop layered web design
-              </p>
-            </div>
-          </div>
-          <div class="cont">
-            <div class="con"><i class="fa fa-user-secret ic"></i></div>
-            <div>
-              <h2 style="color: white; font-weight: 900; font-size: 25px">
-                Secrity <em>Solutions</em>
-              </h2>
-              <p style="color: lightgrey; font-size: 18px">
-                Increase your server security solutions
-              </p>
-            </div>
-          </div>
-          <div class="cont">
-            <div class="con"><i class="fa fa-code ic"></i></div>
-            <div>
-              <h2 style="color: white; font-weight: 900; font-size: 25px">
-                Website <em>Development</em>
-              </h2>
-              <p style="color: lightgrey; font-size: 18px">
-                Developing website from wireframe
-              </p>
-            </div>
-          </div>
-          <div class="cont">
-            <div class="con"><i class="fa fa-life-ring ic"></i></div>
-            <div>
-              <h2 style="color: white; font-weight: 900; font-size: 25px">
-                Unlimited <em>Support</em>
-              </h2>
-              <p style="color: lightgrey; font-size: 18px">
-                Supporting you with any problems
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="pics-div">
-          <div class="txt-div">
-            <h1>Our <em>Expert</em> Team</h1>
-          </div>
-        </div>
-        <div class="pics-div">
-          <div class="pics">
-            <img src="images2/t1-1-1.jpg" alt="" class="img-div" />
-            <div class="divv">
-              <h1 style="color: white; font-weight: 900">
-                Jimmy <em>Roland</em>
-              </h1>
-              <p style="color: gray">Founder, Developer</p>
-            </div>
-          </div>
-          <div class="pics">
-            <img src="images2/t2-1-1.jpg" alt="" class="img-div" />
-            <div class="divv">
-              <h1 style="color: white; font-weight: 900">
-                Jimmy <em>Roland</em>
-              </h1>
-              <p style="color: gray">Founder, Developer</p>
-            </div>
-          </div>
-          <div class="pics">
-            <img src="images2/t4-1-1.jpg" alt="" class="img-div" />
-            <div class="divv">
-              <h1 style="color: white; font-weight: 900">
-                Jimmy <em>Roland</em>
-              </h1>
-              <p style="color: gray">Founder, Developer</p>
-            </div>
-          </div>
-          <div class="pics">
-            <img src="images2/t3-1-1.jpg" alt="" class="img-div" />
-            <div class="divv">
-              <h1 style="color: white; font-weight: 900">
-                Jimmy <em>Roland</em>
-              </h1>
-              <p style="color: gray">Founder, Developer</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="div-grid">
-        <div class="subomi">
-          <div
-            style="
-              margin-top: 330px;
-              color: white;
-              margin-left: 50px;
-              font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman',
-                serif;
-            "
-          >
-            <h1>We're better than the rest</h1>
-          </div>
-        </div>
-        <div class="sub">
-          <div
-            style="
-              margin-top: 330px;
-              color: white;
-              margin-left: 50px;
-              font-family: Arial, Helvetica, sans-serif;
-            "
-          >
-            <h1>compete on value, not on prices.</h1>
-          </div>
-        </div>
-      </div>
-      <div class="bus-div">
-        <h5 style="color: white; font-size: 40px; font-weight: 500">
-          <strong>We Will Help You To</strong> <em>Grow Your Business</em>
-        </h5>
-        <p style="color: gray; font-size: 23px">
-          we're here to help you to finding a best way
-        </p>
-        <div class="exp">
-          <div>
-            <p style="color: royalblue; font-size: 100px">
-              21<span style="font-size: 40px; font-weight: 900">+</span>
-            </p>
-            <p style="color: white; font-size: 20px">years of experience</p>
-          </div>
-          <div>
-            <p style="color: royalblue; font-size: 100px">43</p>
-            <p style="color: white; font-size: 20px; margin-top: 20px">
-              Award wins
-            </p>
-          </div>
-          <div>
-            <p style="color: royalblue; font-size: 100px">
-              27<span style="font-size: 40px; font-weight: 900">k</span>
-            </p>
-            <p style="color: white; font-size: 20px">Happy clients</p>
-          </div>
-          <div>
-            <p style="color: royalblue; font-size: 100px">99</p>
-            <p style="color: white; font-size: 20px; margin-top: 20px">
-              Perfect Products
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="sec-div">
-        <div style="border: 10px solid black">
-          <div class="sec">
-            <div class="dan">
-              <img src="images2/client3-1.jpg" alt="" class="dan" />
-            </div>
-            <div class="daniel">
-              <p style="font-size: 20px">
-                <span style="color: blue; margin-left: 250px; font-weight: 900"
-                  >John Carter</span
-                >
-                Businessman
-              </p>
-              <br /><br />
-              <p style="font-size: 18px">
-                Proin eget tortor risus,Donec rutrum congue leo eget
-                malesuada,praesent saplen massa,convalils a
-              </p>
-              <br />
-              <p style="font-size: 18px">
-                Pellentesque nec,egestas non nisi.proin eget tortor risus. proin
-                eget tortor risus. Nulla lorem porttitor
-              </p>
-              <br />
-              <p style="text-align: center; font-size: 18px">
-                accumsan tincidunt.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="login">
-        <div class="logon">
-          <img src="images2/logo1_fff-1.png" alt="" class="logg" />
-        </div>
-        <div class="logon">
-          <img src="images2/github.png" alt="" class="logg" />
-        </div>
-        <div class="logon">
-          <img src="images2/real.github.png" alt="" class="logg" />
-        </div>
-        <div class="logon">
-          <img src="images2/jquery.png" alt="" class="logg" />
-        </div>
-        <div class="logon">
-          <img src="images2/Google.png" alt="" class="logg" />
-        </div>
-        <div class="logon">
-          <img src="images2/spotify.png" alt="" class="logg" />
+      <div style={{background:'var(--card)',border:'1px solid var(--border)',borderRadius:'12px',padding:'20px',display:'flex',gap:'16px',alignItems:'center'}}>
+        <span style={{fontSize:'1.8rem'}}>💡</span>
+        <div>
+          <div style={{fontFamily:'Syne, sans-serif',fontWeight:700,marginBottom:'4px'}}>Pro Tip</div>
+          <div style={{color:'var(--muted)',fontSize:'0.88rem',lineHeight:'1.5'}}>Read every explanation — even for questions you got right. That's how patterns stick.</div>
         </div>
       </div>
     </div>
-    <footer>
-      <div class="foot">
-        <h2>Office</h2>
-        <br />
-        <hr style="border: 1px solid white; width: 60px" />
-        <br />
-        <div class="t">
-          <div class="icc"><i class="fa fa-map-marker mr"></i></div>
-          <p class="foott">121 king street, Newyork</p>
-        </div>
-        <div class="t">
-          <div class="icc"><i class="fa fa-phone mr"></i></div>
-          <p class="foott">+1 (800) 333 44 55</p>
-        </div>
-        <div class="t">
-          <div class="icc"><i class="fa fa-envelope mr"></i></div>
-          <p class="foott">Newyork@gmail.com</p>
-        </div>
-        <div class="t">
-          <div class="icc"><i class="fa fa-fax mr"></i></div>
-          <p class="foott">+1 (800) 333 99 88</p>
-        </div>
-        <div class="t">
-          <div class="icc"><i class="fa fa-skype mr"></i></div>
-          <p class="foott">@xtra_live</p>
-        </div>
-      </div>
-      <div class="foot">
-        <h2>News</h2>
-        <br />
-        <hr style="border: 1px solid white; width: 60px" />
-        <br />
-        <div class="ade">
-          <div class="adeb">
-            <img src="images2/post1-1-150x150.jpg" alt="" class="adeb" />
-          </div>
-          <div class="ron">
-            <p style="font-size: 23px; font-weight: 900">A place of silence</p>
-            <p style="color: lightgrey">
-              <i class="fa fa-clock-o or"></i> 10 june 2024
-            </p>
-          </div>
-        </div>
-        <br />
-        <hr style="border: 1px gray" />
-        <br />
-        <div class="ade">
-          <div class="adeb">
-            <img src="images2/post2-1-150x150.jpg" alt="" class="adeb" />
-          </div>
-          <div class="ron">
-            <p style="font-size: 23px; font-weight: 900">How to create a</p>
-            <p style="font-size: 23px; font-weight: 900">logo like a pro</p>
-            <p style="color: lightgrey">
-              <i class="fa fa-clock-o or"></i> 10 june 2024
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="foot">
-        <h2>Shortcuts</h2>
-        <br />
-        <hr style="border: 1px solid white; width: 60px" />
-        <br />
-        <div class="range">
-          <div class="ranger">
-            <p class="pp">> Home</p>
-            <p class="pp">> City store</p>
-            <p class="pp">> News</p>
-            <p class="pp">> Clients</p>
-            <p class="pp">> Consultation</p>
-            <p class="pp">> Publicity</p>
-            <p class="pp">> Support</p>
-          </div>
-          <div class="ranger">
-            <p class="pp">> Maps</p>
-            <p class="pp">> Careers</p>
-            <p class="pp">> Employess</p>
-            <p class="pp">> Teams</p>
-            <p class="pp">> Benefit</p>
-            <p class="pp">> Privacypolicy</p>
-          </div>
-        </div>
-      </div>
-      <div class="foot">
-        <h2>News</h2>
-        <br />
-        <hr style="border: 1px solid white; width: 60px" />
-        <br />
-        <p class="ppp">Our support available to help</p>
-        <p class="ppp">you 24 hours a day,seven days</p>
-        <p class="ppp">a week.</p>
-        <br /><br />
-        <p class="ppp">Monday to Friday.....8AM-4PM</p>
-        <br />
-        <p class="ppp">Saturday...................8AM-1PM</p>
-      </div>
-    </footer>
-    <div
-      style="
-        background-color: rgb(20, 17, 17);
-        height: 50px;
-        display: flex;
-        justify-content: space-between;
-      "
-    >
-      <p style="color: lightgrey; margin-top: 18px; margin-left: 50px">
-        Copyright © 2024 Xtra Theme.All Right Reserved
-      </p>
-      <p style="color: lightgrey; margin-top: 18px; margin-right: 50px">
-        Privacy Policy | Contact Us
-      </p>
-    </div>
-  </body>
-</html>
-<script>
-  /* Set the width of the sidebar to 250px (show it) */
-  function openNav() {
-    document.getElementById("mySidepanel").style.width = "70%";
-  }
+  );
+}
 
-  /* Set the width of the sidebar to 0 (hide it) */
-  function closeNav() {
-    document.getElementById("mySidepanel").style.width = "0";
-  }
+// ─── APP ROOT ────────────────────────────────────────────────────
+function App() {
+  const [screen, setScreen] = useState('home');
+
+  return (
+    <div className="app">
+      <div className="logo">
+        <span className="logo-dot"/>Ergo<span>JAMB</span>
+      </div>
+      {screen === 'home' && <HomeScreen onSelect={setScreen} />}
+      {screen === 'practice' && <PracticeMode onHome={() => setScreen('home')} />}
+      {screen === 'exam' && <ExamMode onHome={() => setScreen('home')} />}
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
 </script>
+</body>
+</html>

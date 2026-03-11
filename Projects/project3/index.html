@@ -1,698 +1,859 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ergo planet</title>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-      integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"
-    ></script>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-    <link rel="stylesheet" href="css/index.css" />
-  </head>
-  <body>
-    <div class="early-item">
-    <div style="background-color: white;">
-      <!-- Navbar -->
-      <nav class="navbar navbar-expand-lg" id="nav-bar">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#"
-            ><img
-              src="images1/ergo-removebg-preview.png"
-              alt="Ergo Logo"
-              class="img-logo"
-          /></a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarContent"
-            aria-controls="navbarContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarContent">
-            <form class="d-flex ms-3 me-auto" role="search">
-              <input
-                class="form-control search-input"
-                type="search"
-                placeholder="Search products, brands and categories"
-                aria-label="Search"
-              />
-              <button class="btn btn-info ms-2" type="submit">Search</button>
-            </form>
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li class="nav-item dropdown">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  id="accountDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                  >Account Info</a
-                >
-                <ul class="dropdown-menu" aria-labelledby="accountDropdown">
-                  <li>
-                    <a class="dropdown-item" href="index1.html">Sign In</a>
-                  </li>
-                  <li><hr class="dropdown-divider" /></li>
-                  <li><h6 class="dropdown-header">Your Account</h6></li>
-                  <li><a class="dropdown-item" href="#">Profile</a></li>
-                  <li><a class="dropdown-item" href="order.html">Order</a></li>
-                  <li>
-                    <a class="dropdown-item" href="recommend.html"
-                      >Recommendation</a
-                    >
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="browse-data.html"
-                      >Browsing Data</a
-                    >
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="watchlist.html">Watchlist</a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="saved-items.html"
-                      ><i class="fa fa-heart yo"></i> Saved Items</a
-                    >
-                  </li>
-                  <li><a class="dropdown-item" href="#">Membership</a></li>
-                  <li><a class="dropdown-item" href="#">Logout</a></li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="order.html">Orders</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Location</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  id="helpDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                  >Help</a
-                >
-                <ul class="dropdown-menu" aria-labelledby="helpDropdown">
-                  <li>
-                    <a class="dropdown-item" href="customerservice.html"
-                      >Help Center</a
-                    >
-                  </li>
-                  <li><a class="dropdown-item" href="#">Payment Option</a></li>
-                  <li><a class="dropdown-item" href="#">Track an Order</a></li>
-                  <li><a class="dropdown-item" href="#">Place an Order</a></li>
-                  <li>
-                    <a class="dropdown-item" href="#">Terms and Conditions</a>
-                  </li>
-                  <li><hr class="dropdown-divider" /></li>
-                  <li>
-                    <a class="dropdown-item text-center" href="#"
-                      ><i class="fa fa-comments"></i> Live Chat</a
-                    >
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="cart.html"
-                  ><i class="fa fa-shopping-cart"></i> Cart</a
-                >
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-      <br />
-      <div class="div-cat">
-        <div class="div-cate">
-          <div id="mySidepanel" class="sidepanel">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
-              >&times;</a
-            >
-            <nav class="sign-btn">
-              <a href="index1.html"
-                ><button class="sign-bn">
-                  <i class="fa fa-fw fa-user"></i>Sign in
-                </button></a
-              >
-            </nav>
-            <a href="#"><h1>Fashion</h1></a>
-            <a href="#">clothes</a>
-            <a href="#">jewelries</a>
-            <a href="#">watches</a>
-            <a href="">shoes</a>
-            <a href="">accessories</a>
-            <a href="">handbag</a>
-            <a href="">Limited editions</a>
-            <hr />
-            <a href=""><h1>Electronics</h1></a>
-            <a href="">Computer & Accessories</a>
-            <a href="">phones & accessories</a>
-            <a href="">Cars & Accessories</a>
-            <a href="">wearable technology</a>
-            <a href="">Television and video product</a>
-            <a href="">Video game console and accessories</a>
-            <a href="">Office equipments</a>
-            <a href="">Headphones & Home audio</a>
-          </div>
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>FlowBudget — Smart Money Tracker</title>
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Satoshi:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg: #f7f5f0;
+  --surface: #ffffff;
+  --card: #ffffff;
+  --border: #e8e3da;
+  --accent: #1a1a2e;
+  --green: #00a86b;
+  --green-light: #e8f7f1;
+  --red: #e63946;
+  --red-light: #fdecea;
+  --yellow: #f4a261;
+  --yellow-light: #fef3e8;
+  --text: #1a1a2e;
+  --muted: #8b8577;
+  --shadow: 0 2px 20px rgba(0,0,0,0.06);
+  --shadow-lg: 0 8px 40px rgba(0,0,0,0.1);
+}
 
-          <button class="openbtn" onclick="openNav()">
-            &#9776; All categories
-          </button>
-        </div>
-        <div class="div-home">
-          <br />
-          <button class="home-btn">
-            <a href="index.html" class="home-link">home</a>
-          </button>
-          <button class="home-btn">
-            <a href="index2.html" class="home-link">Today's deal</a>
-          </button>
-          <button class="home btn">
-            <a href="index3.html" class="home-link">Special Editon</a>
-          </button>
-        </div>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Satoshi', sans-serif;
+  min-height: 100vh;
+}
+
+/* NOISE TEXTURE OVERLAY */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 999;
+}
+
+.app {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px 60px;
+}
+
+/* HEADER */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 36px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-icon {
+  width: 34px;
+  height: 34px;
+  background: var(--accent);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+
+.date-display {
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+/* BALANCE HERO */
+.balance-hero {
+  background: var(--accent);
+  border-radius: 24px;
+  padding: 36px;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+  animation: fadeUp 0.4s ease;
+}
+
+.balance-hero::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 200px; height: 200px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 50%;
+}
+
+.balance-hero::after {
+  content: '';
+  position: absolute;
+  bottom: -80px; left: 30%;
+  width: 240px; height: 240px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 50%;
+}
+
+.balance-label {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.balance-amount {
+  font-family: 'Clash Display', sans-serif;
+  font-size: clamp(2.4rem, 8vw, 4rem);
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -2px;
+  margin-bottom: 28px;
+  position: relative;
+  z-index: 1;
+}
+
+.balance-amount.positive { color: #fff; }
+.balance-amount.negative { color: #ff8a80; }
+
+.balance-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.balance-sub-card {
+  background: rgba(255,255,255,0.08);
+  border-radius: 14px;
+  padding: 16px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.bsc-label {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.bsc-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+}
+
+.bsc-dot.green { background: #00e676; }
+.bsc-dot.red { background: #ff5252; }
+
+.bsc-amount {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+/* STATS ROW */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 28px;
+  animation: fadeUp 0.5s ease;
+}
+
+@media(max-width: 500px) {
+  .stats-row { grid-template-columns: 1fr; }
+  .balance-cards { grid-template-columns: 1fr; }
+}
+
+.stat-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: var(--shadow);
+}
+
+.stat-label {
+  font-size: 0.78rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.stat-val {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.stat-val.green { color: var(--green); }
+.stat-val.red { color: var(--red); }
+
+/* MAIN GRID */
+.main-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 20px;
+  align-items: start;
+}
+
+@media(max-width: 640px) {
+  .main-grid { grid-template-columns: 1fr; }
+}
+
+/* FORM */
+.form-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: var(--shadow);
+  animation: fadeUp 0.5s ease;
+}
+
+.card-title {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.type-toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--bg);
+  border-radius: 12px;
+  padding: 4px;
+  margin-bottom: 18px;
+  border: 1px solid var(--border);
+}
+
+.type-btn {
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  font-family: 'Satoshi', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: transparent;
+  color: var(--muted);
+}
+
+.type-btn.active.income {
+  background: var(--green-light);
+  color: var(--green);
+}
+
+.type-btn.active.expense {
+  background: var(--red-light);
+  color: var(--red);
+}
+
+.form-group { margin-bottom: 14px; }
+
+label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 6px;
+}
+
+input, select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  font-family: 'Satoshi', sans-serif;
+  font-size: 0.95rem;
+  color: var(--text);
+  background: var(--bg);
+  transition: border-color 0.2s;
+  outline: none;
+  appearance: none;
+}
+
+input:focus, select:focus { border-color: var(--accent); }
+
+.add-btn {
+  width: 100%;
+  padding: 14px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-family: 'Clash Display', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 6px;
+  letter-spacing: 0.3px;
+}
+
+.add-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(26,26,46,0.25); }
+.add-btn:active { transform: translateY(0); }
+
+/* TRANSACTIONS */
+.transactions-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: var(--shadow);
+  animation: fadeUp 0.5s ease;
+}
+
+.tx-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.clear-btn {
+  font-size: 0.8rem;
+  color: var(--muted);
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-family: 'Satoshi', sans-serif;
+  transition: all 0.2s;
+}
+
+.clear-btn:hover { border-color: var(--red); color: var(--red); }
+
+.filter-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1.5px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  font-family: 'Satoshi', sans-serif;
+  transition: all 0.2s;
+}
+
+.filter-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+.tx-list { max-height: 420px; overflow-y: auto; padding-right: 4px; }
+.tx-list::-webkit-scrollbar { width: 4px; }
+.tx-list::-webkit-scrollbar-track { background: transparent; }
+.tx-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+.tx-empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.tx-empty-icon { font-size: 2.5rem; margin-bottom: 10px; }
+
+.tx-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+  animation: slideIn 0.3s ease;
+}
+
+.tx-item:last-child { border-bottom: none; }
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-10px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.tx-icon {
+  width: 42px; height: 42px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.tx-icon.income { background: var(--green-light); }
+.tx-icon.expense { background: var(--red-light); }
+
+.tx-info { flex: 1; min-width: 0; }
+
+.tx-name {
+  font-weight: 600;
+  font-size: 0.92rem;
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tx-meta {
+  font-size: 0.78rem;
+  color: var(--muted);
+  display: flex;
+  gap: 8px;
+}
+
+.tx-cat {
+  background: var(--bg);
+  border-radius: 4px;
+  padding: 1px 6px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.tx-right { text-align: right; flex-shrink: 0; }
+
+.tx-amount {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.tx-amount.income { color: var(--green); }
+.tx-amount.expense { color: var(--red); }
+
+.tx-delete {
+  background: none;
+  border: none;
+  color: var(--border);
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+  padding: 2px;
+}
+
+.tx-delete:hover { color: var(--red); }
+
+/* CHART */
+.chart-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: var(--shadow);
+  margin-top: 20px;
+  animation: fadeUp 0.6s ease;
+}
+
+.chart-bars {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+  height: 100px;
+  margin-top: 16px;
+}
+
+.chart-bar-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+
+.chart-bar {
+  width: 100%;
+  border-radius: 6px 6px 0 0;
+  transition: height 0.5s ease;
+  min-height: 4px;
+}
+
+.chart-bar.income { background: var(--green); }
+.chart-bar.expense { background: var(--red); }
+.chart-bar-label { font-size: 0.7rem; color: var(--muted); font-weight: 600; }
+
+/* CATEGORY BREAKDOWN */
+.cat-list { margin-top: 14px; display: flex; flex-direction: column; gap: 10px; }
+
+.cat-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cat-name { font-size: 0.85rem; font-weight: 500; flex: 1; }
+
+.cat-bar-wrap { flex: 2; height: 6px; background: var(--bg); border-radius: 3px; overflow: hidden; }
+
+.cat-bar-fill { height: 100%; border-radius: 3px; background: var(--red); transition: width 0.5s ease; }
+
+.cat-amount { font-size: 0.82rem; font-weight: 700; color: var(--red); min-width: 60px; text-align: right; }
+
+/* ANIMATION */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* TOAST */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--accent);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  opacity: 0;
+  transition: all 0.3s;
+  z-index: 1000;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="logo">
+      <div class="logo-icon">💸</div>
+      FlowBudget
+    </div>
+    <div class="date-display" id="dateDisplay"></div>
+  </header>
+
+  <!-- BALANCE HERO -->
+  <div class="balance-hero">
+    <div class="balance-label">Total Balance</div>
+    <div class="balance-amount" id="totalBalance">$0.00</div>
+    <div class="balance-cards">
+      <div class="balance-sub-card">
+        <div class="bsc-label"><span class="bsc-dot green"></span> Income</div>
+        <div class="bsc-amount" id="totalIncome">$0.00</div>
+      </div>
+      <div class="balance-sub-card">
+        <div class="bsc-label"><span class="bsc-dot red"></span> Expenses</div>
+        <div class="bsc-amount" id="totalExpense">$0.00</div>
       </div>
     </div>
-      <br /><br />
-      <div class="ffdjcj">
-        <div class="rf6788">
-          <a href="index3.html"
-            ><img src="images1/limi.jpg" alt="" class="j4fff7h"
-          /></a>
-        </div>
-      </div>
-      <br /><br /><br />
-      <!-- Trending Products -->
-      <h1 class="header">Trending</h1>
-      <div class="row card-container"><br><br>
-        <div class="col-sm-6 col-md-3 cards position-relative">
-          <div class="icon position-absolute top-0 end-0">
-            <i class="fa fa-heart fr"></i>
-          </div>
-          <div class="img-div">
-            <a href="#"
-              ><img
-                src="images1/diamond2.jpg"
-                alt="Ergo Dreamer"
-                class="img-fluid"
-            /></a>
-            <p class="p-name">Ergo Dreamer</p>
-            <p class="p-name">$150,000</p>
-            <span class="fa fa-star checked"></span
-            ><span class="fa fa-star checked"></span
-            ><span class="fa fa-star checked"></span
-            ><span class="fa fa-star checked"></span
-            ><span class="fa fa-star"></span><br />
-            <button class="btn btn-secondary">Add to Cart</button>
-          </div>
-        </div>
-        <!-- Repeat for other cards, adjusting classes similarly -->
-        <div class="col-sm-6 col-md-3 cards position-relative">
-          <div class="icon position-absolute top-0 end-0">
-            <i class="fa fa-heart fr"></i>
-          </div>
-          <div class="img-div">
-            <a href="#"
-              ><img
-                src="images1/bag2.jpg"
-                alt="Ergo Collector"
-                class="img-fluid"
-            /></a>
-            <p class="p-name">Ergo Collector</p>
-            <p class="p-name">$100,000</p>
-            <span class="fa fa-star checked"></span
-            ><span class="fa fa-star checked"></span
-            ><span class="fa fa-star checked"></span
-            ><span class="fa fa-star checked"></span
-            ><span class="fa fa-star"></span><br />
-            <button class="btn btn-secondary">Add to Cart</button>
-          </div>
-        </div>
+  </div>
 
-        <div class="col-sm-6 col-md-3 cards position-relative">
-          <div class="icon position-absolute top-0 end-0">
-            <i class="fa fa-heart fr"></i>
-          </div>
-          <div class="img-div">
-            <a href="#"
-              ><img
-                src="images1/schoe1.jpg"
-                alt="Ergo Terminator"
-                class="img-fluid"
-            /></a>
-            <p class="p-name">Ergo Terminator</p>
-            <p class="p-name">$2000</p>
-            <span class="fa fa-star checked"></span
-            ><span class="fa fa-star checked"></span
-            ><span class="fa fa-star checked"></span
-            ><span class="fa fa-star checked"></span
-            ><span class="fa fa-star"></span><br />
-            <button class="btn btn-secondary">Add to Cart</button>
-          </div>
-        </div>
-
-        <div class="col-sm-6 col-md-3 cards position-relative">
-          <div class="icon position-absolute top-0 end-0">
-            <i class="fa fa-heart fr"></i>
-          </div>
-          <div class="img-div">
-            <a href="#"
-              ><img
-                src="images1/watch.jpg"
-                alt="Ergo Collector"
-                class="img-fluid"
-            /></a>
-            <p class="p-name">Ergo Collector</p>
-            <p class="p-name">$300,000</p>
-            <span class="fa fa-star checked"></span
-            ><span class="fa fa-star checked"></span
-            ><span class="fa fa-star checked"></span
-            ><span class="fa fa-star checked"></span
-            ><span class="fa fa-star"></span><br />
-            <button class="btn btn-secondary">Add to Cart</button>
-          </div>
-        </div>
-        <div><a href="" class="more">see more</a></div>
-        <!-- Add remaining cards here -->
-      </div>
-      <br /><br /><br /><br /><br />
-
-      <!-- Limited Edition Products -->
-      <h1 class="header">Limited Edition</h1>
-      <div class="row card-container">
-        <div class="col-sm-6 col-md-3 cards position-relative">
-          <div class="icon position-absolute top-0 end-0">
-            <i class="fa fa-heart fr"></i>
-          </div>
-          <div class="img-div">
-            <a href="#"
-              ><img src="images1/shoe.jpg" alt="slider" class="img-fluid"
-            /></a>
-            <p class="p-name">Slider</p>
-            <p class="p-name">$500,000</p>
-            <span class="fa fa-star checked"></span
-            ><span class="fa fa-star checked"></span
-            ><span class="fa fa-star checked"></span
-            ><span class="fa fa-star checked"></span
-            ><span class="fa fa-star"></span><br />
-            <button class="btn btn-secondary">Add to Cart</button>
-          </div>
-        </div>
-
-        <div class="col-sm-6 col-md-3 cards position-relative">
-          <div class="icon position-absolute top-0 end-0">
-            <i class="fa fa-heart fr"></i>
-          </div>
-          <div class="img-div">
-            <a href="#"
-              ><img src="images1/ring.jpg" alt="Ergo Ring" class="img-fluid"
-            /></a>
-            <p class="p-name">Ergo Ring</p>
-            <p class="p-name">$1,500,000</p>
-            <span class="fa fa-star checked"></span
-            ><span class="fa fa-star checked"></span
-            ><span class="fa fa-star checked"></span
-            ><span class="fa fa-star checked"></span
-            ><span class="fa fa-star"></span><br />
-            <button class="btn btn-secondary">Add to Cart</button>
-          </div>
-        </div>
-
-        <div class="col-sm-6 col-md-3 cards position-relative">
-          <div class="icon position-absolute top-0 end-0">
-            <i class="fa fa-heart fr"></i>
-          </div>
-          <div class="img-div">
-            <a href="#"
-              ><img src="images1/lap.jpg" alt="Ergo Chronic" class="img-fluid"
-            /></a>
-            <p class="p-name">Ergo Chronic</p>
-            <p class="p-name">$300,000</p>
-            <span class="fa fa-star checked"></span
-            ><span class="fa fa-star checked"></span
-            ><span class="fa fa-star checked"></span
-            ><span class="fa fa-star checked"></span
-            ><span class="fa fa-star"></span><br />
-            <button class="btn btn-secondary">Add to Cart</button>
-          </div>
-        </div>
-
-        <div class="col-sm-6 col-md-3 cards position-relative">
-          <div class="icon position-absolute top-0 end-0">
-            <i class="fa fa-heart fr"></i>
-          </div>
-          <div class="img-div">
-            <a href="#"
-              ><img
-                src="images1/diamond1.jpg"
-                alt="Ergo Lover"
-                class="img-fluid"
-            /></a>
-            <p class="p-name">Ergo Lover</p>
-            <p class="p-name">$5,000,000</p>
-            <span class="fa fa-star checked"></span
-            ><span class="fa fa-star checked"></span
-            ><span class="fa fa-star checked"></span
-            ><span class="fa fa-star checked"></span
-            ><span class="fa fa-star"></span><br />
-            <button class="btn btn-secondary">Add to Cart</button>
-          </div>
-        </div>
-        <!-- Similar structure as above -->
-        <div><a href="limited.html" class="more">see more</a></div>
-      </div>
+  <!-- STATS -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-label">Transactions</div>
+      <div class="stat-val" id="txCount">0</div>
     </div>
-    <br /><br /><br /><br />
+    <div class="stat-card">
+      <div class="stat-label">Biggest Spend</div>
+      <div class="stat-val red" id="biggestSpend">—</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Savings Rate</div>
+      <div class="stat-val green" id="savingsRate">—</div>
+    </div>
+  </div>
 
-    <!-- Footer and Marquee remain mostly unchanged -->
-    <marquee behavior="" direction="" class="marquee"
-      ><h1>
-        A PLANET FOR EVERYONE <span style="font-size: 40px">😊</span>
-      </h1></marquee
-    >
-    <!-- Footer code remains as is -->
+  <!-- MAIN GRID -->
+  <div class="main-grid">
+    <!-- FORM -->
+    <div class="form-card">
+      <div class="card-title">➕ Add Transaction</div>
 
-    <footer class="bg-body-tertiary text-center">
-      <!-- Grid container -->
-      <div class="container p-4">
-        <!-- Section: Social media -->
-        <section class="mb-4">
-          <!-- Facebook -->
-          <a
-            data-mdb-ripple-init
-            class="btn btn-outline btn-floating m-1"
-            href="#!"
-            role="button"
-            ><i class="fa fa-facebook-f"></i
-          ></a>
-
-          <!-- Twitter -->
-          <a
-            data-mdb-ripple-init
-            class="btn btn-outline btn-floating m-1"
-            href="#!"
-            role="button"
-            ><i class="fa fa-twitter"></i
-          ></a>
-
-          <!-- Google -->
-          <a
-            data-mdb-ripple-init
-            class="btn btn-outline btn-floating m-1"
-            href="#!"
-            role="button"
-            ><i class="fa fa-google"></i
-          ></a>
-
-          <!-- Instagram -->
-          <a
-            data-mdb-ripple-init
-            class="btn btn-outline btn-floating m-1"
-            href="#!"
-            role="button"
-            ><i class="fa fa-instagram"></i
-          ></a>
-
-          <!-- Linkedin -->
-          <a
-            data-mdb-ripple-init
-            class="btn btn-outline btn-floating m-1"
-            href="#!"
-            role="button"
-            ><i class="fa fa-linkedin"></i
-          ></a>
-
-          <!-- Github -->
-          <a
-            data-mdb-ripple-init
-            class="btn btn-outline btn-floating m-1"
-            href="#!"
-            role="button"
-            ><i class="fa fa-github"></i
-          ></a>
-        </section>
-        <!-- Section: Social media -->
-
-        <!-- Section: Form -->
-        <section class="">
-          <form action="">
-            <!--Grid row-->
-            <div class="row d-flex justify-content-center">
-              <!--Grid column-->
-              <div class="col-auto">
-                <p class="pt-2">
-                  <strong>Sign up for our newsletter</strong>
-                </p>
-              </div>
-              <!--Grid column-->
-
-              <!--Grid column-->
-              <div class="col-md-5 col-12">
-                <!-- Email input -->
-                <div data-mdb-input-init class="form-outline mb-4">
-                  <input
-                    type="email"
-                    id="form5Example24"
-                    class="form-control"
-                  />
-                  <label class="form-label" for="form5Example24"
-                    >Email address</label
-                  >
-                </div>
-              </div>
-              <!--Grid column-->
-
-              <!--Grid column-->
-              <div class="col-auto">
-                <!-- Submit button -->
-                <button
-                  data-mdb-ripple-init
-                  type="submit"
-                  class="btn btn-outline mb-4 bg"
-                >
-                  Subscribe
-                </button>
-              </div>
-              <!--Grid column-->
-            </div>
-            <!--Grid row-->
-          </form>
-        </section>
-        <!-- Section: Form -->
-
-        <!-- Section: Text -->
-        <section class="mb-4">
-          <p>
-            You can unsuscribe at anytime,also available in app store and Google
-            playstore
-          </p>
-        </section>
-        <hr />
-        <!-- Section: Text -->
-
-        <!-- Section: Links -->
-        <section class="">
-          <!--Grid row-->
-          <div class="row">
-            <!--Grid column-->
-            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-              <h5 class="text-uppercase">About Ergo planet</h5>
-
-              <ul class="list-unstyled mb-0">
-                <li>
-                  <a class="text-body sl" href="">About us</a>
-                </li>
-                <li>
-                  <a class="text-body sl" href="#!">career</a>
-                </li>
-                <li>
-                  <a class="text-body sl" href=""> our blog</a>
-                </li>
-                <li>
-                  <a class="text-body sl" href="#!">terms and condition</a>
-                </li>
-                <li>
-                  <a class="text-body sl" href="#!">Privacy notice</a>
-                </li>
-                <li>
-                  <a class="text-body sl" href="">return policy</a>
-                </li>
-                <li>
-                  <a class="text-body sl" href="limited.html"
-                    >Limited edition</a
-                  >
-                </li>
-              </ul>
-            </div>
-            <!--Grid column-->
-
-            <!--Grid column-->
-            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-              <h5 class="text-uppercase">More info</h5>
-
-              <ul class="list-unstyled mb-0">
-                <li>
-                  <a class="text-body sl" href="#!">Buyer safety centre</a>
-                </li>
-                <li>
-                  <a class="text-body sl" href="#!">Delivery</a>
-                </li>
-                <li>
-                  <a class="text-body sl" href="#!">FAC</a>
-                </li>
-                <li>
-                  <a class="text-body sl" href="#!">Track my order</a>
-                </li>
-                <li>
-                  <a class="text-body sl" href=""
-                    >Become an Ergo planet Affiliate</a
-                  >
-                </li>
-                <li>
-                  <a class="text-body sl" href="">bulk purchase</a>
-                </li>
-              </ul>
-            </div>
-            <!--Grid column-->
-
-            <!--Grid column-->
-            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-              <h5 class="text-uppercase">Payments</h5>
-
-              <ul class="list-unstyled mb-0">
-                <li>
-                  <a class="text-body sl" href="">Ergo currency converter</a>
-                </li>
-                <li>
-                  <a class="text-body sl" href="#!">Ergo Exchange</a>
-                </li>
-                <li>
-                  <a class="text-body sl" href="#!">Wallet</a>
-                </li>
-                <li>
-                  <a class="text-body sl" href="#!">Mastercard</a>
-                </li>
-                <li>
-                  <a class="text-body sl" href="#!">Visa</a>
-                </li>
-                <li>
-                  <a class="text-body sl" href="">Verve</a>
-                </li>
-                <li>
-                  <a class="text-body sl" href="">Shop with points</a>
-                </li>
-              </ul>
-            </div>
-            <!--Grid column-->
-
-            <!--Grid column-->
-            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-              <h5 class="text-uppercase">Need help?</h5>
-
-              <ul class="list-unstyled mb-0">
-                <li>
-                  <a class="text-body sl" href="#!">Chat with us</a>
-                </li>
-                <li>
-                  <a class="text-body sl" href="#!">Contact us</a>
-                </li>
-                <li>
-                  <a class="text-body sl" href="customerservice.html"
-                    >Help center</a
-                  >
-                </li>
-                <li>
-                  <a class="text-body sl" href="#!"
-                    >Shipping rates and policy</a
-                  >
-                </li>
-              </ul>
-            </div>
-            <!--Grid column-->
-          </div>
-          <!--Grid row-->
-        </section>
-        <!-- Section: Links -->
+      <div class="type-toggle">
+        <button class="type-btn active income" id="incomeBtn" onclick="setType('income')">↑ Income</button>
+        <button class="type-btn expense" id="expenseBtn" onclick="setType('expense')">↓ Expense</button>
       </div>
-      <!-- Grid container -->
 
-      <!-- Copyright -->
-      <div
-        class="text-center p-3"
-        style="background-color: rgba(0, 0, 0, 0.05)"
-      >
-        © 2024 Copyright:
-        <a class="text-reset fw-bold" href="https://mdbootstrap.com/"
-          >Ergoplanet.com,inc or its affiliate</a
-        >
+      <div class="form-group">
+        <label>Description</label>
+        <input type="text" id="descInput" placeholder="e.g. Freelance payment" maxlength="40"/>
       </div>
-      <!-- Copyright -->
-    </footer>
-  </body>
-</html>
+
+      <div class="form-group">
+        <label>Amount ($)</label>
+        <input type="number" id="amountInput" placeholder="0.00" min="0" step="0.01"/>
+      </div>
+
+      <div class="form-group">
+        <label>Category</label>
+        <select id="categoryInput">
+          <option value="">Select category</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Date</label>
+        <input type="date" id="dateInput"/>
+      </div>
+
+      <button class="add-btn" onclick="addTransaction()">Add Transaction</button>
+    </div>
+
+    <!-- TRANSACTIONS -->
+    <div class="transactions-card">
+      <div class="tx-header">
+        <div class="card-title" style="margin-bottom:0">📋 Transactions</div>
+        <button class="clear-btn" onclick="clearAll()">Clear All</button>
+      </div>
+
+      <div class="filter-row">
+        <button class="filter-btn active" onclick="setFilter('all', this)">All</button>
+        <button class="filter-btn" onclick="setFilter('income', this)">Income</button>
+        <button class="filter-btn" onclick="setFilter('expense', this)">Expense</button>
+      </div>
+
+      <div class="tx-list" id="txList"></div>
+    </div>
+  </div>
+
+  <!-- CATEGORY BREAKDOWN -->
+  <div class="chart-card">
+    <div class="card-title">📊 Spending Breakdown</div>
+    <div class="cat-list" id="catBreakdown">
+      <div style="color:var(--muted);font-size:0.88rem;text-align:center;padding:20px 0">Add expenses to see breakdown</div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
 <script>
-  function openNav() {
-    document.getElementById("mySidepanel").style.width = "250px";
-    document.addEventListener("click", closeOnOutsideClick);
-  }
+// ── STATE ──────────────────────────────────────────────────────
+let transactions = JSON.parse(localStorage.getItem('flowbudget_tx') || '[]');
+let currentType = 'income';
+let currentFilter = 'all';
 
-  function closeNav() {
-    document.getElementById("mySidepanel").style.width = "0";
-    document.removeEventListener("click", closeOnOutsideClick);
-  }
+const CATEGORIES = {
+  income: ['Salary','Freelance','Investment','Gift','Bonus','Other Income'],
+  expense: ['Food','Transport','Shopping','Bills','Entertainment','Health','Education','Savings','Other']
+};
 
-  function closeOnOutsideClick(event) {
-    const sidepanel = document.getElementById("mySidepanel");
-    const openButton = document.querySelector(".openbtn");
-    if (
-      !sidepanel.contains(event.target) &&
-      !openButton.contains(event.target)
-    ) {
-      closeNav();
-    }
-  }
+const CAT_ICONS = {
+  Salary:'💼', Freelance:'💻', Investment:'📈', Gift:'🎁', Bonus:'🎯', 'Other Income':'💰',
+  Food:'🍔', Transport:'🚗', Shopping:'🛍️', Bills:'🧾', Entertainment:'🎬',
+  Health:'💊', Education:'📚', Savings:'🏦', Other:'📦'
+};
 
-  $(document).ready(function () {
-    $(".fr").click(function () {
-      $(this).toggleClass("liked");
-    });
+// ── INIT ──────────────────────────────────────────────────────
+function init() {
+  document.getElementById('dateDisplay').textContent = new Date().toLocaleDateString('en-US', {weekday:'long', year:'numeric', month:'long', day:'numeric'});
+  document.getElementById('dateInput').value = new Date().toISOString().split('T')[0];
+  updateCategories();
+  render();
+}
+
+// ── TYPE TOGGLE ───────────────────────────────────────────────
+function setType(type) {
+  currentType = type;
+  document.getElementById('incomeBtn').className = `type-btn ${type==='income'?'active income':''}`;
+  document.getElementById('expenseBtn').className = `type-btn ${type==='expense'?'active expense':''}`;
+  updateCategories();
+}
+
+function updateCategories() {
+  const sel = document.getElementById('categoryInput');
+  sel.innerHTML = '<option value="">Select category</option>';
+  CATEGORIES[currentType].forEach(c => {
+    const opt = document.createElement('option');
+    opt.value = c; opt.textContent = `${CAT_ICONS[c]} ${c}`;
+    sel.appendChild(opt);
   });
-</script>
+}
 
-<!-- <div class="more"><a href="">see more</a></div>
-          </div>
-       
-          
-          
-            <div class="more"><a href="">see more</a></div>
-          </div>
+// ── ADD ───────────────────────────────────────────────────────
+function addTransaction() {
+  const desc = document.getElementById('descInput').value.trim();
+  const amount = parseFloat(document.getElementById('amountInput').value);
+  const category = document.getElementById('categoryInput').value;
+  const date = document.getElementById('dateInput').value;
+
+  if (!desc) { showToast('⚠️ Add a description'); return; }
+  if (!amount || amount <= 0) { showToast('⚠️ Enter a valid amount'); return; }
+  if (!category) { showToast('⚠️ Pick a category'); return; }
+
+  const tx = {
+    id: Date.now(),
+    type: currentType,
+    desc, amount, category, date,
+  };
+
+  transactions.unshift(tx);
+  save();
+  render();
+
+  document.getElementById('descInput').value = '';
+  document.getElementById('amountInput').value = '';
+  document.getElementById('categoryInput').value = '';
+
+  showToast(`${currentType === 'income' ? '✅ Income' : '✅ Expense'} added!`);
+}
+
+// ── DELETE ────────────────────────────────────────────────────
+function deleteTransaction(id) {
+  transactions = transactions.filter(t => t.id !== id);
+  save();
+  render();
+  showToast('🗑️ Transaction removed');
+}
+
+function clearAll() {
+  if (!transactions.length) return;
+  if (confirm('Clear all transactions?')) {
+    transactions = [];
+    save();
+    render();
+    showToast('🧹 All cleared');
+  }
+}
+
+// ── FILTER ────────────────────────────────────────────────────
+function setFilter(filter, btn) {
+  currentFilter = filter;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderList();
+}
+
+// ── SAVE ──────────────────────────────────────────────────────
+function save() {
+  localStorage.setItem('flowbudget_tx', JSON.stringify(transactions));
+}
+
+// ── FORMAT ────────────────────────────────────────────────────
+function fmt(n) { return '$' + Math.abs(n).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2}); }
+
+function fmtDate(d) {
+  if (!d) return '';
+  return new Date(d + 'T00:00:00').toLocaleDateString('en-US', {month:'short', day:'numeric'});
+}
+
+// ── RENDER ────────────────────────────────────────────────────
+function render() {
+  const income = transactions.filter(t=>t.type==='income').reduce((s,t)=>s+t.amount, 0);
+  const expense = transactions.filter(t=>t.type==='expense').reduce((s,t)=>s+t.amount, 0);
+  const balance = income - expense;
+
+  const balEl = document.getElementById('totalBalance');
+  balEl.textContent = (balance < 0 ? '-' : '') + fmt(balance);
+  balEl.className = 'balance-amount ' + (balance < 0 ? 'negative' : 'positive');
+
+  document.getElementById('totalIncome').textContent = fmt(income);
+  document.getElementById('totalExpense').textContent = fmt(expense);
+  document.getElementById('txCount').textContent = transactions.length;
+
+  const expenses = transactions.filter(t=>t.type==='expense');
+  const biggest = expenses.length ? Math.max(...expenses.map(t=>t.amount)) : null;
+  document.getElementById('biggestSpend').textContent = biggest ? fmt(biggest) : '—';
+
+  const rate = income > 0 ? Math.round(((income-expense)/income)*100) : null;
+  document.getElementById('savingsRate').textContent = rate !== null ? rate + '%' : '—';
+
+  renderList();
+  renderBreakdown(expenses, expense);
+}
+
+function renderList() {
+  const list = document.getElementById('txList');
+  const filtered = currentFilter === 'all' ? transactions : transactions.filter(t=>t.type===currentFilter);
+
+  if (!filtered.length) {
+    list.innerHTML = `<div class="tx-empty"><div class="tx-empty-icon">💳</div>No transactions yet.<br>Add one to get started.</div>`;
+    return;
+  }
+
+  list.innerHTML = filtered.map(t => `
+    <div class="tx-item">
+      <div class="tx-icon ${t.type}">${CAT_ICONS[t.category] || '💰'}</div>
+      <div class="tx-info">
+        <div class="tx-name">${t.desc}</div>
+        <div class="tx-meta">
+          <span class="tx-cat">${t.category}</span>
+          <span>${fmtDate(t.date)}</span>
         </div>
-    </div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    <marquee behavior="" direction="" class="marquee"><h1>A PLANET FOR EVERYONE<span style='font-size:40px;'>&#128522;</span> </h1></marquee>
-    
-     -->
+      </div>
+      <div class="tx-right">
+        <div class="tx-amount ${t.type}">${t.type==='income'?'+':'-'}${fmt(t.amount)}</div>
+        <button class="tx-delete" onclick="deleteTransaction(${t.id})">✕</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderBreakdown(expenses, total) {
+  const el = document.getElementById('catBreakdown');
+  if (!expenses.length) {
+    el.innerHTML = '<div style="color:var(--muted);font-size:0.88rem;text-align:center;padding:20px 0">Add expenses to see breakdown</div>';
+    return;
+  }
+
+  const cats = {};
+  expenses.forEach(t => { cats[t.category] = (cats[t.category] || 0) + t.amount; });
+  const sorted = Object.entries(cats).sort((a,b)=>b[1]-a[1]);
+  const max = sorted[0][1];
+
+  el.innerHTML = sorted.map(([cat, amt]) => `
+    <div class="cat-item">
+      <span style="font-size:1.1rem">${CAT_ICONS[cat]||'📦'}</span>
+      <span class="cat-name">${cat}</span>
+      <div class="cat-bar-wrap">
+        <div class="cat-bar-fill" style="width:${(amt/max)*100}%"></div>
+      </div>
+      <span class="cat-amount">${fmt(amt)}</span>
+    </div>
+  `).join('');
+}
+
+// ── TOAST ─────────────────────────────────────────────────────
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+init();
+</script>
+</body>
+</html>
