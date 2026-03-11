@@ -1,0 +1,1939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibe Catering - Premium Food & Services</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #FF6B6B;
+            --secondary: #4ECDC4;
+            --accent: #FFE66D;
+            --dark: #2C3E50;
+            --light: #F8F9FA;
+            --white: #FFFFFF;
+            --gray: #E9ECEF;
+            --text-gray: #6C757D;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* Remove selection highlight and tap highlight globally */
+        * {
+            -webkit-tap-highlight-color: transparent !important;
+            -webkit-touch-callout: none;
+        }
+
+        *::selection {
+            background: transparent !important;
+            color: inherit;
+        }
+
+        *::-moz-selection {
+            background: transparent !important;
+            color: inherit;
+        }
+
+        /* Disable text selection on all clickable elements */
+        button, a, .cart-btn, .add-to-cart, .order-btn, .checkout-btn, .menu-item, .service-item, .contact-card, .logo, .nav-links a, .close-modal, .quantity-btn, .remove-item, .back-btn, .send-btn {
+            -webkit-user-select: none !important;
+            -moz-user-select: none !important;
+            -ms-user-select: none !important;
+            user-select: none !important;
+            -webkit-tap-highlight-color: transparent !important;
+            -webkit-touch-callout: none !important;
+            outline: none !important;
+            -webkit-focus-ring-color: transparent !important;
+        }
+
+        /* Allow text selection only in input fields and readable content */
+        input, textarea, .modal-description, .cart-item-name, .message-input, .item-description, .pinned-message-text {
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
+        }
+
+        /* Prevent selection on click */
+        button:active, a:active, .cart-btn:active, .add-to-cart:active {
+            -webkit-user-select: none !important;
+            -moz-user-select: none !important;
+            user-select: none !important;
+        }
+
+        /* Header */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+            gap: 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary);
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+
+        .nav-center {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-shrink: 0;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            background: none;
+            border: none;
+            padding: 0;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--dark);
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(10px, 10px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        .user-menu-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+
+        .user-menu-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        .user-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--white);
+            border: 1px solid var(--gray);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            min-width: 200px;
+            z-index: 1001;
+            margin-top: 0.5rem;
+        }
+
+        .user-dropdown a {
+            display: block;
+            padding: 0.8rem 1rem;
+            color: var(--dark);
+            text-decoration: none;
+            border-bottom: 1px solid var(--gray);
+            transition: background 0.3s;
+        }
+
+        .user-dropdown a:last-child {
+            border-bottom: none;
+        }
+
+        .user-dropdown a:hover {
+            background: var(--light);
+            color: var(--primary);
+        }
+
+        .cart-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cart-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        .cart-count {
+            background: var(--accent);
+            color: var(--dark);
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.8s;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Section */
+        .section {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--dark);
+        }
+
+        #menu .section-title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        #menu .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        /* Carousel Styles */
+        .carousel-container {
+            margin-bottom: 2rem;
+        }
+
+        .carousel-row {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .carousel-row:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .carousel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .carousel-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--dark);
+        }
+
+        .carousel-nav {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .carousel-nav-btn {
+            background: var(--gray);
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .carousel-nav-btn:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .carousel-track {
+            display: flex;
+            gap: 1.5rem;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .carousel-card {
+            min-width: 280px;
+            background: var(--light);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .carousel-card:hover {
+            transform: scale(1.05);
+        }
+
+        .carousel-card-image {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .carousel-card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .carousel-card-description {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .carousel-card-price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        /* Menu Grid */
+        .menu-grid, .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .menu-item, .service-item {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .menu-item:hover, .service-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .item-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--white);
+        }
+
+        .item-content {
+            padding: 1.5rem;
+        }
+
+        .item-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .item-description {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .item-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .item-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .add-to-cart {
+            background: var(--secondary);
+            color: var(--white);
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background: #3aa59d;
+            transform: scale(1.05);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            animation: fadeIn 0.3s;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.3s;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.3s;
+        }
+
+        .close-modal:hover {
+            color: var(--primary);
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: var(--white);
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .modal-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .modal-price {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .quantity-btn {
+            background: var(--secondary);
+            color: var(--white);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .quantity-btn:hover {
+            background: #3aa59d;
+        }
+
+        .quantity-input {
+            width: 80px;
+            text-align: center;
+            font-size: 1.2rem;
+            padding: 0.5rem;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+        }
+
+        .order-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            width: 100%;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .order-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Cart Modal */
+        .cart-items {
+            margin-bottom: 2rem;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .cart-item-price {
+            color: var(--primary);
+        }
+
+        .cart-item-quantity {
+            margin: 0 1rem;
+        }
+
+        .remove-item {
+            background: #ff4444;
+            color: var(--white);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .cart-total {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: right;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .checkout-btn {
+            background: var(--secondary);
+            color: var(--white);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            width: 100%;
+            transition: background 0.3s;
+        }
+
+        .checkout-btn:hover {
+            background: #3aa59d;
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 2rem;
+            color: #999;
+        }
+
+        /* Success Message */
+        .success-message {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: var(--secondary);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 3000;
+            animation: slideInRight 0.3s;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(400px);
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            color: var(--white);
+            padding: 4rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .contact-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .contact-info {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            word-break: break-all;
+        }
+
+        .contact-link {
+            color: var(--white);
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .contact-link:hover {
+            opacity: 0.8;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: var(--white);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        .footer-text {
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        .footer-text:hover {
+            opacity: 1;
+            transition: opacity 0.3s;
+        }
+
+        /* Header Auth Buttons */
+        #headerAuth {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-shrink: 0;
+        }
+
+        #mobileAuth {
+            display: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            header {
+                padding: 0.8rem 0;
+            }
+
+            nav {
+                padding: 0 1.5rem;
+                gap: 1.5rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 0.8rem 0;
+            }
+
+            nav {
+                gap: 1rem;
+                padding: 0 1rem;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-center {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 1.5rem;
+                gap: 1rem;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                border-top: 1px solid var(--gray);
+                width: 100%;
+                z-index: 999;
+            }
+
+            .nav-center.active {
+                display: flex;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 1rem;
+                width: 100%;
+            }
+
+            .nav-links a {
+                padding: 0.7rem;
+                border-radius: 5px;
+                font-size: 0.95rem;
+            }
+
+            .nav-links a:hover {
+                background: var(--light);
+            }
+
+            #headerAuth {
+                display: none !important;
+            }
+
+            #mobileAuth {
+                display: flex !important;
+            }
+
+            .user-menu-btn {
+                width: auto;
+                font-size: 0.9rem;
+            }
+
+            .user-dropdown {
+                position: absolute;
+                top: 100%;
+                right: 0;
+                background: var(--white);
+                margin-top: 0.5rem;
+                border: 1px solid var(--gray);
+                border-radius: 8px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+                z-index: 1001;
+            }
+
+            .hero {
+                padding: 3rem 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .menu-grid, .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                font-size: 0.95rem;
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 0.6rem 0;
+            }
+
+            nav {
+                padding: 0 0.8rem;
+                gap: 0.5rem;
+            }
+
+            .logo {
+                font-size: 1.1rem;
+            }
+
+            .nav-links a {
+                padding: 0.6rem;
+                font-size: 0.85rem;
+            }
+
+            .hero {
+                padding: 2rem 1rem;
+                min-height: auto;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero p {
+                font-size: 0.9rem;
+            }
+
+            .user-menu-btn {
+                font-size: 0.85rem;
+                padding: 0.5rem 0.8rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            nav {
+                padding: 0 0.6rem;
+            }
+
+            .logo {
+                font-size: 1rem;
+            }
+
+            .hero {
+                padding: 1.5rem 0.8rem;
+            }
+
+            .hero h1 {
+                font-size: 1.2rem;
+            }
+
+            .hero p {
+                font-size: 0.8rem;
+            }
+        }
+
+        /* About Section Styles */
+        .about-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--text-gray);
+            font-weight: 500;
+        }
+
+        @media (max-width: 1024px) {
+            .about-text h3 {
+                font-size: 1.6rem;
+            }
+
+            .about-text p {
+                font-size: 1rem;
+            }
+
+            .about-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stat-number {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .about-container {
+                padding: 0 1rem;
+            }
+
+            .about-text h3 {
+                font-size: 1.4rem;
+            }
+
+            .about-text p {
+                font-size: 0.95rem;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .stat-item {
+                padding: 1rem;
+            }
+
+            .stat-number {
+                font-size: 1.8rem;
+            }
+
+            .stat-label {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .about-container {
+                padding: 0 0.8rem;
+            }
+
+            .about-text h3 {
+                font-size: 1.2rem;
+            }
+
+            .about-text p {
+                font-size: 0.85rem;
+            }
+
+            .about-stats {
+                gap: 0.8rem;
+                margin-top: 1.5rem;
+            }
+
+            .stat-item {
+                padding: 0.8rem;
+            }
+
+            .stat-number {
+                font-size: 1.5rem;
+            }
+
+            .stat-label {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .about-text h3 {
+                font-size: 1.1rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .about-text p {
+                font-size: 0.8rem;
+                margin-bottom: 1rem;
+            }
+
+            .stat-item {
+                padding: 0.6rem;
+            }
+
+            .stat-number {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">🍽️ Bola2bolas</div>
+            <div class="nav-center" id="navMenu">
+                <ul class="nav-links">
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <!-- Mobile auth section inside hamburger menu -->
+                <div id="mobileAuth" style="border-top: 1px solid var(--gray); padding-top: 1rem; margin-top: 1rem;"></div>
+            </div>
+            <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <!-- Desktop auth buttons -->
+            <div id="headerAuth"></div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Welcome to Bola2bolas catering service</h1>
+        <p>Elevating your events with exquisite flavors and exceptional service</p>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="section">
+        <h2 class="section-title">Our Menu</h2>
+        <div class="carousel-container">
+            <!-- Dishes Carousel -->
+            <div class="carousel-row" onclick="goToCategory('dishes')">
+                <div class="carousel-header">
+                    <h3 class="carousel-title">🍽️ Dishes</h3>
+                    <div class="carousel-nav">
+                        <button class="carousel-nav-btn" onclick="event.stopPropagation(); scrollCarousel('dishes', -1)">‹</button>
+                        <button class="carousel-nav-btn" onclick="event.stopPropagation(); scrollCarousel('dishes', 1)">›</button>
+                    </div>
+                </div>
+                <div class="carousel-track" id="dishesCarousel">
+                    <!-- Cards will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Special Dishes Carousel -->
+            <div class="carousel-row" onclick="goToCategory('special-dishes')">
+                <div class="carousel-header">
+                    <h3 class="carousel-title">⭐ Special Dishes</h3>
+                    <div class="carousel-nav">
+                        <button class="carousel-nav-btn" onclick="event.stopPropagation(); scrollCarousel('special-dishes', -1)">‹</button>
+                        <button class="carousel-nav-btn" onclick="event.stopPropagation(); scrollCarousel('special-dishes', 1)">›</button>
+                    </div>
+                </div>
+                <div class="carousel-track" id="specialDishesCarousel">
+                    <!-- Cards will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Special Special Dishes Carousel -->
+            <div class="carousel-row" onclick="goToCategory('special-special-dishes')">
+                <div class="carousel-header">
+                    <h3 class="carousel-title">✨ Special Special Dishes</h3>
+                    <div class="carousel-nav">
+                        <button class="carousel-nav-btn" onclick="event.stopPropagation(); scrollCarousel('special-special-dishes', -1)">‹</button>
+                        <button class="carousel-nav-btn" onclick="event.stopPropagation(); scrollCarousel('special-special-dishes', 1)">›</button>
+                    </div>
+                </div>
+                <div class="carousel-track" id="specialSpecialDishesCarousel">
+                    <!-- Cards will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section">
+        <h2 class="section-title">Our Services</h2>
+        <div class="services-grid" id="servicesGrid">
+            <!-- Service items will be populated by JavaScript -->
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <h2 class="section-title">About Bola2bolas Catering</h2>
+        <div class="about-container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Our Story</h3>
+                    <p>
+                        Bola2bolas Catering was born from a passion for bringing people together through exceptional food experiences.
+                        Founded with the vision of making every occasion memorable, we specialize in creating culinary delights
+                        that cater to diverse tastes and preferences.
+                    </p>
+                    <p>
+                        Our team of experienced chefs and catering professionals work tirelessly to ensure that every dish
+                        tells a story and every service exceeds expectations. From intimate gatherings to grand celebrations,
+                        we bring the warmth of home-cooked meals with the sophistication of fine dining.
+                    </p>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Happy Customers</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Menu Items</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">10+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Customer Support</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="contact-container">
+            <h2 class="section-title" style="color: var(--white);">Contact Us</h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.95;">
+                Get in touch with us for bookings and inquiries
+            </p>
+            <div class="contact-grid">
+                <div class="contact-card" onclick="callPhone('08054551805')">
+                    <div class="contact-icon">📞</div>
+                    <div class="contact-title">Phone</div>
+                    <div class="contact-info">08054551805</div>
+                </div>
+                <div class="contact-card" onclick="openTwitter('@ERGOMANIAC1212')">
+                    <div class="contact-icon">🐦</div>
+                    <div class="contact-title">Twitter</div>
+                    <div class="contact-info">@ERGOMANIAC1212</div>
+                </div>
+                <div class="contact-card" onclick="openTelegram('2Adebolz')">
+                    <div class="contact-icon">✈️</div>
+                    <div class="contact-title">Telegram</div>
+                    <div class="contact-info">2Adebolz</div>
+                </div>
+                <div class="contact-card" onclick="openWhatsApp('09045190672')">
+                    <div class="contact-icon">💬</div>
+                    <div class="contact-title">WhatsApp</div>
+                    <div class="contact-info">09045190672</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Item Detail Modal -->
+    <div id="itemModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div class="modal-image" id="modalImage"></div>
+            <h2 class="modal-title" id="modalTitle"></h2>
+            <p class="modal-description" id="modalDescription"></p>
+            <div class="modal-price" id="modalPrice"></div>
+            <div class="quantity-selector">
+                <button class="quantity-btn" onclick="decreaseQuantity()">-</button>
+                <input type="number" class="quantity-input" id="quantityInput" value="1" min="1">
+                <button class="quantity-btn" onclick="increaseQuantity()">+</button>
+            </div>
+            <button class="order-btn" onclick="addToCartFromModal()">Add to Cart</button>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeCart()">&times;</span>
+            <h2 class="modal-title">Your Cart</h2>
+            <div class="cart-items" id="cartItems">
+                <div class="empty-cart">Your cart is empty</div>
+            </div>
+            <div class="cart-total" id="cartTotal" style="display: none;">Total: ₦0</div>
+            <button class="checkout-btn" onclick="checkout()" id="checkoutBtn" style="display: none;">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Success Message -->
+    <div id="successMessage" class="success-message">
+        Item added to cart! 🎉
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p class="footer-text">@Adebolz creation 2026 - he is back</p>
+        </div>
+    </footer>
+
+    <!-- Backend & Authentication Manager -->
+    <script src="Js files/backend-config.js"></script>
+    <script src="Js files/auth-manager.js"></script>
+
+    <script>
+        // Toggle hamburger menu
+        function toggleMenu() {
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('navMenu');
+            
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            
+            // Close menu when a link is clicked
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('navMenu');
+            
+            if (hamburger && navMenu && !hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+
+        // Menu Data - Nigerian Cuisine
+        const menuItems = [
+            {
+                id: 1,
+                name: "Jollof Rice",
+                description: "The king of Nigerian rice dishes! Fragrant, spicy tomato-based rice cooked to perfection with chicken, beef, or fish. A must-have at every Nigerian event and celebration.",
+                price: 3500,
+                emoji: "🍛"
+            },
+            {
+                id: 2,
+                name: "Pounded Yam & Egusi Soup",
+                description: "Traditional Nigerian delicacy featuring smooth pounded yam served with rich, nutty egusi soup, assorted meat, fish, and vegetables. A true taste of home.",
+                price: 4500,
+                emoji: "🥘"
+            },
+            {
+                id: 3,
+                name: "Suya",
+                description: "Spicy grilled beef skewers marinated in groundnut spice blend, served with sliced onions, tomatoes, and spicy pepper sauce. Perfect for parties and gatherings.",
+                price: 2500,
+                emoji: "🍢"
+            },
+            {
+                id: 4,
+                name: "Pepper Soup",
+                description: "Aromatic and spicy Nigerian pepper soup with your choice of goat meat, chicken, or fish. Warm, flavorful, and perfect for any occasion. Served with sides.",
+                price: 3000,
+                emoji: "🍲"
+            },
+            {
+                id: 5,
+                name: "Fried Rice & Chicken",
+                description: "Colorful Nigerian-style fried rice with mixed vegetables, curry spices, and perfectly seasoned grilled chicken. A crowd favorite at events.",
+                price: 3800,
+                emoji: "🍚"
+            },
+            {
+                id: 6,
+                name: "Amala & Ewedu Soup",
+                description: "Classic Yoruba dish - smooth amala (yam flour) served with ewedu soup, gbegiri, and assorted meat. Authentic and delicious.",
+                price: 4000,
+                emoji: "🍽️"
+            },
+            {
+                id: 7,
+                name: "Moi Moi",
+                description: "Steamed bean pudding made with blended beans, eggs, fish, and spices. Served in banana leaves or containers. A protein-rich Nigerian favorite.",
+                price: 1500,
+                emoji: "🧆"
+            },
+            {
+                id: 8,
+                name: "Akara & Pap",
+                description: "Crispy bean fritters (akara) served with smooth, creamy pap (ogi). Perfect breakfast or snack combo that Nigerians love.",
+                price: 1200,
+                emoji: "🥞"
+            },
+            {
+                id: 9,
+                name: "Efo Riro",
+                description: "Rich and flavorful vegetable soup made with spinach, palm oil, assorted meat, and fish. Served with pounded yam, eba, or rice. A classic Nigerian dish.",
+                price: 3500,
+                emoji: "🥬"
+            },
+            {
+                id: 10,
+                name: "Asun",
+                description: "Spicy grilled goat meat chopped and sautéed with peppers, onions, and spices. Served with plantain or yam. A party favorite from the West.",
+                price: 4500,
+                emoji: "🍖"
+            },
+            {
+                id: 11,
+                name: "Nkwobi",
+                description: "Spicy cow foot cooked in palm oil sauce with utazi leaves and special spices. Served warm, perfect for sharing. A popular appetizer.",
+                price: 4000,
+                emoji: "🍗"
+            },
+            {
+                id: 12,
+                name: "Ofada Rice & Stew",
+                description: "Local Nigerian rice served with spicy palm oil stew, assorted meat, and fried plantain. Authentic and satisfying meal loved nationwide.",
+                price: 3500,
+                emoji: "🍛"
+            }
+        ];
+
+        // Services Data
+        const services = [
+            {
+                id: 101,
+                name: "Wedding Catering",
+                description: "Full-service wedding catering with customizable menus, professional staff, and elegant presentation. Make your special day unforgettable.",
+                price: 500000,
+                emoji: "💒"
+            },
+            {
+                id: 102,
+                name: "Corporate Events",
+                description: "Professional catering for business meetings, conferences, and corporate gatherings. Efficient service and quality food that impresses clients.",
+                price: 250000,
+                emoji: "💼"
+            },
+            {
+                id: 103,
+                name: "Birthday Parties",
+                description: "Fun and festive catering packages for birthdays of all ages. Themed menus and party-friendly food options to celebrate in style.",
+                price: 150000,
+                emoji: "🎂"
+            },
+            {
+                id: 104,
+                name: "Cocktail Reception",
+                description: "Sophisticated cocktail party service with premium appetizers, signature drinks, and elegant presentation. Perfect for networking events.",
+                price: 200000,
+                emoji: "🍾"
+            },
+            {
+                id: 105,
+                name: "School/Other Events",
+                description: "Comprehensive catering solutions for school functions, graduations, sports events, fundraisers, and any special occasion. Flexible menus and affordable pricing for all event sizes.",
+                price: 180000,
+                emoji: "🎓"
+            }
+        ];
+
+        let cart = [];
+        let currentItem = null;
+        let currentQuantity = 1;
+
+        // Initialize menu data structure
+        function initializeMenuData() {
+            const defaultMenuData = {
+                dishes: [
+                    { id: 1, name: "Jollof Rice", description: "The king of Nigerian rice dishes! Fragrant, spicy tomato-based rice cooked to perfection.", price: 3500, emoji: "🍛", category: "dishes" },
+                    { id: 2, name: "Pounded Yam & Egusi Soup", description: "Traditional Nigerian delicacy featuring smooth pounded yam served with rich, nutty egusi soup.", price: 4500, emoji: "🥘", category: "dishes" },
+                    { id: 3, name: "Suya", description: "Spicy grilled beef skewers marinated in groundnut spice blend.", price: 2500, emoji: "🍢", category: "dishes" },
+                    { id: 4, name: "Pepper Soup", description: "Aromatic and spicy Nigerian pepper soup with your choice of meat.", price: 3000, emoji: "🍲", category: "dishes" },
+                    { id: 5, name: "Fried Rice & Chicken", description: "Colorful Nigerian-style fried rice with mixed vegetables and grilled chicken.", price: 3800, emoji: "🍚", category: "dishes" },
+                    { id: 6, name: "Amala & Ewedu Soup", description: "Classic Yoruba dish - smooth amala served with ewedu soup and assorted meat.", price: 4000, emoji: "🍽️", category: "dishes" }
+                ],
+                'special-dishes': [
+                    { id: 101, name: "Premium Jollof Rice", description: "Our signature jollof rice with premium ingredients and special spices.", price: 5000, emoji: "🍛", category: "special-dishes" },
+                    { id: 102, name: "Royal Pounded Yam", description: "Deluxe pounded yam with premium egusi soup and choice cuts of meat.", price: 6000, emoji: "🥘", category: "special-dishes" },
+                    { id: 103, name: "Gourmet Suya Platter", description: "Premium suya selection with lamb, beef, and chicken skewers.", price: 4500, emoji: "🍢", category: "special-dishes" },
+                    { id: 104, name: "Executive Pepper Soup", description: "Premium pepper soup with choice seafood and special herbs.", price: 5000, emoji: "🍲", category: "special-dishes" },
+                    { id: 105, name: "Chef's Special Fried Rice", description: "Chef's signature fried rice with premium ingredients and special sauce.", price: 5500, emoji: "🍚", category: "special-dishes" },
+                    { id: 106, name: "Deluxe Amala Combo", description: "Premium amala with multiple soups and assorted premium meats.", price: 6500, emoji: "🍽️", category: "special-dishes" }
+                ],
+                'special-special-dishes': [
+                    { id: 201, name: "Platinum Jollof Experience", description: "Ultimate jollof rice experience with luxury ingredients and presentation.", price: 8000, emoji: "🍛", category: "special-special-dishes" },
+                    { id: 202, name: "Diamond Pounded Yam", description: "Most luxurious pounded yam experience with premium everything.", price: 10000, emoji: "🥘", category: "special-special-dishes" },
+                    { id: 203, name: "VIP Suya Collection", description: "Exclusive suya collection with premium cuts and special marinades.", price: 7500, emoji: "🍢", category: "special-special-dishes" },
+                    { id: 204, name: "Royal Pepper Soup", description: "Ultimate pepper soup experience with luxury seafood and presentation.", price: 9000, emoji: "🍲", category: "special-special-dishes" },
+                    { id: 205, name: "Master Chef Fried Rice", description: "Master chef's ultimate fried rice creation with luxury ingredients.", price: 8500, emoji: "🍚", category: "special-special-dishes" },
+                    { id: 206, name: "Supreme Amala Feast", description: "The ultimate amala experience with all premium soups and meats.", price: 12000, emoji: "🍽️", category: "special-special-dishes" }
+                ]
+            };
+
+            // Initialize localStorage if empty
+            if (!localStorage.getItem('menuData')) {
+                localStorage.setItem('menuData', JSON.stringify(defaultMenuData));
+            }
+        }
+
+        // Get menu data
+        function getMenuData() {
+            return JSON.parse(localStorage.getItem('menuData') || '{}');
+        }
+
+        // Save menu data
+        function saveMenuData(data) {
+            localStorage.setItem('menuData', JSON.stringify(data));
+        }
+
+        // Initialize the page
+        function init() {
+            initializeMenuData();
+            renderCarousels();
+            renderServices();
+            updateCartCount();
+        }
+
+        // Render carousels
+        function renderCarousels() {
+            const menuData = getMenuData();
+            
+            renderCarousel('dishes', menuData.dishes || []);
+            renderCarousel('special-dishes', menuData['special-dishes'] || []);
+            renderCarousel('special-special-dishes', menuData['special-special-dishes'] || []);
+            
+            // Start auto-scroll
+            startCarouselAutoScroll();
+        }
+
+        // Render individual carousel
+        function renderCarousel(category, items) {
+            const carouselId = category === 'dishes' ? 'dishesCarousel' : 
+                              category === 'special-dishes' ? 'specialDishesCarousel' : 
+                              'specialSpecialDishesCarousel';
+            
+            const carousel = document.getElementById(carouselId);
+            if (!carousel) return;
+
+            carousel.innerHTML = items.map(item => `
+                <div class="carousel-card" onclick="event.stopPropagation(); viewItem(${item.id}, 'menu', '${item.category}')">
+                    <div class="carousel-card-image">${item.emoji}</div>
+                    <h4 class="carousel-card-title">${item.name}</h4>
+                    <p class="carousel-card-description">${item.description.substring(0, 80)}...</p>
+                    <div class="carousel-card-price">₦${item.price.toLocaleString()}</div>
+                </div>
+            `).join('');
+        }
+
+        // Scroll carousel
+        function scrollCarousel(category, direction) {
+            const carouselId = category === 'dishes' ? 'dishesCarousel' : 
+                              category === 'special-dishes' ? 'specialDishesCarousel' : 
+                              'specialSpecialDishesCarousel';
+            
+            const carousel = document.getElementById(carouselId);
+            if (!carousel) return;
+
+            const scrollAmount = 300;
+            carousel.scrollBy({
+                left: direction * scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+
+        // Auto-scroll carousels
+        function startCarouselAutoScroll() {
+            setInterval(() => {
+                const carousels = ['dishesCarousel', 'specialDishesCarousel', 'specialSpecialDishesCarousel'];
+                carousels.forEach(carouselId => {
+                    const carousel = document.getElementById(carouselId);
+                    if (carousel) {
+                        const scrollAmount = 300;
+                        carousel.scrollBy({
+                            left: scrollAmount,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Reset to start if at end
+                        setTimeout(() => {
+                            if (carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth - 50) {
+                                carousel.scrollTo({ left: 0, behavior: 'smooth' });
+                            }
+                        }, 500);
+                    }
+                });
+            }, 3000); // 3 seconds
+        }
+
+        // Go to category page
+        function goToCategory(category) {
+            window.location.href = `${category}.html`;
+        }
+
+        // Render services
+        function renderServices() {
+            const servicesGrid = document.getElementById('servicesGrid');
+            servicesGrid.innerHTML = services.map(service => `
+                <div class="service-item" onclick="viewItem(${service.id}, 'service')">
+                    <div class="item-image">${service.emoji}</div>
+                    <div class="item-content">
+                        <h3 class="item-title">${service.name}</h3>
+                        <p class="item-description">${service.description.substring(0, 100)}...</p>
+                        <div class="item-footer">
+                            <span class="item-price">₦${service.price.toLocaleString()}</span>
+                            <button class="add-to-cart" onclick="event.stopPropagation(); openServiceHelp(${service.id})">Check More</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // View item details
+        function viewItem(id, type, category = null) {
+            let item = null;
+            
+            if (type === 'menu') {
+                const menuData = getMenuData();
+                if (category) {
+                    const categoryItems = menuData[category] || [];
+                    item = categoryItems.find(i => i.id === id);
+                } else {
+                    // Search all categories
+                    const allItems = [...(menuData.dishes || []), ...(menuData['special-dishes'] || []), ...(menuData['special-special-dishes'] || [])];
+                    item = allItems.find(i => i.id === id);
+                }
+            } else {
+                item = services.find(i => i.id === id);
+            }
+            
+            if (!item) return;
+
+            currentItem = { ...item, type };
+            currentQuantity = 1;
+
+            document.getElementById('modalImage').textContent = item.emoji;
+            document.getElementById('modalTitle').textContent = item.name;
+            document.getElementById('modalDescription').textContent = item.description;
+            document.getElementById('modalPrice').textContent = `₦${item.price.toLocaleString()}`;
+            document.getElementById('quantityInput').value = 1;
+
+            document.getElementById('itemModal').classList.add('active');
+        }
+
+        // Close modal
+        function closeModal() {
+            document.getElementById('itemModal').classList.remove('active');
+            currentItem = null;
+        }
+
+        // Quantity controls
+        function increaseQuantity() {
+            currentQuantity++;
+            document.getElementById('quantityInput').value = currentQuantity;
+        }
+
+        function decreaseQuantity() {
+            if (currentQuantity > 1) {
+                currentQuantity--;
+                document.getElementById('quantityInput').value = currentQuantity;
+            }
+        }
+
+        // Add to cart from modal
+        function addToCartFromModal() {
+            const quantity = parseInt(document.getElementById('quantityInput').value);
+            if (currentItem) {
+                addToCart(currentItem.id, currentItem.type, quantity);
+                closeModal();
+            }
+        }
+
+        // Add to cart
+        function addToCart(id, type, quantity = 1, category = null) {
+            let item = null;
+            
+            if (type === 'menu') {
+                const menuData = getMenuData();
+                if (category) {
+                    const categoryItems = menuData[category] || [];
+                    item = categoryItems.find(i => i.id === id);
+                } else {
+                    const allItems = [...(menuData.dishes || []), ...(menuData['special-dishes'] || []), ...(menuData['special-special-dishes'] || [])];
+                    item = allItems.find(i => i.id === id);
+                }
+            } else {
+                item = services.find(i => i.id === id);
+            }
+            
+            if (!item) return;
+
+            const existingItem = cart.find(c => c.id === id && c.type === type);
+            
+            if (existingItem) {
+                existingItem.quantity += quantity;
+            } else {
+                cart.push({
+                    ...item,
+                    type,
+                    quantity
+                });
+            }
+
+            updateCartCount();
+            showSuccessMessage();
+            renderCart();
+        }
+
+        // Remove from cart
+        function removeFromCart(id, type) {
+            cart = cart.filter(item => !(item.id === id && item.type === type));
+            updateCartCount();
+            renderCart();
+        }
+
+        // Update cart count
+        function updateCartCount() {
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cartCount').textContent = totalItems;
+        }
+
+        // Open cart
+        function openCart() {
+            renderCart();
+            document.getElementById('cartModal').classList.add('active');
+        }
+
+        // Close cart
+        function closeCart() {
+            document.getElementById('cartModal').classList.remove('active');
+        }
+
+        // Render cart
+        function renderCart() {
+            const cartItems = document.getElementById('cartItems');
+            const cartTotal = document.getElementById('cartTotal');
+            const checkoutBtn = document.getElementById('checkoutBtn');
+
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<div class="empty-cart">Your cart is empty</div>';
+                cartTotal.style.display = 'none';
+                checkoutBtn.style.display = 'none';
+                return;
+            }
+
+            cartItems.innerHTML = cart.map(item => {
+                const total = item.price * item.quantity;
+                // Sanitize item name to prevent XSS
+                const safeName = document.createElement('div');
+                safeName.textContent = item.name;
+                const displayName = safeName.innerHTML;
+                
+                return `
+                    <div class="cart-item">
+                        <div class="cart-item-info">
+                            <div class="cart-item-name">${item.emoji} ${item.name}</div>
+                            <div class="cart-item-price">₦${item.price.toLocaleString()} each</div>
+                        </div>
+                        <div class="cart-item-quantity">Qty: ${item.quantity}</div>
+                        <div class="cart-item-price">₦${total.toLocaleString()}</div>
+                        <button class="remove-item" onclick="removeFromCart(${item.id}, '${item.type}')">Remove</button>
+                    </div>
+                `;
+            }).join('');
+
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            cartTotal.textContent = `Total: ₦${total.toLocaleString()}`;
+            cartTotal.style.display = 'block';
+            checkoutBtn.style.display = 'block';
+        }
+
+        // Checkout
+        function checkout() {
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            alert(`Thank you for your order!\n\nTotal: ₦${total.toLocaleString()}\n\nYour order has been placed successfully. We'll contact you soon to confirm the details.`);
+            cart = [];
+            updateCartCount();
+            renderCart();
+            closeCart();
+        }
+
+        // Show success message
+        function showSuccessMessage() {
+            const message = document.getElementById('successMessage');
+            message.classList.add('show');
+            setTimeout(() => {
+                message.classList.remove('show');
+            }, 3000);
+        }
+
+        // Close modals when clicking outside
+        window.onclick = function(event) {
+            const itemModal = document.getElementById('itemModal');
+            const cartModal = document.getElementById('cartModal');
+            
+            if (event.target === itemModal) {
+                closeModal();
+            }
+            if (event.target === cartModal) {
+                closeCart();
+            }
+        }
+
+        // Contact functions
+        function callPhone(number) {
+            window.location.href = `tel:${number}`;
+        }
+
+        function openTwitter(handle) {
+            window.open(`https://twitter.com/${handle.replace('@', '')}`, '_blank');
+        }
+
+        function openTelegram(username) {
+            window.open(`https://t.me/${username}`, '_blank');
+        }
+
+        function openWhatsApp(number) {
+            // Remove any leading 0 and format for WhatsApp
+            const formattedNumber = number.startsWith('0') ? number.substring(1) : number;
+            // Assuming Nigeria country code is 234
+            window.open(`https://wa.me/234${formattedNumber}`, '_blank');
+        }
+
+        // Open service help page
+        function openServiceHelp(serviceId) {
+            const service = services.find(s => s.id === serviceId);
+            if (service) {
+                localStorage.setItem('selectedService', JSON.stringify(service));
+                window.location.href = 'service-help.html';
+            }
+        }
+
+        // Initialize on page load
+        init();
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Bola2bolas Catering</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #FF6B6B;
+            --secondary: #4ECDC4;
+            --accent: #FFE66D;
+            --dark: #2C3E50;
+            --light: #F8F9FA;
+            --white: #FFFFFF;
+            --gray: #E9ECEF;
+            --text-gray: #6C757D;
+            --success: #28A745;
+            --danger: #DC3545;
+            --warning: #FFC107;
+            --info: #17A2B8;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Login Page */
+        .login-page {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .login-page.active {
+            display: flex;
+        }
+
+        .login-container {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 400px;
+            animation: slideUp 0.5s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .login-container h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--dark);
+            font-size: 2rem;
+        }
+
+        .login-form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .login-form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .login-form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid var(--gray);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .login-form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        .login-error {
+            color: var(--danger);
+            text-align: center;
+            margin-top: 1rem;
+            font-weight: 600;
+            display: none;
+        }
+
+        .login-error.show {
+            display: block;
+        }
+
+        /* Dashboard */
+        .dashboard-page {
+            display: none;
+        }
+
+        .dashboard-page.active {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .admin-name {
+            font-weight: 600;
+            color: var(--text-gray);
+            margin-right: 1rem;
+        }
+
+        .btn {
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.3s;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+            color: var(--white);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            flex: 1;
+            width: 100%;
+        }
+
+        .sidebar-nav {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            background: var(--white);
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            flex-wrap: wrap;
+        }
+
+        .nav-item {
+            padding: 0.8rem 1.5rem;
+            background: var(--gray);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            color: var(--dark);
+        }
+
+        .nav-item.active {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .nav-item:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid var(--primary);
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .stat-card.success { border-left-color: var(--success); }
+        .stat-card.warning { border-left-color: var(--warning); }
+        .stat-card.info { border-left-color: var(--info); }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .stat-label {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--dark);
+        }
+
+        .stat-change {
+            font-size: 0.8rem;
+            color: var(--success);
+            margin-top: 0.5rem;
+        }
+
+        /* Content Sections */
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--dark);
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 1rem;
+        }
+
+        /* Forms */
+        .form-container {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            padding: 0.8rem;
+            border: 2px solid var(--gray);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn-submit {
+            background: var(--secondary);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: transform 0.3s;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-cancel {
+            background: var(--gray);
+            color: var(--dark);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        /* Tables */
+        .table-container {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: var(--gray);
+        }
+
+        th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: var(--dark);
+            border-bottom: 2px solid #ddd;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        tbody tr:hover {
+            background: var(--light);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-completed {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-cancelled {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-edit, .btn-delete, .btn-view {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: transform 0.3s;
+        }
+
+        .btn-edit {
+            background: var(--info);
+            color: var(--white);
+        }
+
+        .btn-delete {
+            background: var(--danger);
+            color: var(--white);
+        }
+
+        .btn-view {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-edit:hover, .btn-delete:hover, .btn-view:hover {
+            transform: scale(1.05);
+        }
+
+        /* Alerts */
+        .alert {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            display: none;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .alert.show {
+            display: block;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* Responsive - Mobile First Approach */
+        @media (max-width: 1024px) {
+            nav {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .nav-buttons {
+                flex-wrap: wrap;
+                width: 100%;
+            }
+
+            .admin-name {
+                order: 3;
+                width: 100%;
+                margin: 0;
+                text-align: center;
+            }
+
+            .container {
+                padding: 1.5rem 1rem;
+            }
+
+            .sidebar-nav {
+                flex-wrap: wrap;
+            }
+
+            .nav-item {
+                flex: 1;
+                min-width: 150px;
+            }
+
+            .form-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 0.8rem 0;
+            }
+
+            nav {
+                flex-direction: column;
+                padding: 0 1rem;
+                gap: 0.5rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+                width: 100%;
+                gap: 0.5rem;
+            }
+
+            .admin-name {
+                display: block;
+                text-align: center;
+                width: 100%;
+                margin: 0.5rem 0;
+                font-size: 0.9rem;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+                padding: 0.6rem 1rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .sidebar-nav {
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 0.8rem;
+            }
+
+            .nav-item {
+                width: 100%;
+                padding: 0.7rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+                padding-bottom: 0.8rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .stat-card {
+                padding: 1.2rem;
+            }
+
+            .stat-value {
+                font-size: 1.75rem;
+            }
+
+            .form-container {
+                padding: 1.5rem 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .form-group {
+                margin-bottom: 0;
+            }
+
+            .form-group input,
+            .form-group textarea,
+            .form-group select {
+                padding: 0.7rem;
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+
+            .form-buttons {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .btn-submit,
+            .btn-cancel {
+                width: 100%;
+                padding: 0.8rem 1.5rem;
+            }
+
+            .table-container {
+                margin-bottom: 1.5rem;
+                overflow-x: auto;
+            }
+
+            table {
+                font-size: 0.8rem;
+                min-width: 600px;
+            }
+
+            th, td {
+                padding: 0.6rem 0.5rem;
+                word-break: break-word;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                gap: 0.25rem;
+            }
+
+            .btn-edit, .btn-delete, .btn-view {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.75rem;
+                width: 100%;
+            }
+
+            .status-badge {
+                font-size: 0.75rem;
+                padding: 0.25rem 0.6rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            nav {
+                gap: 0.3rem;
+            }
+
+            .container {
+                padding: 0.8rem;
+            }
+
+            .section-title {
+                font-size: 1.3rem;
+                margin-bottom: 1.2rem;
+            }
+
+            .nav-item {
+                padding: 0.6rem 0.8rem;
+                font-size: 0.85rem;
+            }
+
+            .form-container {
+                padding: 1rem;
+                margin-bottom: 1.2rem;
+            }
+
+            .form-container h3 {
+                font-size: 1.1rem;
+                margin-bottom: 1rem;
+            }
+
+            .stat-card {
+                padding: 1rem;
+            }
+
+            .stat-label {
+                font-size: 0.8rem;
+            }
+
+            .stat-value {
+                font-size: 1.5rem;
+            }
+
+            table {
+                font-size: 0.75rem;
+            }
+
+            th, td {
+                padding: 0.5rem 0.35rem;
+            }
+
+            .btn-edit, .btn-delete, .btn-view {
+                padding: 0.35rem 0.6rem;
+                font-size: 0.7rem;
+            }
+
+            .login-container {
+                padding: 2rem 1.5rem;
+                max-width: 95%;
+            }
+
+            .login-container h1 {
+                font-size: 1.5rem;
+            }
+
+            .login-form-group {
+                margin-bottom: 1rem;
+            }
+
+            .login-form-group input {
+                padding: 0.7rem;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Page -->
+    <div class="login-page" id="loginPage">
+        <div class="login-container">
+            <h1>🍽️ Admin Panel</h1>
+            <form onsubmit="handleAdminLogin(event)">
+                <div class="login-form-group">
+                    <label for="adminEmail">Email</label>
+                    <input type="email" id="adminEmail" placeholder="Enter admin email" required>
+                </div>
+                <div class="login-form-group">
+                    <label for="adminPassword">Password</label>
+                    <input type="password" id="adminPassword" placeholder="Enter password" required>
+                </div>
+                <button type="submit" class="login-btn">Login</button>
+                <div class="login-error" id="loginError"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Dashboard Page -->
+    <div class="dashboard-page" id="dashboardPage">
+        <header>
+            <nav>
+                <div class="logo">🍽️ Bola2bolas Admin</div>
+                <div class="nav-buttons">
+                    <span class="admin-name" id="adminNameDisplay"></span>
+                    <a href="index.html" class="btn btn-secondary">View Website</a>
+                    <button class="btn btn-primary" onclick="logout()">Logout</button>
+                </div>
+            </nav>
+        </header>
+
+        <div class="container">
+            <!-- Alert Messages -->
+            <div class="alert alert-success" id="successAlert"></div>
+            <div class="alert alert-error" id="errorAlert"></div>
+
+            <!-- Navigation Tabs -->
+            <div class="sidebar-nav">
+                <button class="nav-item active" onclick="switchSection('dashboard', event)">📊 Dashboard</button>
+                <button class="nav-item" onclick="switchSection('menu', event)">🍛 Menu</button>
+                <button class="nav-item" onclick="switchSection('services', event)">💼 Services</button>
+                <button class="nav-item" onclick="switchSection('orders', event)">📦 Orders</button>
+                <button class="nav-item" onclick="switchSection('customers', event)">👥 Customers</button>
+            </div>
+
+            <!-- Dashboard Section -->
+            <div id="dashboard" class="section active">
+                <h2 class="section-title">Dashboard Overview</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-label">Total Menu Items</div>
+                        <div class="stat-value" id="totalMenuItems">0</div>
+                    </div>
+                    <div class="stat-card success">
+                        <div class="stat-label">Total Services</div>
+                        <div class="stat-value" id="totalServices">0</div>
+                    </div>
+                    <div class="stat-card warning">
+                        <div class="stat-label">Pending Orders</div>
+                        <div class="stat-value" id="pendingOrders">0</div>
+                    </div>
+                    <div class="stat-card info">
+                        <div class="stat-label">Total Revenue</div>
+                        <div class="stat-value" id="totalRevenue">₦0</div>
+                    </div>
+                </div>
+
+                <div class="form-container">
+                    <h3>Recent Orders</h3>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Customer</th>
+                                    <th>Items</th>
+                                    <th>Total</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recentOrdersTable">
+                                <tr><td colspan="6" style="text-align: center; color: #999;">No orders yet</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Menu Section -->
+            <div id="menu" class="section">
+                <h2 class="section-title">Menu Management</h2>
+
+                <div class="form-container">
+                    <h3 id="menuFormTitle">Add New Menu Item</h3>
+                    <form onsubmit="handleMenuSubmit(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input type="text" id="menuName" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Price (₦)</label>
+                                <input type="number" id="menuPrice" required min="0">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Category</label>
+                                <select id="menuCategory" required>
+                                    <option value="">Select Category</option>
+                                    <option value="dishes">Dishes</option>
+                                    <option value="special-dishes">Special Dishes</option>
+                                    <option value="special-special-dishes">Special Special Dishes</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Emoji</label>
+                                <input type="text" id="menuEmoji" placeholder="e.g., 🍛" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea id="menuDescription" required></textarea>
+                            </div>
+                        </div>
+                        <div class="form-buttons">
+                            <button type="submit" class="btn-submit" id="menuSubmitBtn">Add Item</button>
+                            <button type="button" class="btn-cancel" onclick="resetMenuForm()">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="form-container">
+                    <h3>All Menu Items</h3>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Emoji</th>
+                                    <th>Name</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="menuTable">
+                                <tr><td colspan="5" style="text-align: center; color: #999;">No menu items yet</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Services Section -->
+            <div id="services" class="section">
+                <h2 class="section-title">Services Management</h2>
+
+                <div class="form-container">
+                    <h3 id="servicesFormTitle">Add New Service</h3>
+                    <form onsubmit="handleServicesSubmit(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input type="text" id="serviceName" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Price (₦)</label>
+                                <input type="number" id="servicePrice" required min="0">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Emoji</label>
+                                <input type="text" id="serviceEmoji" placeholder="e.g., 💒" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea id="serviceDescription" required></textarea>
+                            </div>
+                        </div>
+                        <div class="form-buttons">
+                            <button type="submit" class="btn-submit" id="servicesSubmitBtn">Add Service</button>
+                            <button type="button" class="btn-cancel" onclick="resetServicesForm()">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="form-container">
+                    <h3>All Services</h3>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Emoji</th>
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="servicesTable">
+                                <tr><td colspan="4" style="text-align: center; color: #999;">No services yet</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Orders Section -->
+            <div id="orders" class="section">
+                <h2 class="section-title">Orders Management</h2>
+
+                <div class="form-container">
+                    <h3>All Orders</h3>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Customer</th>
+                                    <th>Items</th>
+                                    <th>Total</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ordersTable">
+                                <tr><td colspan="7" style="text-align: center; color: #999;">No orders yet</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Customers Section -->
+            <div id="customers" class="section">
+                <h2 class="section-title">Customer Management</h2>
+
+                <div class="form-container">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <h3>All Customers</h3>
+                        <button class="btn btn-secondary" onclick="cleanupAdminUsers()" style="font-size: 0.9rem; padding: 0.5rem 1rem;">
+                            🧹 Clean Admin Records
+                        </button>
+                    </div>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Orders</th>
+                                    <th>Total Spent</th>
+                                    <th>Joined</th>
+                                </tr>
+                            </thead>
+                            <tbody id="customersTable">
+                                <tr><td colspan="6" style="text-align: center; color: #999;">No customers yet</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Admin credentials (demo only - in production use secure backend authentication)
+        const ADMIN_CREDENTIALS = {
+            email: 'Admin@gmail.com',
+            password: 'Admin@23'
+        };
+        
+        // Portfolio Note: In production, credentials would:
+        // 1. Never be hardcoded
+        // 2. Be handled by secure backend
+        // 3. Use OAuth or JWT tokens
+        // 4. Include password hashing
+        // 5. Implement rate limiting
+
+        // Clean up admin users from users array
+        function cleanupAdminUsers() {
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+            const filteredUsers = users.filter(user => 
+                user.email.toLowerCase() !== 'admin@gmail.com' && 
+                user.email.toLowerCase() !== 'shofolahanadebola@gmail.com'
+            );
+            
+            if (filteredUsers.length !== users.length) {
+                localStorage.setItem('users', JSON.stringify(filteredUsers));
+                allUsers = filteredUsers; // Update the global variable
+                renderCustomersTable(); // Refresh the table
+                showAlert('Admin records removed from database successfully!', 'success');
+            } else {
+                showAlert('No admin records found to remove.', 'success');
+            }
+        }
+
+        // Initialize on page load
+        window.addEventListener('load', () => {
+            const isAdminLoggedIn = localStorage.getItem('adminLoggedIn') === 'true';
+            if (isAdminLoggedIn) {
+                showDashboard();
+                // Clean up any admin users from the users array
+                cleanupAdminUsers();
+            } else {
+                showLoginPage();
+            }
+        });
+
+        // Show login page
+        function showLoginPage() {
+            document.getElementById('loginPage').classList.add('active');
+            document.getElementById('dashboardPage').classList.remove('active');
+        }
+
+        // Show dashboard
+        function showDashboard() {
+            document.getElementById('loginPage').classList.remove('active');
+            document.getElementById('dashboardPage').classList.add('active');
+            const adminEmail = localStorage.getItem('adminEmail') || 'Admin';
+            document.getElementById('adminNameDisplay').textContent = 'Welcome, ' + adminEmail.split('@')[0] + '!';
+            loadAllData();
+        }
+
+        // Handle admin login
+        function handleAdminLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('adminEmail').value;
+            const password = document.getElementById('adminPassword').value;
+            const errorElement = document.getElementById('loginError');
+
+            if (email === ADMIN_CREDENTIALS.email && password === ADMIN_CREDENTIALS.password) {
+                localStorage.setItem('adminLoggedIn', 'true');
+                localStorage.setItem('adminEmail', email);
+                showDashboard();
+                document.getElementById('adminEmail').value = '';
+                document.getElementById('adminPassword').value = '';
+                errorElement.classList.remove('show');
+            } else {
+                errorElement.textContent = 'Invalid email or password';
+                errorElement.classList.add('show');
+            }
+        }
+
+        // Logout admin
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                localStorage.removeItem('adminLoggedIn');
+                localStorage.removeItem('adminEmail');
+                showLoginPage();
+            }
+        }
+
+        // Switch sections
+        function switchSection(sectionId, event) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            document.getElementById(sectionId).classList.add('active');
+            event.target.classList.add('active');
+
+            if (sectionId === 'menu') {
+                renderMenuTable();
+            } else if (sectionId === 'services') {
+                renderServicesTable();
+            } else if (sectionId === 'orders') {
+                renderOrdersTable();
+            } else if (sectionId === 'customers') {
+                renderCustomersTable();
+            } else if (sectionId === 'dashboard') {
+                updateDashboardStats();
+            }
+        }
+
+        // Load all data from localStorage
+        function loadAllData() {
+            allMenuData = JSON.parse(localStorage.getItem('menuData') || '{"dishes":[], "special-dishes":[], "special-special-dishes":[]}');
+            allServices = JSON.parse(localStorage.getItem('services') || '[]');
+            allOrders = JSON.parse(localStorage.getItem('orders') || '[]');
+            allUsers = JSON.parse(localStorage.getItem('users') || '[]');
+            
+            if (allServices.length === 0) {
+                allServices = [
+                    { id: 101, name: "Wedding Catering", description: "Full-service wedding catering with customizable menus", price: 500000, emoji: "💒" },
+                    { id: 102, name: "Corporate Events", description: "Professional catering for business meetings", price: 250000, emoji: "💼" },
+                    { id: 103, name: "Birthday Parties", description: "Fun and festive catering packages for birthdays", price: 150000, emoji: "🎂" },
+                    { id: 104, name: "Cocktail Reception", description: "Sophisticated cocktail party service", price: 200000, emoji: "🍾" },
+                    { id: 105, name: "School/Other Events", description: "Comprehensive catering solutions for events", price: 180000, emoji: "🎓" }
+                ];
+                saveServices();
+            }
+
+            updateDashboardStats();
+        }
+
+        // Update dashboard stats
+        function updateDashboardStats() {
+            const totalMenuItems = (allMenuData.dishes?.length || 0) + (allMenuData['special-dishes']?.length || 0) + (allMenuData['special-special-dishes']?.length || 0);
+            const totalServices = allServices.length;
+            const pendingOrders = allOrders.filter(o => o.status !== 'completed').length;
+            const totalRevenue = allOrders.reduce((sum, o) => sum + (o.total || 0), 0);
+
+            document.getElementById('totalMenuItems').textContent = totalMenuItems;
+            document.getElementById('totalServices').textContent = totalServices;
+            document.getElementById('pendingOrders').textContent = pendingOrders;
+            document.getElementById('totalRevenue').textContent = '₦' + totalRevenue.toLocaleString();
+
+            renderRecentOrders();
+        }
+
+        // Render recent orders
+        function renderRecentOrders() {
+            const tbody = document.getElementById('recentOrdersTable');
+            const recentOrders = allOrders.slice(-5).reverse();
+
+            if (recentOrders.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: #999;">No orders yet</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = recentOrders.map((order, index) => {
+                const orderIndex = allOrders.indexOf(order) + 1;
+                return `
+                    <tr>
+                        <td>#${orderIndex}</td>
+                        <td>${order.customerName || 'Guest'}</td>
+                        <td>${order.items?.length || 0} items</td>
+                        <td>₦${(order.total || 0).toLocaleString()}</td>
+                        <td><span class="status-badge status-${order.status || 'pending'}">${(order.status || 'PENDING').toUpperCase()}</span></td>
+                        <td>${new Date(order.date || Date.now()).toLocaleDateString()}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // Menu Management
+        function handleMenuSubmit(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('menuName').value;
+            const price = parseInt(document.getElementById('menuPrice').value);
+            const category = document.getElementById('menuCategory').value;
+            const emoji = document.getElementById('menuEmoji').value;
+            const description = document.getElementById('menuDescription').value;
+
+            if (!name || !price || !category || !emoji || !description) {
+                showAlert('Please fill all fields', 'error');
+                return;
+            }
+
+            if (editingMenuId) {
+                updateMenuItem(editingMenuId, { name, price, category, emoji, description });
+                showAlert('Menu item updated successfully!', 'success');
+            } else {
+                const newId = Math.max(...(allMenuData[category] || []).map(i => i.id || 0), 0) + 1;
+                const newItem = { id: newId, name, price, category, emoji, description };
+                
+                if (!allMenuData[category]) allMenuData[category] = [];
+                allMenuData[category].push(newItem);
+                showAlert('Menu item added successfully!', 'success');
+            }
+
+            saveMenuData();
+            resetMenuForm();
+            renderMenuTable();
+        }
+
+        function updateMenuItem(id, updatedData) {
+            for (let category in allMenuData) {
+                const item = allMenuData[category].find(i => i.id === id);
+                if (item) {
+                    Object.assign(item, updatedData);
+                    break;
+                }
+            }
+            saveMenuData();
+        }
+
+        function editMenuItem(id) {
+            let item = null;
+            for (let category in allMenuData) {
+                item = allMenuData[category].find(i => i.id === id);
+                if (item) break;
+            }
+
+            if (!item) return;
+
+            editingMenuId = id;
+            document.getElementById('menuFormTitle').textContent = 'Edit Menu Item';
+            document.getElementById('menuSubmitBtn').textContent = 'Update Item';
+            document.getElementById('menuName').value = item.name;
+            document.getElementById('menuPrice').value = item.price;
+            document.getElementById('menuCategory').value = item.category;
+            document.getElementById('menuEmoji').value = item.emoji;
+            document.getElementById('menuDescription').value = item.description;
+            document.querySelector('#menu form').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function deleteMenuItem(id) {
+            if (!confirm('Are you sure you want to delete this item?')) return;
+
+            for (let category in allMenuData) {
+                allMenuData[category] = allMenuData[category].filter(i => i.id !== id);
+            }
+            saveMenuData();
+            renderMenuTable();
+            showAlert('Menu item deleted successfully!', 'success');
+        }
+
+        function resetMenuForm() {
+            editingMenuId = null;
+            document.querySelector('#menu form').reset();
+            document.getElementById('menuFormTitle').textContent = 'Add New Menu Item';
+            document.getElementById('menuSubmitBtn').textContent = 'Add Item';
+        }
+
+        function renderMenuTable() {
+            const tbody = document.getElementById('menuTable');
+            let html = '';
+
+            for (let category in allMenuData) {
+                allMenuData[category].forEach(item => {
+                    html += `
+                        <tr>
+                            <td>${item.emoji}</td>
+                            <td>${item.name}</td>
+                            <td>${category.replace('-', ' ').toUpperCase()}</td>
+                            <td>₦${item.price.toLocaleString()}</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-edit" onclick="editMenuItem(${item.id})">Edit</button>
+                                    <button class="btn-delete" onclick="deleteMenuItem(${item.id})">Delete</button>
+                                </div>
+                            </td>
+                        </tr>
+                    `;
+                });
+            }
+
+            tbody.innerHTML = html || '<tr><td colspan="5" style="text-align: center; color: #999;">No menu items yet</td></tr>';
+        }
+
+        // Services Management
+        function handleServicesSubmit(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('serviceName').value;
+            const price = parseInt(document.getElementById('servicePrice').value);
+            const emoji = document.getElementById('serviceEmoji').value;
+            const description = document.getElementById('serviceDescription').value;
+
+            if (!name || !price || !emoji || !description) {
+                showAlert('Please fill all fields', 'error');
+                return;
+            }
+
+            if (editingServiceId) {
+                const service = allServices.find(s => s.id === editingServiceId);
+                if (service) {
+                    service.name = name;
+                    service.price = price;
+                    service.emoji = emoji;
+                    service.description = description;
+                }
+                showAlert('Service updated successfully!', 'success');
+            } else {
+                const newId = Math.max(...allServices.map(s => s.id || 0), 0) + 1;
+                allServices.push({ id: newId, name, price, emoji, description });
+                showAlert('Service added successfully!', 'success');
+            }
+
+            saveServices();
+            resetServicesForm();
+            renderServicesTable();
+        }
+
+        function editService(id) {
+            const service = allServices.find(s => s.id === id);
+            if (!service) return;
+
+            editingServiceId = id;
+            document.getElementById('servicesFormTitle').textContent = 'Edit Service';
+            document.getElementById('servicesSubmitBtn').textContent = 'Update Service';
+            document.getElementById('serviceName').value = service.name;
+            document.getElementById('servicePrice').value = service.price;
+            document.getElementById('serviceEmoji').value = service.emoji;
+            document.getElementById('serviceDescription').value = service.description;
+            document.querySelector('#services form').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function deleteService(id) {
+            if (!confirm('Are you sure you want to delete this service?')) return;
+
+            allServices = allServices.filter(s => s.id !== id);
+            saveServices();
+            renderServicesTable();
+            showAlert('Service deleted successfully!', 'success');
+        }
+
+        function resetServicesForm() {
+            editingServiceId = null;
+            document.querySelector('#services form').reset();
+            document.getElementById('servicesFormTitle').textContent = 'Add New Service';
+            document.getElementById('servicesSubmitBtn').textContent = 'Add Service';
+        }
+
+        function renderServicesTable() {
+            const tbody = document.getElementById('servicesTable');
+            const html = allServices.map(service => `
+                <tr>
+                    <td>${service.emoji}</td>
+                    <td>${service.name}</td>
+                    <td>₦${service.price.toLocaleString()}</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="btn-edit" onclick="editService(${service.id})">Edit</button>
+                            <button class="btn-delete" onclick="deleteService(${service.id})">Delete</button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+
+            tbody.innerHTML = html || '<tr><td colspan="4" style="text-align: center; color: #999;">No services yet</td></tr>';
+        }
+
+        // Orders Management
+        function renderOrdersTable() {
+            const tbody = document.getElementById('ordersTable');
+
+            if (allOrders.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: #999;">No orders yet</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = allOrders.map((order, index) => `
+                <tr>
+                    <td>#${index + 1}</td>
+                    <td>${order.customerName || 'Guest'}</td>
+                    <td>${order.items?.length || 0}</td>
+                    <td>₦${(order.total || 0).toLocaleString()}</td>
+                    <td><span class="status-badge status-${order.status || 'pending'}">${(order.status || 'PENDING').toUpperCase()}</span></td>
+                    <td>${new Date(order.date || Date.now()).toLocaleDateString()}</td>
+                    <td>
+                        <button class="btn-view" onclick="viewOrder(${index})">View</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function viewOrder(index) {
+            const order = allOrders[index];
+            if (!order) return;
+
+            const itemsList = order.items?.map(item => `${item.name} x${item.quantity} = ₦${(item.price * item.quantity).toLocaleString()}`).join('\n') || 'No items';
+            alert(`Order #${index + 1}\n\nCustomer: ${order.customerName || 'Guest'}\nPhone: ${order.customerPhone || 'N/A'}\nEmail: ${order.customerEmail || 'N/A'}\n\nItems:\n${itemsList}\n\nTotal: ₦${order.total}\nStatus: ${order.status || 'PENDING'}`);
+        }
+
+        // Customers Management
+        function renderCustomersTable() {
+            const tbody = document.getElementById('customersTable');
+
+            // Filter out admin users from customer list
+            const customerUsers = allUsers.filter(user => 
+                user.email.toLowerCase() !== 'admin@gmail.com' && 
+                user.email.toLowerCase() !== 'shofolahanadebola@gmail.com'
+            );
+
+            if (customerUsers.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: #999;">No customers yet</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = customerUsers.map(user => {
+                const userOrders = allOrders.filter(o => o.customerEmail === user.email);
+                const totalSpent = userOrders.reduce((sum, o) => sum + (o.total || 0), 0);
+                const joinedDate = new Date(user.createdAt || Date.now()).toLocaleDateString();
+
+                return `
+                    <tr>
+                        <td>${user.name || user.email.split('@')[0]}</td>
+                        <td>${user.email}</td>
+                        <td>${user.phone || 'N/A'}</td>
+                        <td>${userOrders.length}</td>
+                        <td>₦${totalSpent.toLocaleString()}</td>
+                        <td>${joinedDate}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // Save data functions
+        function saveMenuData() {
+            localStorage.setItem('menuData', JSON.stringify(allMenuData));
+            updateDashboardStats();
+        }
+
+        function saveServices() {
+            localStorage.setItem('services', JSON.stringify(allServices));
+            updateDashboardStats();
+        }
+
+        // Alert functions
+        function showAlert(message, type) {
+            const alertElement = type === 'success' ? document.getElementById('successAlert') : document.getElementById('errorAlert');
+            alertElement.textContent = message;
+            alertElement.classList.add('show');
+            setTimeout(() => alertElement.classList.remove('show'), 3000);
+        }
+    </script>
+</body>
+</html>
+

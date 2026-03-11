@@ -1,0 +1,1564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - Bola2bolas Catering</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #FF6B6B;
+            --secondary: #4ECDC4;
+            --accent: #FFE66D;
+            --dark: #2C3E50;
+            --light: #F8F9FA;
+            --white: #FFFFFF;
+            --gray: #E9ECEF;
+            --text-gray: #6C757D;
+            --success: #28A745;
+            --danger: #DC3545;
+            --warning: #FFC107;
+            --info: #17A2B8;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+            gap: 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.3s;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+            color: var(--white);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Page Title */
+        .page-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--dark);
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 1rem;
+        }
+
+        /* Main Layout */
+        .profile-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Sidebar */
+        .profile-sidebar {
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .profile-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            margin: 0 auto 1rem;
+            color: var(--white);
+        }
+
+        .profile-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .profile-email {
+            text-align: center;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            word-break: break-all;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+        }
+
+        .sidebar-menu li {
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-menu a {
+            display: block;
+            padding: 0.8rem 1rem;
+            color: var(--dark);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+        }
+
+        .sidebar-menu a:hover,
+        .sidebar-menu a.active {
+            background: var(--light);
+            color: var(--primary);
+            border-left-color: var(--primary);
+        }
+
+        /* Main Content */
+        .profile-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .content-section {
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 0.5rem;
+        }
+
+        /* Form Styles */
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            padding: 0.8rem;
+            border: 2px solid var(--gray);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn-submit {
+            background: var(--secondary);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: transform 0.3s;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-cancel {
+            background: var(--gray);
+            color: var(--dark);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .btn-delete {
+            background: var(--danger);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: transform 0.3s;
+        }
+
+        .btn-delete:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Info Box */
+        .info-box {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--info);
+            margin-bottom: 1.5rem;
+        }
+
+        .info-label {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .info-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        /* Table Styles */
+        .table-container {
+            overflow-x: auto;
+            margin-bottom: 1rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: var(--gray);
+        }
+
+        th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: var(--dark);
+            border-bottom: 2px solid #ddd;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        tbody tr:hover {
+            background: var(--light);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .status-completed {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-cancelled {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: var(--text-gray);
+        }
+
+        .empty-state-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .empty-state p {
+            font-size: 1.1rem;
+        }
+
+        /* Alerts */
+        .alert {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            display: none;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .alert.show {
+            display: block;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .alert-info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        /* Address Cards */
+        .address-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .address-card {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 2px solid var(--gray);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .address-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .address-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        .address-type {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .address-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-small {
+            padding: 0.4rem 0.8rem;
+            font-size: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .btn-small-edit {
+            background: var(--info);
+            color: var(--white);
+        }
+
+        .btn-small-delete {
+            background: var(--danger);
+            color: var(--white);
+        }
+
+        .btn-small:hover {
+            transform: scale(1.05);
+        }
+
+        .address-content {
+            color: var(--dark);
+            line-height: 1.8;
+        }
+
+        .address-default {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #ddd;
+            font-size: 0.9rem;
+        }
+
+        .badge-default {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* Responsive - Mobile First Approach */
+        @media (max-width: 1024px) {
+            .container {
+                padding: 1.5rem 1rem;
+            }
+
+            .profile-layout {
+                gap: 1.5rem;
+            }
+
+            .profile-sidebar {
+                top: 80px;
+            }
+
+            .form-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .address-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 0.8rem 0;
+            }
+
+            nav {
+                padding: 0 1rem;
+                gap: 1rem;
+                flex-wrap: wrap;
+            }
+
+            .logo {
+                font-size: 1.4rem;
+                order: 1;
+            }
+
+            .nav-buttons {
+                order: 2;
+                width: 100%;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+
+            .nav-buttons a,
+            .nav-buttons button {
+                flex: 1;
+                min-width: 120px;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .page-title {
+                font-size: 2rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .profile-layout {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .profile-sidebar {
+                position: static;
+                padding: 1.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .profile-avatar {
+                width: 120px;
+                height: 120px;
+                font-size: 3rem;
+                margin-bottom: 1rem;
+            }
+
+            .profile-name {
+                font-size: 1.2rem;
+            }
+
+            .profile-email {
+                font-size: 0.85rem;
+            }
+
+            .sidebar-menu {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.5rem;
+                margin-top: 1.5rem;
+            }
+
+            .sidebar-menu li {
+                margin-bottom: 0;
+            }
+
+            .sidebar-menu a {
+                text-align: center;
+                padding: 0.7rem 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            .content-section {
+                padding: 1.5rem 1rem;
+            }
+
+            .section-title {
+                font-size: 1.3rem;
+                margin-bottom: 1.2rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .form-group label {
+                font-size: 0.95rem;
+            }
+
+            .form-group input,
+            .form-group textarea,
+            .form-group select {
+                padding: 0.7rem;
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+
+            .form-buttons {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .btn-submit,
+            .btn-cancel,
+            .btn-delete {
+                width: 100%;
+                padding: 0.8rem 1rem;
+            }
+
+            .info-box {
+                padding: 1rem;
+                margin-bottom: 1rem;
+            }
+
+            .info-label {
+                font-size: 0.85rem;
+            }
+
+            .info-value {
+                font-size: 1rem;
+            }
+
+            .table-container {
+                overflow-x: auto;
+            }
+
+            table {
+                font-size: 0.8rem;
+                min-width: 600px;
+            }
+
+            th {
+                padding: 0.75rem 0.5rem;
+                font-size: 0.8rem;
+            }
+
+            td {
+                padding: 0.75rem 0.5rem;
+            }
+
+            .status-badge {
+                font-size: 0.7rem;
+                padding: 0.25rem 0.5rem;
+            }
+
+            .address-cards {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .address-card {
+                padding: 1.2rem;
+            }
+
+            .address-type {
+                font-size: 0.95rem;
+            }
+
+            .address-content {
+                font-size: 0.9rem;
+                line-height: 1.6;
+            }
+
+            .address-actions {
+                gap: 0.35rem;
+            }
+
+            .btn-small {
+                padding: 0.35rem 0.7rem;
+                font-size: 0.75rem;
+            }
+
+            #addressFormContainer {
+                margin-bottom: 1.5rem !important;
+            }
+
+            .empty-state {
+                padding: 2rem 1rem;
+            }
+
+            .empty-state-icon {
+                font-size: 2.5rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .alert {
+                padding: 0.8rem;
+                margin-bottom: 1rem;
+            }
+
+            hr {
+                margin: 1.5rem 0 !important;
+            }
+
+            h3 {
+                font-size: 1.1rem;
+                margin-bottom: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                gap: 0.5rem;
+                padding: 0 0.8rem;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .nav-buttons a,
+            .nav-buttons button {
+                padding: 0.5rem;
+                font-size: 0.85rem;
+            }
+
+            .container {
+                padding: 0.8rem;
+            }
+
+            .page-title {
+                font-size: 1.5rem;
+                margin-bottom: 1.2rem;
+            }
+
+            .profile-sidebar {
+                padding: 1.2rem;
+            }
+
+            .profile-avatar {
+                width: 100px;
+                height: 100px;
+                font-size: 2.5rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .profile-name {
+                font-size: 1.1rem;
+            }
+
+            .profile-email {
+                font-size: 0.8rem;
+            }
+
+            .sidebar-menu {
+                grid-template-columns: 1fr;
+                gap: 0.35rem;
+            }
+
+            .sidebar-menu a {
+                padding: 0.6rem;
+                font-size: 0.85rem;
+            }
+
+            .content-section {
+                padding: 1.2rem 0.8rem;
+            }
+
+            .section-title {
+                font-size: 1.2rem;
+                padding-bottom: 0.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .form-group {
+                margin-bottom: 0.8rem;
+            }
+
+            .form-group label {
+                font-size: 0.9rem;
+                margin-bottom: 0.35rem;
+            }
+
+            .form-group input,
+            .form-group textarea,
+            .form-group select {
+                padding: 0.6rem;
+                font-size: 16px;
+                border-radius: 6px;
+            }
+
+            .form-buttons {
+                gap: 0.5rem;
+            }
+
+            .btn-submit,
+            .btn-cancel,
+            .btn-delete {
+                padding: 0.7rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .info-box {
+                padding: 0.8rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .info-label {
+                font-size: 0.8rem;
+                margin-bottom: 0.2rem;
+            }
+
+            .info-value {
+                font-size: 0.95rem;
+            }
+
+            table {
+                font-size: 0.7rem;
+                min-width: 550px;
+            }
+
+            th, td {
+                padding: 0.5rem 0.35rem;
+            }
+
+            .address-card {
+                padding: 1rem;
+            }
+
+            .address-card-header {
+                gap: 0.5rem;
+            }
+
+            .address-type {
+                font-size: 0.9rem;
+            }
+
+            .address-content {
+                font-size: 0.85rem;
+                line-height: 1.5;
+            }
+
+            .btn-small {
+                padding: 0.3rem 0.6rem;
+                font-size: 0.7rem;
+            }
+
+            .empty-state {
+                padding: 1.5rem 0.8rem;
+            }
+
+            .empty-state-icon {
+                font-size: 2rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .empty-state p {
+                font-size: 0.95rem;
+            }
+
+            .alert {
+                padding: 0.7rem;
+                font-size: 0.9rem;
+            }
+
+            .badge-default {
+                padding: 0.15rem 0.5rem;
+                font-size: 0.7rem;
+            }
+
+            h3 {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .logo {
+                font-size: 1rem;
+            }
+
+            .page-title {
+                font-size: 1.3rem;
+            }
+
+            .profile-avatar {
+                width: 80px;
+                height: 80px;
+                font-size: 2rem;
+            }
+
+            .sidebar-menu a {
+                padding: 0.5rem;
+                font-size: 0.8rem;
+            }
+
+            table {
+                font-size: 0.65rem;
+                min-width: 500px;
+            }
+
+            .btn-small {
+                padding: 0.25rem 0.5rem;
+                font-size: 0.65rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="index.html" class="logo">🍽️ Bola2bolas</a>
+            <div class="nav-buttons">
+                <a href="index.html" class="btn btn-secondary">Back to Home</a>
+                <button class="btn btn-primary" onclick="logoutUser()">Logout</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <h1 class="page-title">👤 My Profile</h1>
+
+        <!-- Alert Messages -->
+        <div class="alert alert-success" id="successAlert"></div>
+        <div class="alert alert-error" id="errorAlert"></div>
+        <div class="alert alert-info" id="infoAlert"></div>
+
+        <!-- Profile Layout -->
+        <div class="profile-layout">
+            <!-- Sidebar -->
+            <div class="profile-sidebar">
+                <div class="profile-avatar" id="profileAvatar">👤</div>
+                <div class="profile-name" id="profileName">User Name</div>
+                <div class="profile-email" id="profileEmail">user@email.com</div>
+                <ul class="sidebar-menu">
+                    <li><a href="#" onclick="switchTab('dashboard', event)" class="sidebar-link active">📊 Dashboard</a></li>
+                    <li><a href="#" onclick="switchTab('orders', event)" class="sidebar-link">📦 Order History</a></li>
+                    <li><a href="#" onclick="switchTab('addresses', event)" class="sidebar-link">📍 Addresses</a></li>
+                    <li><a href="#" onclick="switchTab('settings', event)" class="sidebar-link">⚙️ Settings</a></li>
+                </ul>
+            </div>
+
+            <!-- Main Content -->
+            <div class="profile-content">
+                <!-- Dashboard Section -->
+                <div id="dashboard" class="content-section active">
+                    <h2 class="section-title">Dashboard</h2>
+                    
+                    <div class="info-box">
+                        <div class="info-label">Account Status</div>
+                        <div class="info-value">✅ Active</div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="info-box">
+                            <div class="info-label">Total Orders</div>
+                            <div class="info-value" id="dashboardTotalOrders">0</div>
+                        </div>
+                        <div class="info-box">
+                            <div class="info-label">Total Spent</div>
+                            <div class="info-value" id="dashboardTotalSpent">₦0</div>
+                        </div>
+                        <div class="info-box">
+                            <div class="info-label">Member Since</div>
+                            <div class="info-value" id="dashboardMemberSince">-</div>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <div class="info-label">Account Email</div>
+                        <div class="info-value" id="dashboardEmail">user@email.com</div>
+                    </div>
+
+                    <div class="info-box">
+                        <div class="info-label">Phone Number</div>
+                        <div class="info-value" id="dashboardPhone">Not provided</div>
+                    </div>
+                </div>
+
+                <!-- Orders Section -->
+                <div id="orders" class="content-section">
+                    <h2 class="section-title">Order History</h2>
+                    
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Date</th>
+                                    <th>Items</th>
+                                    <th>Total</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ordersTableBody">
+                                <tr>
+                                    <td colspan="6" style="text-align: center; color: #999;">
+                                        <div class="empty-state">
+                                            <div class="empty-state-icon">📦</div>
+                                            <p>No orders yet</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Addresses Section -->
+                <div id="addresses" class="content-section">
+                    <h2 class="section-title">Delivery Addresses</h2>
+
+                    <button class="btn btn-primary" onclick="openAddAddressForm()" style="margin-bottom: 1.5rem;">+ Add New Address</button>
+
+                    <!-- Add/Edit Address Form -->
+                    <div id="addressFormContainer" style="display: none; margin-bottom: 2rem;">
+                        <form onsubmit="handleAddressSave(event)">
+                            <h3 id="addressFormTitle" style="margin-bottom: 1rem; color: var(--dark);">Add New Address</h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Address Type</label>
+                                    <select id="addressType" required>
+                                        <option value="home">Home</option>
+                                        <option value="work">Work</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Full Name</label>
+                                    <input type="text" id="addressName" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Phone Number</label>
+                                    <input type="tel" id="addressPhone" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Street Address</label>
+                                    <input type="text" id="addressStreet" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>City</label>
+                                    <input type="text" id="addressCity" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>State</label>
+                                    <input type="text" id="addressState" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Postal Code</label>
+                                    <input type="text" id="addressPostal" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label style="display: flex; align-items: center; margin-top: 0.5rem;">
+                                        <input type="checkbox" id="addressDefault" style="margin-right: 0.5rem;">
+                                        Set as default address
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-buttons">
+                                <button type="submit" class="btn-submit">Save Address</button>
+                                <button type="button" class="btn-cancel" onclick="closeAddressForm()">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Addresses List -->
+                    <div class="address-cards" id="addressesList">
+                        <div class="empty-state">
+                            <div class="empty-state-icon">📍</div>
+                            <p>No saved addresses yet. Add one to get started!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Settings Section -->
+                <div id="settings" class="content-section">
+                    <h2 class="section-title">Account Settings</h2>
+
+                    <h3 style="margin-bottom: 1rem; color: var(--dark);">Update Profile Information</h3>
+                    <form onsubmit="handleProfileUpdate(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Full Name</label>
+                                <input type="text" id="settingsName" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <input type="email" id="settingsEmail" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="tel" id="settingsPhone">
+                            </div>
+                        </div>
+                        <div class="form-buttons">
+                            <button type="submit" class="btn-submit">Save Changes</button>
+                        </div>
+                    </form>
+
+                    <hr style="margin: 2rem 0; border: none; border-top: 1px solid #ddd;">
+
+                    <h3 style="margin-bottom: 1rem; color: var(--dark);">Change Password</h3>
+                    <form onsubmit="handlePasswordChange(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Current Password</label>
+                                <input type="password" id="currentPassword" required>
+                            </div>
+                            <div class="form-group">
+                                <label>New Password</label>
+                                <input type="password" id="newPassword" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Confirm Password</label>
+                                <input type="password" id="confirmPassword" required>
+                            </div>
+                        </div>
+                        <div class="form-buttons">
+                            <button type="submit" class="btn-submit">Change Password</button>
+                        </div>
+                    </form>
+
+                    <hr style="margin: 2rem 0; border: none; border-top: 1px solid #ddd;">
+
+                    <h3 style="margin-bottom: 1rem; color: var(--danger);">Danger Zone</h3>
+                    <button class="btn-delete" onclick="confirmDeleteAccount()">Delete Account</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="Js files/auth-manager.js"></script>
+    <script>
+        let currentUser = null;
+        let editingAddressIndex = null;
+
+        // Initialize on page load
+        window.addEventListener('load', () => {
+            checkUserLogin();
+            loadUserData();
+            
+            // Check if a specific tab was requested
+            const tabToOpen = sessionStorage.getItem('profileTabToOpen') || 'dashboard';
+            sessionStorage.removeItem('profileTabToOpen'); // Clear it after use
+            
+            // Activate the requested tab
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.querySelectorAll('.sidebar-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            document.getElementById(tabToOpen).classList.add('active');
+            
+            // Find and activate the corresponding sidebar link
+            const sidebarLinks = document.querySelectorAll('.sidebar-link');
+            sidebarLinks.forEach(link => {
+                if (link.getAttribute('onclick').includes(`'${tabToOpen}'`)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Check if user is logged in
+        function checkUserLogin() {
+            const isLoggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
+            if (!isLoggedIn) {
+                alert('Please login first');
+                window.location.href = 'auth.html';
+                return;
+            }
+        }
+
+        // Load user data
+        function loadUserData() {
+            const userEmail = sessionStorage.getItem('userEmail');
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+            currentUser = users.find(u => u.email === userEmail);
+
+            if (!currentUser) {
+                currentUser = {
+                    name: userEmail.split('@')[0],
+                    email: userEmail,
+                    phone: '',
+                    addresses: [],
+                    createdAt: new Date().toISOString()
+                };
+            }
+
+            updateProfileDisplay();
+            loadOrders();
+            loadAddresses();
+        }
+
+        // Update profile display
+        function updateProfileDisplay() {
+            document.getElementById('profileName').textContent = currentUser.name || 'User';
+            document.getElementById('profileEmail').textContent = currentUser.email;
+            document.getElementById('settingsName').value = currentUser.name || '';
+            document.getElementById('settingsEmail').value = currentUser.email;
+            document.getElementById('settingsPhone').value = currentUser.phone || '';
+            
+            // Dashboard info
+            document.getElementById('dashboardEmail').textContent = currentUser.email;
+            document.getElementById('dashboardPhone').textContent = currentUser.phone || 'Not provided';
+            
+            const joinDate = new Date(currentUser.createdAt || Date.now()).toLocaleDateString();
+            document.getElementById('dashboardMemberSince').textContent = joinDate;
+        }
+
+        // Load orders
+        function loadOrders() {
+            const allOrders = JSON.parse(localStorage.getItem('orders') || '[]');
+            const userOrders = allOrders.filter(o => o.customerEmail === currentUser.email);
+            
+            const totalSpent = userOrders.reduce((sum, o) => sum + (o.total || 0), 0);
+            document.getElementById('dashboardTotalOrders').textContent = userOrders.length;
+            document.getElementById('dashboardTotalSpent').textContent = '₦' + totalSpent.toLocaleString();
+
+            const tbody = document.getElementById('ordersTableBody');
+            if (userOrders.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="6" style="text-align: center;">
+                            <div class="empty-state">
+                                <div class="empty-state-icon">📦</div>
+                                <p>No orders yet. Start shopping!</p>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = userOrders.map((order, index) => `
+                <tr>
+                    <td>#${index + 1}</td>
+                    <td>${new Date(order.date || Date.now()).toLocaleDateString()}</td>
+                    <td>${order.items?.length || 0} items</td>
+                    <td>₦${(order.total || 0).toLocaleString()}</td>
+                    <td><span class="status-badge status-${order.status || 'pending'}">${(order.status || 'PENDING').toUpperCase()}</span></td>
+                    <td><button class="btn-small btn-small-edit" onclick="viewOrderDetails(${index})">View</button></td>
+                </tr>
+            `).join('');
+        }
+
+        // View order details
+        function viewOrderDetails(index) {
+            const allOrders = JSON.parse(localStorage.getItem('orders') || '[]');
+            const userOrders = allOrders.filter(o => o.customerEmail === currentUser.email);
+            const order = userOrders[index];
+            
+            if (!order) return;
+
+            const itemsList = order.items?.map(item => `${item.name} x${item.quantity} = ₦${(item.price * item.quantity).toLocaleString()}`).join('\n') || 'No items';
+            alert(`Order #${index + 1}\n\nDate: ${new Date(order.date || Date.now()).toLocaleDateString()}\n\nItems:\n${itemsList}\n\nTotal: ₦${order.total}\nStatus: ${order.status || 'PENDING'}`);
+        }
+
+        // Load addresses
+        function loadAddresses() {
+            const addresses = currentUser.addresses || [];
+            const container = document.getElementById('addressesList');
+
+            if (addresses.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📍</div>
+                        <p>No saved addresses yet. Add one to get started!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = addresses.map((address, index) => `
+                <div class="address-card">
+                    <div class="address-card-header">
+                        <div class="address-type">${address.type.toUpperCase()}</div>
+                        <div class="address-actions">
+                            <button class="btn-small btn-small-edit" onclick="editAddress(${index})">Edit</button>
+                            <button class="btn-small btn-small-delete" onclick="deleteAddress(${index})">Delete</button>
+                        </div>
+                    </div>
+                    <div class="address-content">
+                        <strong>${address.name}</strong><br>
+                        ${address.street}<br>
+                        ${address.city}, ${address.state} ${address.postal}<br>
+                        📱 ${address.phone}
+                        ${address.isDefault ? '<div class="address-default"><span class="badge-default">DEFAULT</span></div>' : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Open add address form
+        function openAddAddressForm() {
+            editingAddressIndex = null;
+            document.getElementById('addressFormContainer').style.display = 'block';
+            document.querySelector('#addresses form').reset();
+            const titleEl = document.getElementById('addressFormTitle');
+            if (titleEl) {
+                titleEl.textContent = 'Add New Address';
+            }
+            document.querySelector('#addresses form button[type="submit"]').textContent = 'Save Address';
+        }
+
+        // Close address form
+        function closeAddressForm() {
+            document.getElementById('addressFormContainer').style.display = 'none';
+        }
+
+        // Handle address save
+        function handleAddressSave(event) {
+            event.preventDefault();
+
+            const newAddress = {
+                type: document.getElementById('addressType').value,
+                name: document.getElementById('addressName').value,
+                phone: document.getElementById('addressPhone').value,
+                street: document.getElementById('addressStreet').value,
+                city: document.getElementById('addressCity').value,
+                state: document.getElementById('addressState').value,
+                postal: document.getElementById('addressPostal').value,
+                isDefault: document.getElementById('addressDefault').checked
+            };
+
+            if (!currentUser.addresses) {
+                currentUser.addresses = [];
+            }
+
+            if (editingAddressIndex !== null) {
+                currentUser.addresses[editingAddressIndex] = newAddress;
+                showAlert('Address updated successfully!', 'success');
+            } else {
+                currentUser.addresses.push(newAddress);
+                showAlert('Address added successfully!', 'success');
+            }
+
+            // If set as default, unset others
+            if (newAddress.isDefault) {
+                currentUser.addresses.forEach((addr, idx) => {
+                    if (idx !== editingAddressIndex) {
+                        addr.isDefault = false;
+                    }
+                });
+            }
+
+            saveUserData();
+            closeAddressForm();
+            loadAddresses();
+        }
+
+        // Edit address
+        function editAddress(index) {
+            const address = currentUser.addresses[index];
+            editingAddressIndex = index;
+
+            document.getElementById('addressType').value = address.type;
+            document.getElementById('addressName').value = address.name;
+            document.getElementById('addressPhone').value = address.phone;
+            document.getElementById('addressStreet').value = address.street;
+            document.getElementById('addressCity').value = address.city;
+            document.getElementById('addressState').value = address.state;
+            document.getElementById('addressPostal').value = address.postal;
+            document.getElementById('addressDefault').checked = address.isDefault;
+
+            document.getElementById('addressFormContainer').style.display = 'block';
+            const titleEl = document.getElementById('addressFormTitle');
+            if (titleEl) {
+                titleEl.textContent = 'Edit Address';
+            }
+            document.getElementById('addressFormContainer').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Delete address
+        function deleteAddress(index) {
+            if (!confirm('Are you sure you want to delete this address?')) return;
+
+            currentUser.addresses.splice(index, 1);
+            saveUserData();
+            loadAddresses();
+            showAlert('Address deleted successfully!', 'success');
+        }
+
+        // Handle profile update
+        function handleProfileUpdate(event) {
+            event.preventDefault();
+
+            currentUser.name = document.getElementById('settingsName').value;
+            currentUser.email = document.getElementById('settingsEmail').value;
+            currentUser.phone = document.getElementById('settingsPhone').value;
+
+            saveUserData();
+            updateProfileDisplay();
+            showAlert('Profile updated successfully!', 'success');
+        }
+
+        // Handle password change
+        function handlePasswordChange(event) {
+            event.preventDefault();
+
+            const currentPassword = document.getElementById('currentPassword').value;
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (newPassword !== confirmPassword) {
+                showAlert('Passwords do not match!', 'error');
+                return;
+            }
+
+            if (newPassword.length < 6) {
+                showAlert('Password must be at least 6 characters!', 'error');
+                return;
+            }
+
+            // In a real app, verify current password and hash new password
+            if (currentUser.password && currentUser.password !== currentPassword) {
+                showAlert('Current password is incorrect!', 'error');
+                return;
+            }
+
+            currentUser.password = newPassword;
+            saveUserData();
+            
+            event.target.reset();
+            showAlert('Password changed successfully!', 'success');
+        }
+
+        // Confirm delete account
+        function confirmDeleteAccount() {
+            if (!confirm('Are you sure you want to delete your account? This action cannot be undone!')) return;
+            if (!confirm('This will permanently delete all your data. Are you absolutely sure?')) return;
+
+            deleteAccount();
+        }
+
+        // Delete account
+        function deleteAccount() {
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+            const userIndex = users.findIndex(u => u.email === currentUser.email);
+            
+            if (userIndex > -1) {
+                users.splice(userIndex, 1);
+                localStorage.setItem('users', JSON.stringify(users));
+            }
+
+            sessionStorage.removeItem('isLoggedIn');
+            sessionStorage.removeItem('userEmail');
+            
+            showAlert('Account deleted successfully. Redirecting...', 'success');
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 2000);
+        }
+
+        // Switch tabs
+        function switchTab(tabName, event) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.querySelectorAll('.sidebar-link').forEach(link => {
+                link.classList.remove('active');
+            });
+
+            document.getElementById(tabName).classList.add('active');
+            
+            // Handle both click events and programmatic calls
+            if (event && event.target) {
+                event.target.classList.add('active');
+            }
+        }
+
+        // Save user data
+        function saveUserData() {
+            let users = JSON.parse(localStorage.getItem('users') || '[]');
+            const userIndex = users.findIndex(u => u.email === currentUser.email);
+
+            if (userIndex > -1) {
+                users[userIndex] = currentUser;
+            } else {
+                users.push(currentUser);
+            }
+
+            localStorage.setItem('users', JSON.stringify(users));
+        }
+
+        // Show alert
+        function showAlert(message, type) {
+            const alertId = type === 'success' ? 'successAlert' : type === 'error' ? 'errorAlert' : 'infoAlert';
+            const alertElement = document.getElementById(alertId);
+            alertElement.textContent = message;
+            alertElement.classList.add('show');
+            setTimeout(() => alertElement.classList.remove('show'), 3000);
+        }
+
+        // Logout user
+        function logoutUser() {
+            if (confirm('Are you sure you want to logout?')) {
+                sessionStorage.removeItem('isLoggedIn');
+                sessionStorage.removeItem('userEmail');
+                window.location.href = 'index.html';
+            }
+        }
+    </script>
+</body>
+</html>
